@@ -13,6 +13,8 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
+                <outlet property="playPauseButton" destination="RXa-xD-Nu3" id="Rh6-jj-7qg"/>
+                <outlet property="timeSlider" destination="JvU-6g-gG7" id="aTN-PF-C1C"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -694,6 +696,9 @@
 IA
 </string>
                                     </buttonCell>
+                                    <connections>
+                                        <action selector="play:" target="Voe-Tx-rLC" id="40L-gj-OjM"/>
+                                    </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gkN-ja-HoG">
                                     <rect key="frame" x="223" y="7" width="50" height="25"/>
@@ -727,7 +732,11 @@ IA
                                 </textField>
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JvU-6g-gG7">
                                     <rect key="frame" x="317" y="10" width="258" height="17"/>
-                                    <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="7Mt-dQ-PCh"/>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="7Mt-dQ-PCh">
+                                        <connections>
+                                            <action selector="timeSliderAction:" target="Voe-Tx-rLC" id="c53-oj-kIs"/>
+                                        </connections>
+                                    </sliderCell>
                                 </slider>
                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PdL-r4-d5I">
                                     <rect key="frame" x="279" y="12" width="31" height="14"/>

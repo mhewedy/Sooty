@@ -7,8 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+@import AVFoundation.AVAudioPlayer;
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate, AVAudioPlayerDelegate>
 
 
 @end
