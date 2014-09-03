@@ -42,7 +42,6 @@
 }
 
 
-
 -(void) playURL:(NSString*) URLString{
     NSError* error = nil;
     self.audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL URLWithString:URLString] error:&error];
@@ -50,6 +49,10 @@
     
     self.timeSlider.minValue = 0;
     self.timeSlider.maxValue = self.audioPlayer.duration;
+    
+    if (error != nil){
+        [self alert:self.window withMessage:error.localizedDescription];
+    }
 }
 
 - (IBAction)timeSliderAction:(id)sender {
@@ -79,6 +82,7 @@
 }
 
 - (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error{
+    [self alert:self.window withMessage:error.localizedDescription];
     [self stopPlayer];
 }
 - (void) stopPlayer{
