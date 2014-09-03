@@ -96,8 +96,8 @@
 				B7740A4519B6857700695A2B /* AppDelegate.m */,
 				B7740A4719B6857700695A2B /* Images.xcassets */,
 				B7740A4919B6857700695A2B /* MainMenu.xib */,
-				B7740A4019B6857700695A2B /* Supporting Files */,
 				B769FA9D19B7C5FE00EB2D4D /* util */,
+				B7740A4019B6857700695A2B /* Supporting Files */,
 			);
 			path = soundy;
 			sourceTree = "<group>";
