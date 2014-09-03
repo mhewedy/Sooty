@@ -12,6 +12,7 @@
 		B7740A4819B6857700695A2B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7740A4719B6857700695A2B /* Images.xcassets */; };
 		B7740A4B19B6857700695A2B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7740A4919B6857700695A2B /* MainMenu.xib */; };
 		B7740A5719B6857700695A2B /* soundyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B7740A5619B6857700695A2B /* soundyTests.m */; };
+		B7E19E5F19B79EF8000CB167 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7E19E5E19B79EF8000CB167 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,7 @@
 		B7740A5019B6857700695A2B /* soundyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = soundyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7740A5519B6857700695A2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7740A5619B6857700695A2B /* soundyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = soundyTests.m; sourceTree = "<group>"; };
+		B7E19E5E19B79EF8000CB167 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7E19E5F19B79EF8000CB167 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +64,7 @@
 				B7740A3F19B6857700695A2B /* soundy */,
 				B7740A5319B6857700695A2B /* soundyTests */,
 				B7740A3E19B6857700695A2B /* Products */,
+				B7E19E6019B79EFC000CB167 /* frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +113,14 @@
 				B7740A5519B6857700695A2B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B7E19E6019B79EFC000CB167 /* frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B7E19E5E19B79EF8000CB167 /* AVFoundation.framework */,
+			);
+			name = frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,7 +294,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.9;
 			};
 			name = Debug;
 		};
@@ -317,7 +329,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.9;
 			};
 			name = Release;
 		};
@@ -398,6 +410,7 @@
 				B7740A5C19B6857700695A2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B7740A5D19B6857700695A2B /* Build configuration list for PBXNativeTarget "soundyTests" */ = {
 			isa = XCConfigurationList;
@@ -406,6 +419,7 @@
 				B7740A5F19B6857700695A2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

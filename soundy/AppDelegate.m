@@ -7,10 +7,12 @@
 //
 
 #import "AppDelegate.h"
+@import AVFoundation.AVAudioPlayer;
 
 @interface AppDelegate ()
 
 @property (weak) IBOutlet NSWindow *window;
+@property (strong) AVAudioPlayer* audioPlayer;
 
 @end
 
