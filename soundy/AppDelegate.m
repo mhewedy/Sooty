@@ -13,6 +13,7 @@
 @property (weak) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSButton *playPauseButton;
 @property (weak) IBOutlet NSSlider *timeSlider;
+@property (weak) IBOutlet NSSlider *volumeSlider;
 
 @property (strong) AVAudioPlayer *audioPlayer;
 @property (strong) NSTimer *timeSliderTimer;
@@ -26,19 +27,18 @@
     // TEST
     [self.playPauseButton setEnabled:YES];
     [self.timeSlider setEnabled:YES];
+    [self.volumeSlider setEnabled:YES];
     //~
     
     NSError* error = nil;
     self.audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL URLWithString:@"/Users/mhewedy/Downloads/69y19mo9Tfzy.128.mp3"] error:&error];
-    __weak id selfWeakRef = self;
-    self.audioPlayer.delegate = selfWeakRef;
+    self.audioPlayer.delegate = self;
     
     self.timeSlider.minValue = 0;
     self.timeSlider.maxValue = self.audioPlayer.duration;
     
     self.timeSliderTimer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(updateTimeSlider) userInfo:nil repeats:YES];
-    NSRunLoop* runLoop = [NSRunLoop currentRunLoop];
-    [runLoop addTimer:self.timeSliderTimer forMode:NSDefaultRunLoopMode];
+    [[NSRunLoop currentRunLoop] addTimer:self.timeSliderTimer forMode:NSDefaultRunLoopMode];
 }
 
 
@@ -49,6 +49,10 @@
 
 - (IBAction)timeSliderAction:(id)sender {
     self.audioPlayer.currentTime = self.timeSlider.doubleValue;
+}
+
+- (IBAction)volumeSliderAction:(id)sender {
+    self.audioPlayer.volume = self.volumeSlider.floatValue;
 }
 
 - (void) updateTimeSlider{
@@ -67,12 +71,10 @@
 }
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-    NSLog(@"FINISH");
     self.playPauseButton.title = @"Play";
 }
 
 - (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error{
-    NSLog(@"FINISH/Error");
     self.playPauseButton.title = @"Play";
 }
 
