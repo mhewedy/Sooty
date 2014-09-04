@@ -46,8 +46,7 @@ static NSString* CLIENT_ID = @"85652ec093beadb4c647450f597b16ad";
             track.id = dict[@"id"];
             track.title = dict[@"title"];
             track.streamURL = [NSString stringWithFormat:@"%@?client_id=%@", dict[@"stream_url"], CLIENT_ID];
-            NSLog(@"STREAM URL %@", track.streamURL);
-            // TODO set rest of props of track
+            track.originalURL = dict[@"permalink_url"];
             
             [myResultArr addObject:track];
         }
@@ -55,10 +54,6 @@ static NSString* CLIENT_ID = @"85652ec093beadb4c647450f597b16ad";
     }else{
         [self alert:error.localizedDescription];
     }
-}
-
--(void) streamResponseReceived:(NSString*) response{
-    [self.streamCallbackTarget performSelector:self.streamCallbackSelector withObject:nil afterDelay:0.0f];
 }
 
 

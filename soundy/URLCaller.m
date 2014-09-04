@@ -7,6 +7,7 @@
 //
 
 #import "URLCaller.h"
+#import "NSObject+Util.h"
 
 @implementation URLCaller
 
@@ -41,7 +42,6 @@
 -(void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
 {
     NSLog(@"didFailWithError");
-    // Handle the error properly
 }
 -(void)connectionDidFinishLoading:(NSURLConnection*)connection
 {

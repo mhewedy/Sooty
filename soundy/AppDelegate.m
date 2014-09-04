@@ -21,7 +21,7 @@
 
 @property (weak) IBOutlet NSSearchField *searchField;
 
-@property (strong) AVAudioPlayer *audioPlayer;
+@property (strong) AVPlayer *player;
 @property (strong) NSTimer *timeSliderTimer;
 
 @property (strong) SoundApi* soundApi;
@@ -72,56 +72,52 @@
 -(void) dispatchURLForPlay:(NSString*) URLString{
     NSError* error = nil;
     
-    NSData* songData = [NSData dataWithContentsOfURL:[NSURL URLWithString:URLString] options:NSDataReadingMappedIfSafe error:&error];
+    self.player = [AVPlayer playerWithURL:[NSURL URLWithString:URLString]];
+    
     if (error != nil){
         [self alert:self.window withMessage:error.localizedDescription];
     }else{
-        self.audioPlayer = [[AVAudioPlayer alloc]initWithData:songData error:&error];
-        
-        if (error != nil){
-            [self alert:self.window withMessage:error.localizedDescription];
-        }else{
-            self.audioPlayer.delegate = self;
-            self.timeSlider.minValue = 0;
-            self.timeSlider.maxValue = self.audioPlayer.duration;
-        }
+//        self.audioPlayer.delegate = self;
+        self.timeSlider.minValue = 0;
+        self.timeSlider.maxValue = self.player.currentItem.duration.value;
     }
 }
 
 - (IBAction)timeSliderAction:(id)sender {
-    self.audioPlayer.currentTime = self.timeSlider.doubleValue;
+//    self.audioPlayer.currentTime = self.timeSlider.doubleValue;
 }
 
 - (IBAction)volumeSliderAction:(id)sender {
-    self.audioPlayer.volume = self.volumeSlider.floatValue;
+//    self.audioPlayer.volume = self.volumeSlider.floatValue;
 }
 
 - (void) updateTimeSlider{
-    self.timeSlider.doubleValue = self.audioPlayer.currentTime;
+//    self.timeSlider.doubleValue = self.audioPlayer.currentTime;
 }
 
 - (IBAction)play:(id)sender {
-    if (!self.audioPlayer.playing){
-        [self.audioPlayer play];
-        self.playPauseButton.title = @"Pause";
-    }else{
-        [self.audioPlayer pause];
-        self.playPauseButton.title = @"Play";
-    }
+    [self.player play];
+//    if (!self.player.status){
+//        [self.player play];
+//        self.playPauseButton.title = @"Pause";
+//    }else{
+//        [self.audioPlayer pause];
+//        self.playPauseButton.title = @"Play";
+//    }
 }
 
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-    [self stopPlayer];
-}
-
-- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error{
-    [self alert:self.window withMessage:error.localizedDescription];
-    [self stopPlayer];
-}
-- (void) stopPlayer{
-    self.playPauseButton.title = @"Play";
-    [self.audioPlayer stop];
-}
+//- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
+//    [self stopPlayer];
+//}
+//
+//- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error{
+//    [self alert:self.window withMessage:error.localizedDescription];
+//    [self stopPlayer];
+//}
+//- (void) stopPlayer{
+//    self.playPauseButton.title = @"Play";
+//    [self.audioPlayer stop];
+//}
 
 - (void) enablePlayerContorls:(BOOL) enable nextAndPrevButtons:(BOOL) applyForNextAndPrev{
     

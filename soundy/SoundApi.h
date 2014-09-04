@@ -12,15 +12,10 @@
 @interface SoundApi : NSObject
 
 @property (strong, readonly) NSString* searchRequestURL;
-@property (strong, readonly) NSString* streamRequestURL;
 
 @property (weak) id searchCallbackTarget;
 @property SEL searchCallbackSelector;
 
-@property (weak) id streamCallbackTarget;
-@property SEL streamCallbackSelector;
-
 -(void) search:(NSString*) token;
--(void) getStreamURL:(Track*) track;
 
 @end

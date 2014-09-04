@@ -7,9 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@import AVFoundation.AVAudioPlayer;
+#import <AVFoundation/AVFoundation.h>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, AVAudioPlayerDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (weak) IBOutlet NSWindow *window;
 

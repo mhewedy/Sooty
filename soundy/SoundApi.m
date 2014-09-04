@@ -23,15 +23,8 @@
     }else{
         self.urlCaller = [[URLCaller alloc]initWithTarget:self selector:@selector(searchResponseReceived:)];
         NSRange placeholderRange = [self.searchRequestURL rangeOfString:@"${token}"];
+        token = [token stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [self.urlCaller call:[self.searchRequestURL stringByReplacingCharactersInRange:placeholderRange withString:token]];
-    }
-}
-
--(void) getStreamURL:(Track*) track{
-    if (!self.streamRequestURL){
-        NSLog(@"streamRequestURL is null, prehaps you need to use a subclass implementation.");
-    }else{
-        // TODO
     }
 }
 
@@ -39,11 +32,5 @@
 -(void) searchResponseReceived:(NSString*) response{
     [self doesNotRecognizeSelector:_cmd];
 }
-
-// each subclass should an implementation
--(void) streamResponseReceived:(NSString*) response{
-    [self doesNotRecognizeSelector:_cmd];
-}
-
 
 @end
