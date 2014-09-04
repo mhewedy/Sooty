@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B75A8B7F19B7DB9600B17E49 /* SoundApi.m in Sources */ = {isa = PBXBuildFile; fileRef = B75A8B7E19B7DB9600B17E49 /* SoundApi.m */; };
 		B75A8B8519B7E4AC00B17E49 /* SoundCloudApi.m in Sources */ = {isa = PBXBuildFile; fileRef = B75A8B8419B7E4AC00B17E49 /* SoundCloudApi.m */; };
+		B75A8B9E19B7FB3000B17E49 /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B75A8B9C19B7FB3000B17E49 /* SearchResultViewController.m */; };
+		B75A8B9F19B7FB3000B17E49 /* SearchResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B75A8B9D19B7FB3000B17E49 /* SearchResultViewController.xib */; };
 		B769FA9C19B7C5F600EB2D4D /* NSObject+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = B769FA9B19B7C5F600EB2D4D /* NSObject+Util.m */; };
 		B769FAA119B7C9A600EB2D4D /* URLCaller.m in Sources */ = {isa = PBXBuildFile; fileRef = B769FAA019B7C9A600EB2D4D /* URLCaller.m */; };
 		B769FAA819B7DA0F00EB2D4D /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = B769FAA719B7DA0F00EB2D4D /* Track.m */; };
@@ -35,6 +37,9 @@
 		B75A8B7E19B7DB9600B17E49 /* SoundApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundApi.m; sourceTree = "<group>"; };
 		B75A8B8319B7E4AC00B17E49 /* SoundCloudApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCloudApi.h; sourceTree = "<group>"; };
 		B75A8B8419B7E4AC00B17E49 /* SoundCloudApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCloudApi.m; sourceTree = "<group>"; };
+		B75A8B9B19B7FB3000B17E49 /* SearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
+		B75A8B9C19B7FB3000B17E49 /* SearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
+		B75A8B9D19B7FB3000B17E49 /* SearchResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultViewController.xib; sourceTree = "<group>"; };
 		B769FA9A19B7C5F600EB2D4D /* NSObject+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Util.h"; sourceTree = "<group>"; };
 		B769FA9B19B7C5F600EB2D4D /* NSObject+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Util.m"; sourceTree = "<group>"; };
 		B769FA9F19B7C9A600EB2D4D /* URLCaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLCaller.h; sourceTree = "<group>"; };
@@ -114,6 +119,9 @@
 		B769FAAA19B7DA3600EB2D4D /* tableview */ = {
 			isa = PBXGroup;
 			children = (
+				B75A8B9B19B7FB3000B17E49 /* SearchResultViewController.h */,
+				B75A8B9C19B7FB3000B17E49 /* SearchResultViewController.m */,
+				B75A8B9D19B7FB3000B17E49 /* SearchResultViewController.xib */,
 			);
 			name = tableview;
 			sourceTree = "<group>";
@@ -268,6 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B75A8B9F19B7FB3000B17E49 /* SearchResultViewController.xib in Resources */,
 				B7740A4819B6857700695A2B /* Images.xcassets in Resources */,
 				B7740A4B19B6857700695A2B /* MainMenu.xib in Resources */,
 			);
@@ -290,6 +299,7 @@
 				B769FAA119B7C9A600EB2D4D /* URLCaller.m in Sources */,
 				B7740A4619B6857700695A2B /* AppDelegate.m in Sources */,
 				B75A8B7F19B7DB9600B17E49 /* SoundApi.m in Sources */,
+				B75A8B9E19B7FB3000B17E49 /* SearchResultViewController.m in Sources */,
 				B769FA9C19B7C5F600EB2D4D /* NSObject+Util.m in Sources */,
 				B769FAA819B7DA0F00EB2D4D /* Track.m in Sources */,
 				B75A8B8519B7E4AC00B17E49 /* SoundCloudApi.m in Sources */,

@@ -8,14 +8,17 @@
 
 #import "AppDelegate.h"
 #import "NSObject+Util.h"
-
 #import "SoundCloudApi.h"
+#import "SearchResultViewController.h"
 
 @interface AppDelegate ()
 
 @property (weak) IBOutlet NSButton *playPauseButton;
 @property (weak) IBOutlet NSSlider *timeSlider;
 @property (weak) IBOutlet NSSlider *volumeSlider;
+@property (weak) IBOutlet NSButton *prevButton;
+@property (weak) IBOutlet NSButton *nextButton;
+
 @property (weak) IBOutlet NSSearchField *searchField;
 
 @property (strong) AVAudioPlayer *audioPlayer;
@@ -28,13 +31,6 @@
 @implementation AppDelegate
             
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    
-//    // TEST
-//    [self.playPauseButton setEnabled:YES];
-//    [self.timeSlider setEnabled:YES];
-//    [self.volumeSlider setEnabled:YES];
-//    [self playURL:@"/Users/mhewedy/Downloads/69y19mo9Tfzy.128.mp3"];
-//    //~
     
     // init SoundApi
     self.soundApi = [[SoundCloudApi alloc]init];
@@ -56,10 +52,18 @@
     [self.soundApi search:self.searchField.stringValue];
 }
 
--(void) searchResultReturned:(NSArray*) array{
-    NSLog(@"%@", array);
+-(void) searchResultReturned:(NSArray*) results{
+    
+    if (results && [results count] > 0){
+        SearchResultViewController* searchVC = [[SearchResultViewController alloc]initWithNibName:@"SearchResultViewController" bundle:nil];
+        searchVC.results = results;
+        self.window.contentView = searchVC.view;
+        [self enablePlayerContorls:YES nextAndPrevButtons:[results count] > 1];
+    }else{
+        [self alert:@"no resutls found"];
+        [self enablePlayerContorls:NO nextAndPrevButtons:YES];
+    }
 }
-
 
 #pragma mark - AVAudioPlayer and related controls and callbacks
 
@@ -109,6 +113,18 @@
 - (void) stopPlayer{
     self.playPauseButton.title = @"Play";
     [self.audioPlayer stop];
+}
+
+- (void) enablePlayerContorls:(BOOL) enable nextAndPrevButtons:(BOOL) applyForNextAndPrev{
+    
+    [self.playPauseButton setEnabled:enable];
+    [self.timeSlider setEnabled:enable];
+    [self.volumeSlider setEnabled:enable];
+    
+    if (applyForNextAndPrev){
+        [self.prevButton setEnabled:enable];
+        [self.nextButton setEnabled:enable];
+    }
 }
 
 

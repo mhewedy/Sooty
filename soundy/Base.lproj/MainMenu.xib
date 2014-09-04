@@ -13,7 +13,9 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
+                <outlet property="nextButton" destination="gkN-ja-HoG" id="mkd-Ct-pdA"/>
                 <outlet property="playPauseButton" destination="RXa-xD-Nu3" id="Rh6-jj-7qg"/>
+                <outlet property="prevButton" destination="mVM-FP-cal" id="sGL-kc-Y67"/>
                 <outlet property="searchField" destination="FbW-4b-Yoc" id="EUQ-B3-bHO"/>
                 <outlet property="timeSlider" destination="JvU-6g-gG7" id="aTN-PF-C1C"/>
                 <outlet property="volumeSlider" destination="U0e-ei-Ckl" id="yne-VZ-YGz"/>
