@@ -31,7 +31,6 @@
 @implementation AppDelegate
             
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    
     // init SoundApi
     self.soundApi = [[SoundCloudApi alloc]init];
     
@@ -59,6 +58,9 @@
         searchVC.results = results;
         self.window.contentView = searchVC.view;
         [self enablePlayerContorls:YES nextAndPrevButtons:[results count] > 1];
+        
+        [self dispatchURLForPlay:((Track*)results[0]).streamURL];
+        
     }else{
         [self alert:@"no resutls found"];
         [self enablePlayerContorls:NO nextAndPrevButtons:YES];
@@ -67,16 +69,22 @@
 
 #pragma mark - AVAudioPlayer and related controls and callbacks
 
--(void) playURL:(NSString*) URLString{
+-(void) dispatchURLForPlay:(NSString*) URLString{
     NSError* error = nil;
-    self.audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL URLWithString:URLString] error:&error];
-    self.audioPlayer.delegate = self;
     
-    self.timeSlider.minValue = 0;
-    self.timeSlider.maxValue = self.audioPlayer.duration;
-    
+    NSData* songData = [NSData dataWithContentsOfURL:[NSURL URLWithString:URLString] options:NSDataReadingMappedIfSafe error:&error];
     if (error != nil){
         [self alert:self.window withMessage:error.localizedDescription];
+    }else{
+        self.audioPlayer = [[AVAudioPlayer alloc]initWithData:songData error:&error];
+        
+        if (error != nil){
+            [self alert:self.window withMessage:error.localizedDescription];
+        }else{
+            self.audioPlayer.delegate = self;
+            self.timeSlider.minValue = 0;
+            self.timeSlider.maxValue = self.audioPlayer.duration;
+        }
     }
 }
 

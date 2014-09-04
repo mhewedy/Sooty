@@ -13,6 +13,7 @@
 @property (strong) NSString* id;
 @property (strong) NSString* title;
 @property (strong) NSString* auther;
-@property (strong) NSString* originalUrl;
+@property (strong) NSString* streamURL;
+@property (strong) NSString* originalURL;
 
 @end

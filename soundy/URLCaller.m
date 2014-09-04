@@ -22,27 +22,32 @@
 
 -(void) call:(NSString*) url
 {
-    [[NSURLConnection alloc]initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] delegate:self];
+    NSLog(@"%@", url);
+    [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] delegate:self];
 }
 
 #pragma mark - NSURLConnection deleages
 
 -(void)connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse*)response
 {
+    NSLog(@"didReceiveResponse");
     self.data = [[NSMutableData alloc] init]; // _data being an ivar
 }
 -(void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data
 {
+    NSLog(@"didReceiveData");
     [self.data appendData:data];
 }
 -(void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
 {
+    NSLog(@"didFailWithError");
     // Handle the error properly
 }
 -(void)connectionDidFinishLoading:(NSURLConnection*)connection
 {
+    NSLog(@"connectionDidFinishLoading");
     NSString* stringData = [[NSString alloc]initWithData:self.data encoding:NSUTF8StringEncoding];
-    [self.target performSelector:self.selector withObject:stringData];
+    [self.target performSelector:self.selector withObject:stringData afterDelay:0.0f];
     
 
 }
