@@ -9,7 +9,17 @@
 #import "SoundCloudApi.h"
 #import "NSObject+Util.h"
 
+@interface SoundCloudApi ()
+
+@property (strong, readwrite) NSString* searchRequestURL;
+@property (strong, readwrite) NSString* streamRequestURL;
+
+@end
+
 @implementation SoundCloudApi
+
+@synthesize searchRequestURL;
+@synthesize streamRequestURL;
 
 - (instancetype)init
 {
@@ -21,7 +31,7 @@
     return self;
 }
 
--(void) searchTarget:(NSString*) response{
+-(void) searchResponseReceived:(NSString*) response{
     
     NSError* error = nil;
     NSArray* arr = [NSJSONSerialization JSONObjectWithData:[response dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:&error];
@@ -43,8 +53,9 @@
     }
 }
 
--(NSString*) getStreamURL:(Track*) track{
-    return nil;
+-(void) streamResponseReceived:(NSString*) response{
+    [self.streamCallbackTarget performSelector:self.streamCallbackSelector withObject:nil];
 }
+
 
 @end
