@@ -31,8 +31,8 @@
 -(void) searchTarget:(NSString*) response{
 }
 
+// each subclass should an implementation
 -(NSString*) getStreamURL:(Track*) track{
-    // use self.streamRequestURL to get streaming URL for the track
     return nil;
 }
 

@@ -10,7 +10,6 @@
 
 @implementation SoundCloudApi
 
-
 - (instancetype)init
 {
     self = [super init];
@@ -21,9 +20,13 @@
     return self;
 }
 
-// each subclass should provids
 -(void) searchTarget:(NSString*) response{
     NSLog(@"SoundCloudApi %@", response);
+}
+
+-(NSString*) getStreamURL:(Track*) track{
+    // use self.streamRequestURL to get streaming URL for the track
+    return nil;
 }
 
 @end
