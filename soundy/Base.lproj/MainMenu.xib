@@ -14,6 +14,7 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
                 <outlet property="playPauseButton" destination="RXa-xD-Nu3" id="Rh6-jj-7qg"/>
+                <outlet property="searchField" destination="FbW-4b-Yoc" id="EUQ-B3-bHO"/>
                 <outlet property="timeSlider" destination="JvU-6g-gG7" id="aTN-PF-C1C"/>
                 <outlet property="volumeSlider" destination="U0e-ei-Ckl" id="yne-VZ-YGz"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
@@ -767,6 +768,9 @@ IA
                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </searchFieldCell>
+                            <connections>
+                                <action selector="searchAction:" target="Voe-Tx-rLC" id="1e1-1H-aus"/>
+                            </connections>
                         </searchField>
                     </toolbarItem>
                 </allowedToolbarItems>

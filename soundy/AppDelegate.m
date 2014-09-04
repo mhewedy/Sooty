@@ -16,6 +16,7 @@
 @property (weak) IBOutlet NSButton *playPauseButton;
 @property (weak) IBOutlet NSSlider *timeSlider;
 @property (weak) IBOutlet NSSlider *volumeSlider;
+@property (weak) IBOutlet NSSearchField *searchField;
 
 @property (strong) AVAudioPlayer *audioPlayer;
 @property (strong) NSTimer *timeSliderTimer;
@@ -28,12 +29,12 @@
             
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     
-    // TEST
-    [self.playPauseButton setEnabled:YES];
-    [self.timeSlider setEnabled:YES];
-    [self.volumeSlider setEnabled:YES];
-    [self playURL:@"/Users/mhewedy/Downloads/69y19mo9Tfzy.128.mp3"];
-    //~
+//    // TEST
+//    [self.playPauseButton setEnabled:YES];
+//    [self.timeSlider setEnabled:YES];
+//    [self.volumeSlider setEnabled:YES];
+//    [self playURL:@"/Users/mhewedy/Downloads/69y19mo9Tfzy.128.mp3"];
+//    //~
     
     // init SoundApi
     self.soundApi = [[SoundCloudApi alloc]init];
@@ -47,6 +48,20 @@
     // Insert code here to tear down your application
 }
 
+#pragma mark - Search Field
+- (IBAction)searchAction:(id)sender {
+    
+    self.soundApi.searchCallbackTarget = self;
+    self.soundApi.searchCallbackSelector = @selector(searchResultReturned:);
+    [self.soundApi search:self.searchField.stringValue];
+}
+
+-(void) searchResultReturned:(NSArray*) array{
+    NSLog(@"%@", array);
+}
+
+
+#pragma mark - AVAudioPlayer and related controls and callbacks
 
 -(void) playURL:(NSString*) URLString{
     NSError* error = nil;
