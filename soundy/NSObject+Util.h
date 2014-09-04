@@ -14,5 +14,6 @@
 @interface NSObject (Util)
 
 -(void)alert:(NSWindow*) window withMessage: (NSString*) msg;
+-(void)alert:(NSString*) msg;
 
 @end

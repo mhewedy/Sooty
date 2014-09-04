@@ -11,12 +11,13 @@
 
 @interface SoundApi : NSObject
 
-@property (strong) NSArray* searchResult;
-
-// should be accessed only by subclass
+// internal props
 @property (strong) NSString* searchRequestURL;
 @property (strong) NSString* streamRequestURL;
-//
+// ~
+@property (weak) id searchCallbackTarget;
+@property SEL searchCallbackSelector;
+
 
 -(void) search:(NSString*) token;
 -(NSString*) getStreamURL:(Track*) track;

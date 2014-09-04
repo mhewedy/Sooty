@@ -11,6 +11,7 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, AVAudioPlayerDelegate>
 
+@property (weak) IBOutlet NSWindow *window;
 
 @end
 

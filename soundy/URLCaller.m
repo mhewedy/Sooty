@@ -29,12 +29,10 @@
 
 -(void)connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse*)response
 {
-    NSLog(@"didReceiveResponse");
     self.data = [[NSMutableData alloc] init]; // _data being an ivar
 }
 -(void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data
 {
-    NSLog(@"didReceiveData");
     [self.data appendData:data];
 }
 -(void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
@@ -43,7 +41,6 @@
 }
 -(void)connectionDidFinishLoading:(NSURLConnection*)connection
 {
-    NSLog(@"connectionDidFinishLoading");
     NSString* stringData = [[NSString alloc]initWithData:self.data encoding:NSUTF8StringEncoding];
     [self.target performSelector:self.selector withObject:stringData];
     

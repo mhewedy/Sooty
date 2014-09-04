@@ -7,6 +7,7 @@
 //
 
 #import "SoundCloudApi.h"
+#import "NSObject+Util.h"
 
 @implementation SoundCloudApi
 
@@ -21,11 +22,27 @@
 }
 
 -(void) searchTarget:(NSString*) response{
-    NSLog(@"SoundCloudApi %@", response);
+    
+    NSError* error = nil;
+    NSArray* arr = [NSJSONSerialization JSONObjectWithData:[response dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:&error];
+    
+    if (error == nil){
+        NSMutableArray* myResultArr = [NSMutableArray array];
+        
+        for (NSDictionary* dict in arr) {
+            Track* track = [[Track alloc]init];
+            track.id = dict[@"id"];
+            track.title = dict[@"title"];
+            
+            [myResultArr addObject:track];
+        }
+        [self.searchCallbackTarget performSelector:self.searchCallbackSelector withObject:myResultArr];
+    }else{
+        [self alert:error.localizedDescription];
+    }
 }
 
 -(NSString*) getStreamURL:(Track*) track{
-    // use self.streamRequestURL to get streaming URL for the track
     return nil;
 }
 

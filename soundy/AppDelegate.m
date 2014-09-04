@@ -9,12 +9,10 @@
 #import "AppDelegate.h"
 #import "NSObject+Util.h"
 
-#import "SoundApi.h"
 #import "SoundCloudApi.h"
 
 @interface AppDelegate ()
 
-@property (weak) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSButton *playPauseButton;
 @property (weak) IBOutlet NSSlider *timeSlider;
 @property (weak) IBOutlet NSSlider *volumeSlider;
@@ -30,19 +28,17 @@
             
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     
-    
-    self.soundApi = [[SoundCloudApi alloc]init];
-    [self.soundApi search:@"kayan"];
-    
-    
     // TEST
     [self.playPauseButton setEnabled:YES];
     [self.timeSlider setEnabled:YES];
     [self.volumeSlider setEnabled:YES];
+    [self playURL:@"/Users/mhewedy/Downloads/69y19mo9Tfzy.128.mp3"];
     //~
     
-    [self playURL:@"/Users/mhewedy/Downloads/69y19mo9Tfzy.128.mp3"];
+    // init SoundApi
+    self.soundApi = [[SoundCloudApi alloc]init];
     
+    // init slider timer
     self.timeSliderTimer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(updateTimeSlider) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:self.timeSliderTimer forMode:NSDefaultRunLoopMode];
 }

@@ -7,6 +7,7 @@
 //
 
 #import "NSObject+Util.h"
+#import "AppDelegate.h"
 
 
 @implementation NSObject (Util)
@@ -19,6 +20,11 @@
     [alert setInformativeText:msg];
     [alert setAlertStyle:NSWarningAlertStyle];
     [alert beginSheetModalForWindow:window modalDelegate:self didEndSelector:nil contextInfo:nil];
+}
+
+-(void)alert:(NSString*) msg{
+    NSWindow* window = [(AppDelegate *)[[NSApplication sharedApplication] delegate] window];
+    [self alert:window withMessage:msg];
 }
 
 @end
