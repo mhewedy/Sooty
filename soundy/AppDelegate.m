@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "NSObject+Util.h"
 
+#import "SoundApi.h"
+#import "SoundCloudApi.h"
+
 @interface AppDelegate ()
 
 @property (weak) IBOutlet NSWindow *window;
@@ -19,11 +22,18 @@
 @property (strong) AVAudioPlayer *audioPlayer;
 @property (strong) NSTimer *timeSliderTimer;
 
+@property (strong) SoundApi* soundApi;
+
 @end
 
 @implementation AppDelegate
             
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    
+    
+    self.soundApi = [[SoundCloudApi alloc]init];
+    [self.soundApi search:@"kayan"];
+    
     
     // TEST
     [self.playPauseButton setEnabled:YES];
