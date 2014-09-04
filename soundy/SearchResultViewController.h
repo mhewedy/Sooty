@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface SearchResultViewController : NSViewController
+@interface SearchResultViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate>
 
 @property (strong) NSArray* results;
 

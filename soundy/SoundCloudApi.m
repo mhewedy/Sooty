@@ -33,6 +33,7 @@
             Track* track = [[Track alloc]init];
             track.id = dict[@"id"];
             track.title = dict[@"title"];
+            // TODO set rest of props of track
             
             [myResultArr addObject:track];
         }
