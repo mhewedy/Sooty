@@ -29,10 +29,12 @@
 
 // each subclass should an implementation
 -(void) searchTarget:(NSString*) response{
+    [self doesNotRecognizeSelector:_cmd];
 }
 
 // each subclass should an implementation
 -(NSString*) getStreamURL:(Track*) track{
+    [self doesNotRecognizeSelector:_cmd];
     return nil;
 }
 
