@@ -27,9 +27,12 @@
     
     if ([self.tracks count] != 0){
         self.tableScrollView.hidden = NO;
+        self.message.hidden = YES;
+        
         [self.tableView reloadData];
     }else{
         self.message.hidden = NO;
+        self.tableScrollView.hidden = YES;
     }
 }
 
@@ -43,8 +46,7 @@
 
 #pragma - mark Utils
 
-- (void) hideViews {
-    self.tableScrollView.hidden = YES;
+- (void) resetView {
     self.message.hidden = YES;
 }
 

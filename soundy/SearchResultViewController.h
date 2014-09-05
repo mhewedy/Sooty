@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) NSArray* tracks;
 
-- (void) hideViews;
+- (void) resetView;
 
 
 @end
