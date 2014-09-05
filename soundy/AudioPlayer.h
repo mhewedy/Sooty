@@ -13,11 +13,6 @@
 @import AppKit.NSButton;
 @import AppKit.NSProgressIndicator;
 
-/**
- todo implement :
-    1. user change the play location through timeSlider
-    2. user change the volume through volumnSlider
- */
 @interface AudioPlayer : NSObject
 
 
