@@ -26,9 +26,13 @@
 @property (weak) NSButton* playNextButton;
 @property (weak) NSButton* playPrevButton;
 
-@property (strong) NSArray* tracks;
+@property (nonatomic, strong) NSArray* tracks;
 @property (readonly) int currentTrackIndex;
 
+
 - (void) play:(int) trackIndex;
+- (void) playPauseAction:(id)sender;
+- (void) playNextAction:(id) sender;
+- (void) playPrevAction:(id) sender;
 
 @end

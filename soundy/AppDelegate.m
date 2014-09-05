@@ -10,6 +10,7 @@
 #import "NSObject+Util.h"
 #import "SoundCloudApi.h"
 #import "SearchResultViewController.h"
+#import "AudioPlayer.h"
 
 @interface AppDelegate ()
 
@@ -18,11 +19,9 @@
 @property (weak) IBOutlet NSSlider *volumeSlider;
 @property (weak) IBOutlet NSButton *prevButton;
 @property (weak) IBOutlet NSButton *nextButton;
-
 @property (weak) IBOutlet NSSearchField *searchField;
 
-@property (strong) AVPlayer *player;
-
+@property (strong) AudioPlayer* audioPlayer;
 @property (strong) SoundApi* soundApi;
 
 @end
@@ -30,6 +29,18 @@
 @implementation AppDelegate
             
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    
+    Track* track1 = [[Track alloc]init];
+    track1.streamURL = @"https://api.soundcloud.com/tracks/67451811/stream?client_id=85652ec093beadb4c647450f597b16ad";
+//    track1.streamURL = @"/Users/mhewedy/Downloads/69y19mo9Tfzy.128.mp3";
+    NSArray* tracks = @[track1];
+    
+    self.audioPlayer = [[AudioPlayer alloc]init];
+    self.audioPlayer.playPauseButton = self.playPauseButton;
+    self.audioPlayer.timeSlider = self.timeSlider;
+    self.audioPlayer.tracks = tracks;
+    [self.audioPlayer play:0];
+    
     
     self.soundApi = [[SoundCloudApi alloc]init];
     self.soundApi.searchCallbackTarget = self;
@@ -43,62 +54,49 @@
 
 #pragma mark - Search Field
 - (IBAction)searchAction:(id)sender {
-    
-
     [self.soundApi search:self.searchField.stringValue];
 }
 
 -(void) searchResultReturned:(NSArray*) results{
     
-    if (results && [results count] > 0){
+    if (results.count > 0){
+        
         SearchResultViewController* searchVC = [[SearchResultViewController alloc]initWithNibName:@"SearchResultViewController" bundle:nil];
         searchVC.results = results;
         self.window.contentView = searchVC.view;
-        [self enablePlayerContorls:YES nextAndPrevButtons:[results count] > 1];
+//        [self enablePlayerContorls:YES nextAndPrevButtons:[results count] > 1];
         
-        [self dispatchURLForPlay:((Track*)results[0]).streamURL];
+//        [self dispatchURLForPlay:((Track*)results[0]).streamURL];
         
     }else{
-        [self alert:@"no resutls found"];
-        [self enablePlayerContorls:NO nextAndPrevButtons:YES];
+//        [self enablePlayerContorls:NO nextAndPrevButtons:YES];
     }
 }
 
 #pragma mark - AVAudioPlayer and related controls and callbacks
 
--(void) dispatchURLForPlay:(NSString*) URLString{
-    NSError* error = nil;
-    
-    self.player = [AVPlayer playerWithURL:[NSURL URLWithString:URLString]];
-    
-    if (error != nil){
-        [self alert:self.window withMessage:error.localizedDescription];
-    }else{
-//        self.audioPlayer.delegate = self;
-        self.timeSlider.minValue = 0;
-        self.timeSlider.maxValue = self.player.currentItem.duration.value;
-    }
-}
-
-- (IBAction)timeSliderAction:(id)sender {
-//    self.audioPlayer.currentTime = self.timeSlider.doubleValue;
-}
-
-- (IBAction)volumeSliderAction:(id)sender {
-    self.player.volume = self.volumeSlider.floatValue;
-}
-
-
-- (IBAction)play:(id)sender {
-    [self.player play];
-//    if (!self.player.status){
-//        [self.player play];
-//        self.playPauseButton.title = @"Pause";
+//-(void) dispatchURLForPlay:(NSString*) URLString{
+//    NSError* error = nil;
+//    
+//    self.player = [AVPlayer playerWithURL:[NSURL URLWithString:URLString]];
+//    
+//    if (error != nil){
+//        [self alert:self.window withMessage:error.localizedDescription];
 //    }else{
-//        [self.audioPlayer pause];
-//        self.playPauseButton.title = @"Play";
+////        self.audioPlayer.delegate = self;
+//        self.timeSlider.minValue = 0;
+//        self.timeSlider.maxValue = self.player.currentItem.duration.value;
 //    }
-}
+//}
+//
+//- (IBAction)timeSliderAction:(id)sender {
+////    self.audioPlayer.currentTime = self.timeSlider.doubleValue;
+//}
+//
+//- (IBAction)volumeSliderAction:(id)sender {
+//    self.player.volume = self.volumeSlider.floatValue;
+//}
+
 
 //- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
 //    [self stopPlayer];
@@ -113,17 +111,20 @@
 //    [self.audioPlayer stop];
 //}
 
-- (void) enablePlayerContorls:(BOOL) enable nextAndPrevButtons:(BOOL) applyForNextAndPrev{
-    
-    [self.playPauseButton setEnabled:enable];
-    [self.timeSlider setEnabled:enable];
-    [self.volumeSlider setEnabled:enable];
-    
-    if (applyForNextAndPrev){
-        [self.prevButton setEnabled:enable];
-        [self.nextButton setEnabled:enable];
-    }
-}
+//- (void) enablePlayerContorls:(BOOL) enable nextAndPrevButtons:(BOOL) applyForNextAndPrev{
+//    
+//    [self.playPauseButton setEnabled:enable];
+//    [self.timeSlider setEnabled:enable];
+//    [self.volumeSlider setEnabled:enable];
+//    
+//    if (applyForNextAndPrev){
+//        [self.prevButton setEnabled:enable];
+//        [self.nextButton setEnabled:enable];
+//    }
+//}
 
+- (IBAction)temp:(id)sender {
+    [self.audioPlayer playPauseAction:sender];
+}
 
 @end

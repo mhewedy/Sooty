@@ -701,7 +701,7 @@ IA
 </string>
                                     </buttonCell>
                                     <connections>
-                                        <action selector="play:" target="Voe-Tx-rLC" id="40L-gj-OjM"/>
+                                        <action selector="temp:" target="Voe-Tx-rLC" id="6Gd-Jc-6GJ"/>
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gkN-ja-HoG">

@@ -30,32 +30,28 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 {
     self = [super init];
     if (self) {
-        
         self.player = [[AVPlayer alloc]init];
-        
-        // add observers
         [self addObserver:self forKeyPath:@"player.rate" options:NSKeyValueObservingOptionNew context:AVPlayerRateContext];
         [self addObserver:self forKeyPath:@"player.currentItem.status" options:NSKeyValueObservingOptionNew context:AVPlayerItemStatusContext];
-        
     }
     return self;
 }
 
 
 - (void) play:(int) trackIndex{
-    
     if (self.tracks == nil){
         NSLog(@"tracks should be set before call play");
         return;
     }
     
     Track* currentTrack = [self trackAtIndex:trackIndex];
-    
     AVURLAsset* asset = [AVAsset assetWithURL:[NSURL URLWithString:currentTrack.streamURL]];
     NSArray* assetKeys = @[@"playable", @"hasProtectedContent", @"tracks"];
     
-    [asset loadValuesAsynchronouslyForKeys:assetKeys completionHandler:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
+    [asset loadValuesAsynchronouslyForKeys:assetKeys completionHandler:^(void){
+        [self enableDisableControls];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
             
             for (NSString *key in assetKeys){
                 NSError *error = nil;
@@ -64,14 +60,11 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
                     return;
                 }
             }
-            
             if (![asset isPlayable] || [asset hasProtectedContent]){
                 [self handelPlaybackError:nil];
                 return;
             }
-            
             [self.player replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithAsset:asset]];
-            
             __weak AudioPlayer* weakSelf = self;
             [self setTimeObserverToken:[[self player] addPeriodicTimeObserverForInterval:CMTimeMake(1, 10) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
                 weakSelf.timeSlider.doubleValue = CMTimeGetSeconds(time);
@@ -81,11 +74,19 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     }];
 }
 
+#pragma - mark Custome propreties
+
+- (void)setTracks:(NSArray *) mytracks
+{
+    _tracks = mytracks;
+//    [self enableDisableControls];
+}
+
+#pragma - mark Obeserver callback
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (context == AVPlayerRateContext) {
-        
         float rate = [change[NSKeyValueChangeNewKey] floatValue];
         if (rate != 1.f){
             self.playPauseButton.title = @"Play";
@@ -95,23 +96,10 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     } else if (context == AVPlayerItemStatusContext) {
         
         AVPlayerStatus status = [change[NSKeyValueChangeNewKey] integerValue];
-        BOOL enable = NO;
-        switch (status){
-            case AVPlayerItemStatusUnknown:
-                break;
-            case AVPlayerItemStatusReadyToPlay:
-                enable = YES;
-                break;
-            case AVPlayerItemStatusFailed:
-                [self handelPlaybackError:[[[self player] currentItem] error]];
-                break;
+        if (status == AVPlayerItemStatusFailed){
+            [self handelPlaybackError:[[[self player] currentItem] error]];
         }
-        self.playPauseButton.enabled = enable;
         
-        if (self.tracks.count > 1){
-            self.playNextButton.enabled = enable;
-            self.playPrevButton.enabled = enable;
-        }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
@@ -146,7 +134,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 - (void) handelPlaybackError:(NSError*) error{
     NSLog(@"error '%@' for track at %i, playing next track...", error.localizedDescription, self.currentTrackIndex);
-    [self play:++self.currentTrackIndex];
+//    [self play:++self.currentTrackIndex];
 }
 
 - (Track*) trackAtIndex:(int) trackIndex{
@@ -158,7 +146,6 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     NSLog(@"playing track# %i", self.currentTrackIndex);
     return self.tracks[self.currentTrackIndex];
 }
-
 
 - (double)duration
 {
@@ -177,6 +164,19 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 - (void)setCurrentTime:(double)time
 {
     [self.player seekToTime:CMTimeMakeWithSeconds(time, 1) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
+}
+
+- (void) enableDisableControls{
+    BOOL playEnabled, otherEnabled = NO;
+    if (self.tracks.count > 0){
+        playEnabled = YES;
+        if (self.tracks.count > 1){
+            otherEnabled = YES;
+        }
+    }
+    self.playPauseButton.enabled = playEnabled;
+    self.playNextButton.enabled = otherEnabled;
+    self.playPrevButton.enabled = otherEnabled;
 }
 
 - (void)dealloc
