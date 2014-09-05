@@ -11,7 +11,7 @@
 
 @implementation URLCaller
 
--(id) initWithTarget:(NSObject*) target selector:(SEL)selector
+-(instancetype) initWithTarget:(NSObject*) target selector:(SEL)selector
 {
     if (self = [super init])
     {
