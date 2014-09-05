@@ -18,13 +18,13 @@
 @implementation SoundApi
 
 -(void) search:(NSString*) token{
-    if (!self.searchRequestURL){
-        NSLog(@"searchRequestURL is null, prehaps you need to use a subclass implementation.");
+    if (!self.searchURL){
+        NSLog(@"searchURL is null, prehaps you need to use a subclass implementation to set the value of searchURL ");
     }else{
         self.urlCaller = [[URLCaller alloc]initWithTarget:self selector:@selector(searchResponseReceived:)];
-        NSRange placeholderRange = [self.searchRequestURL rangeOfString:@"${token}"];
-        token = [token stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        [self.urlCaller call:[self.searchRequestURL stringByReplacingCharactersInRange:placeholderRange withString:token]];
+        NSRange placeholderRange = [self.searchURL rangeOfString:@"${token}"];
+        
+        [self.urlCaller call:[self.searchURL stringByReplacingCharactersInRange:placeholderRange withString:token]];
     }
 }
 

@@ -11,7 +11,7 @@
 
 @interface SoundApi : NSObject
 
-@property (strong, readonly) NSString* searchRequestURL;
+@property (strong, readonly) NSString* searchURL;
 
 @property (weak) id searchCallbackTarget;
 @property SEL searchCallbackSelector;

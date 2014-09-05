@@ -23,6 +23,7 @@
 
 -(void) call:(NSString*) url
 {
+    url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSLog(@"%@", url);
     [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] delegate:self];
 }

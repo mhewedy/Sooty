@@ -22,7 +22,6 @@
 @property (weak) IBOutlet NSSearchField *searchField;
 
 @property (strong) AVPlayer *player;
-@property (strong) NSTimer *timeSliderTimer;
 
 @property (strong) SoundApi* soundApi;
 
@@ -31,23 +30,21 @@
 @implementation AppDelegate
             
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // init SoundApi
-    self.soundApi = [[SoundCloudApi alloc]init];
     
-    // init slider timer
-    self.timeSliderTimer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(updateTimeSlider) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:self.timeSliderTimer forMode:NSDefaultRunLoopMode];
+    self.soundApi = [[SoundCloudApi alloc]init];
+    self.soundApi.searchCallbackTarget = self;
+    self.soundApi.searchCallbackSelector = @selector(searchResultReturned:);
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
 }
 
+
 #pragma mark - Search Field
 - (IBAction)searchAction:(id)sender {
     
-    self.soundApi.searchCallbackTarget = self;
-    self.soundApi.searchCallbackSelector = @selector(searchResultReturned:);
+
     [self.soundApi search:self.searchField.stringValue];
 }
 

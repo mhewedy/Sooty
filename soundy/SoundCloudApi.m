@@ -13,22 +13,19 @@ static NSString* CLIENT_ID = @"85652ec093beadb4c647450f597b16ad";
 
 @interface SoundCloudApi ()
 
-@property (strong, readwrite) NSString* searchRequestURL;
-@property (strong, readwrite) NSString* streamRequestURL;
+@property (strong, readwrite) NSString* searchURL;
 
 @end
 
 @implementation SoundCloudApi
 
-@synthesize searchRequestURL;
-@synthesize streamRequestURL;
+@synthesize searchURL;
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-        self.searchRequestURL = [NSString stringWithFormat:@"https://api.soundcloud.com/tracks.json?q=${token}&client_id=%@", CLIENT_ID];
-        self.streamRequestURL = [NSString stringWithFormat:@"https://api.soundcloud.com/i1/tracks/${token}/streams?client_id=%@", CLIENT_ID];
+        self.searchURL = [NSString stringWithFormat:@"https://api.soundcloud.com/tracks.json?q=${token}&client_id=%@", CLIENT_ID];
     }
     return self;
 }
