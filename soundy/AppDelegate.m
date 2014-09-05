@@ -8,17 +8,13 @@
 
 #import "AppDelegate.h"
 #import "NSObject+Util.h"
+#import "AudioPlayer.h"
 #import "SoundCloudApi.h"
 #import "SearchResultViewController.h"
-#import "AudioPlayer.h"
 
 @interface AppDelegate ()
 
-@property (weak) IBOutlet NSButton *playPauseButton;
-@property (weak) IBOutlet NSSlider *timeSlider;
-@property (weak) IBOutlet NSSlider *volumeSlider;
-@property (weak) IBOutlet NSButton *prevButton;
-@property (weak) IBOutlet NSButton *nextButton;
+@property (weak) IBOutlet NSView *playerView;
 @property (weak) IBOutlet NSSearchField *searchField;
 @property (weak) IBOutlet NSProgressIndicator *progressIndicator;
 
@@ -36,8 +32,7 @@
     NSArray* tracks = @[track1];
     
     self.audioPlayer = [[AudioPlayer alloc]init];
-    self.audioPlayer.playPauseButton = self.playPauseButton;
-    self.audioPlayer.timeSlider = self.timeSlider;
+    self.audioPlayer.playerView = self.playerView;
     self.audioPlayer.progressIndicator = self.progressIndicator;
     
     self.audioPlayer.tracks = tracks;

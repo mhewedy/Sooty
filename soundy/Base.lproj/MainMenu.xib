@@ -15,6 +15,7 @@
             <connections>
                 <outlet property="nextButton" destination="gkN-ja-HoG" id="mkd-Ct-pdA"/>
                 <outlet property="playPauseButton" destination="RXa-xD-Nu3" id="Rh6-jj-7qg"/>
+                <outlet property="playerView" destination="Awk-dY-xiL" id="U3S-Jq-zqJ"/>
                 <outlet property="prevButton" destination="mVM-FP-cal" id="sGL-kc-Y67"/>
                 <outlet property="progressIndicator" destination="bt5-KY-wR6" id="bcu-Jk-cZg"/>
                 <outlet property="searchField" destination="FbW-4b-Yoc" id="EUQ-B3-bHO"/>
@@ -676,11 +677,16 @@
         <window title="soundy" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="765" height="384"/>
+            <rect key="contentRect" x="335" y="390" width="799" height="380"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="765" height="384"/>
+                <rect key="frame" x="0.0" y="0.0" width="799" height="380"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView orientation="horizontal" alignment="centerY" horizontalHuggingPriority="249" verticalHuggingPriority="249" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kJW-Xn-gXb">
+                        <rect key="frame" x="0.0" y="0.0" width="799" height="380"/>
+                    </stackView>
+                </subviews>
             </view>
             <toolbar key="toolbar" implicitIdentifier="E77B4206-BC21-4EA4-9487-26FFEA2850C8" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="hJl-p5-b4G">
                 <allowedToolbarItems>
@@ -692,7 +698,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="593" height="43"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RXa-xD-Nu3">
+                                <button verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="RXa-xD-Nu3">
                                     <rect key="frame" x="170" y="7" width="50" height="25"/>
                                     <buttonCell key="cell" type="roundTextured" title="Play" bezelStyle="texturedRounded" imagePosition="overlaps" alignment="center" enabled="NO" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fWh-Tv-PND">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -705,7 +711,7 @@ IA
                                         <action selector="temp:" target="Voe-Tx-rLC" id="6Gd-Jc-6GJ"/>
                                     </connections>
                                 </button>
-                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gkN-ja-HoG">
+                                <button verticalHuggingPriority="750" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="gkN-ja-HoG">
                                     <rect key="frame" x="223" y="7" width="50" height="25"/>
                                     <buttonCell key="cell" type="roundTextured" title="Next" bezelStyle="texturedRounded" imagePosition="overlaps" alignment="center" enabled="NO" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bFU-bN-xy1">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -714,7 +720,7 @@ IA
                                         <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                     </buttonCell>
                                 </button>
-                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mVM-FP-cal">
+                                <button verticalHuggingPriority="750" fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="mVM-FP-cal">
                                     <rect key="frame" x="117" y="7" width="50" height="25"/>
                                     <buttonCell key="cell" type="roundTextured" title="Prev" bezelStyle="texturedRounded" imagePosition="overlaps" alignment="center" enabled="NO" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jAm-1G-UaJ">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -723,14 +729,14 @@ IA
                                         <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                     </buttonCell>
                                 </button>
-                                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U0e-ei-Ckl">
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="U0e-ei-Ckl">
                                     <rect key="frame" x="52" y="12" width="62" height="17"/>
                                     <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="pka-Nq-gE6"/>
                                     <connections>
                                         <action selector="volumeSliderAction:" target="Voe-Tx-rLC" id="ebD-Xa-g0n"/>
                                     </connections>
                                 </slider>
-                                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NRB-dX-QgO">
+                                <textField verticalHuggingPriority="750" fixedFrame="YES" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="NRB-dX-QgO">
                                     <rect key="frame" x="1" y="13" width="45" height="14"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Volume" id="Eps-jK-GOD">
                                         <font key="font" metaFont="smallSystem"/>
@@ -738,7 +744,7 @@ IA
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JvU-6g-gG7">
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="JvU-6g-gG7">
                                     <rect key="frame" x="317" y="10" width="258" height="17"/>
                                     <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="7Mt-dQ-PCh">
                                         <connections>
@@ -746,7 +752,7 @@ IA
                                         </connections>
                                     </sliderCell>
                                 </slider>
-                                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PdL-r4-d5I">
+                                <textField verticalHuggingPriority="750" fixedFrame="YES" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="PdL-r4-d5I">
                                     <rect key="frame" x="279" y="12" width="31" height="14"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Time" id="cHR-GZ-R28">
                                         <font key="font" metaFont="smallSystem"/>
@@ -792,7 +798,7 @@ IA
                     <toolbarItem reference="IJv-ur-C8O"/>
                 </defaultToolbarItems>
             </toolbar>
-            <point key="canvasLocation" x="-9.5" y="401"/>
+            <point key="canvasLocation" x="-145.5" y="382"/>
         </window>
     </objects>
 </document>

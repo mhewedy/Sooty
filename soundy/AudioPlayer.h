@@ -15,11 +15,7 @@
 
 @interface AudioPlayer : NSObject
 
-
-@property (weak) NSSlider* timeSlider;
-@property (weak) NSButton* playPauseButton;
-@property (weak) NSButton* playNextButton;
-@property (weak) NSButton* playPrevButton;
+@property (weak) NSView* playerView;
 @property (weak) NSProgressIndicator *progressIndicator;
 
 @property (nonatomic, strong) NSArray* tracks;

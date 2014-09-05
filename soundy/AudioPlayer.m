@@ -14,6 +14,12 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 @interface AudioPlayer ()
 
+@property (weak) NSButton* playPauseButton;
+@property (weak) NSButton* playNextButton;
+@property (weak) NSButton* playPrevButton;
+@property (weak) NSSlider* timeSlider;
+@property (weak) NSSlider* volumeSlider;
+
 @property (strong) AVPlayer* player;
 @property (strong) id timeObserverToken;
 
@@ -33,6 +39,12 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         self.player = [[AVPlayer alloc]init];
         [self addObserver:self forKeyPath:@"player.rate" options:NSKeyValueObservingOptionNew context:AVPlayerRateContext];
         [self addObserver:self forKeyPath:@"player.currentItem.status" options:NSKeyValueObservingOptionNew context:AVPlayerItemStatusContext];
+        
+        self.playPauseButton    = [self.playerView viewWithTag:1];
+        self.playNextButton     = [self.playerView viewWithTag:2];
+        self.playPrevButton     = [self.playerView viewWithTag:3];
+        self.timeSlider         = [self.playerView viewWithTag:6];
+        self.volumeSlider       = [self.playerView viewWithTag:4];
     }
     return self;
 }
@@ -137,7 +149,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 - (void) handelPlaybackError:(NSError*) error{
     NSLog(@"error '%@' for track at %i, playing next track...", error.localizedDescription, self.currentTrackIndex);
-//    [self play:++self.currentTrackIndex];
+    [self play:++self.currentTrackIndex];
 }
 
 - (Track*) trackAtIndex:(int) trackIndex{
