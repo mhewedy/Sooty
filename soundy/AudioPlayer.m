@@ -44,11 +44,14 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         return;
     }
     
+    [self.progressIndicator startAnimation:self];
     Track* currentTrack = [self trackAtIndex:trackIndex];
     AVURLAsset* asset = [AVAsset assetWithURL:[NSURL URLWithString:currentTrack.streamURL]];
     NSArray* assetKeys = @[@"playable", @"hasProtectedContent", @"tracks"];
     
     [asset loadValuesAsynchronouslyForKeys:assetKeys completionHandler:^(void){
+        
+        [self.progressIndicator stopAnimation:self];
         [self enableDisableControls];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
@@ -138,6 +141,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 }
 
 - (Track*) trackAtIndex:(int) trackIndex{
+    
     if (trackIndex >= self.tracks.count){
         self.currentTrackIndex = trackIndex%self.tracks.count;
     }else{

@@ -11,7 +11,7 @@
 
 @import AppKit.NSSlider;
 @import AppKit.NSButton;
-
+@import AppKit.NSProgressIndicator;
 
 /**
  todo implement :
@@ -25,6 +25,7 @@
 @property (weak) NSButton* playPauseButton;
 @property (weak) NSButton* playNextButton;
 @property (weak) NSButton* playPrevButton;
+@property (weak) NSProgressIndicator *progressIndicator;
 
 @property (nonatomic, strong) NSArray* tracks;
 @property (readonly) int currentTrackIndex;

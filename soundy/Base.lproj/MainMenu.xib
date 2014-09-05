@@ -16,6 +16,7 @@
                 <outlet property="nextButton" destination="gkN-ja-HoG" id="mkd-Ct-pdA"/>
                 <outlet property="playPauseButton" destination="RXa-xD-Nu3" id="Rh6-jj-7qg"/>
                 <outlet property="prevButton" destination="mVM-FP-cal" id="sGL-kc-Y67"/>
+                <outlet property="progressIndicator" destination="bt5-KY-wR6" id="bcu-Jk-cZg"/>
                 <outlet property="searchField" destination="FbW-4b-Yoc" id="EUQ-B3-bHO"/>
                 <outlet property="timeSlider" destination="JvU-6g-gG7" id="aTN-PF-C1C"/>
                 <outlet property="volumeSlider" destination="U0e-ei-Ckl" id="yne-VZ-YGz"/>
@@ -775,8 +776,18 @@ IA
                             </connections>
                         </searchField>
                     </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="87D09852-3A8A-4F7E-BE42-4AE495BBD8A6" label="" paletteLabel="" tag="-1" id="gNM-y5-k6M">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="16" height="16"/>
+                        <size key="maxSize" width="16" height="16"/>
+                        <progressIndicator key="view" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="bt5-KY-wR6">
+                            <rect key="frame" x="16" y="16" width="16" height="16"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        </progressIndicator>
+                    </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
+                    <toolbarItem reference="gNM-y5-k6M"/>
                     <toolbarItem reference="PJG-tj-T4D"/>
                     <toolbarItem reference="IJv-ur-C8O"/>
                 </defaultToolbarItems>
