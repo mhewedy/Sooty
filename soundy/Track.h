@@ -12,7 +12,8 @@
 
 @property (strong) NSString* id;
 @property (strong) NSString* title;
-@property (strong) NSString* auther;
+@property (strong) NSString* username;
+@property (strong) NSString* genre;
 @property (strong) NSString* streamURL;
 @property (strong) NSString* originalURL;
 

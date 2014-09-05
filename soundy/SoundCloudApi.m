@@ -42,8 +42,12 @@ static NSString* CLIENT_ID = @"85652ec093beadb4c647450f597b16ad";
             Track* track = [[Track alloc]init];
             track.id = dict[@"id"];
             track.title = dict[@"title"];
+            track.genre = dict[@"genre"];
+            track.username = dict[@"user"][@"username"];
             track.streamURL = [NSString stringWithFormat:@"%@?client_id=%@", dict[@"stream_url"], CLIENT_ID];
             track.originalURL = dict[@"permalink_url"];
+            
+            NSLog(@"%@", track.title);
             
             [myResultArr addObject:track];
         }
