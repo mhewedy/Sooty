@@ -20,6 +20,8 @@
 		B7740A4819B6857700695A2B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7740A4719B6857700695A2B /* Images.xcassets */; };
 		B7740A4B19B6857700695A2B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7740A4919B6857700695A2B /* MainMenu.xib */; };
 		B7740A5719B6857700695A2B /* soundyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B7740A5619B6857700695A2B /* soundyTests.m */; };
+		B783244419BA0F0D0038084C /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B783244219BA0F0D0038084C /* ListViewController.m */; };
+		B783244519BA0F0D0038084C /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B783244319BA0F0D0038084C /* ListViewController.xib */; };
 		B7E19E5F19B79EF8000CB167 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7E19E5E19B79EF8000CB167 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +61,9 @@
 		B7740A5019B6857700695A2B /* soundyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = soundyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7740A5519B6857700695A2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7740A5619B6857700695A2B /* soundyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = soundyTests.m; sourceTree = "<group>"; };
+		B783244119BA0F0D0038084C /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		B783244219BA0F0D0038084C /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		B783244319BA0F0D0038084C /* ListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
 		B7E19E5E19B79EF8000CB167 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -134,6 +139,9 @@
 				B75A8B9B19B7FB3000B17E49 /* SearchResultViewController.h */,
 				B75A8B9C19B7FB3000B17E49 /* SearchResultViewController.m */,
 				B75A8B9D19B7FB3000B17E49 /* SearchResultViewController.xib */,
+				B783244119BA0F0D0038084C /* ListViewController.h */,
+				B783244219BA0F0D0038084C /* ListViewController.m */,
+				B783244319BA0F0D0038084C /* ListViewController.xib */,
 			);
 			name = tableview;
 			sourceTree = "<group>";
@@ -291,6 +299,7 @@
 			files = (
 				B75A8B9F19B7FB3000B17E49 /* SearchResultViewController.xib in Resources */,
 				B7740A4819B6857700695A2B /* Images.xcassets in Resources */,
+				B783244519BA0F0D0038084C /* ListViewController.xib in Resources */,
 				B7740A4B19B6857700695A2B /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,6 +318,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B783244419BA0F0D0038084C /* ListViewController.m in Sources */,
 				B769FAA119B7C9A600EB2D4D /* URLCaller.m in Sources */,
 				B75DA7F119B9BC28002EC534 /* AudioPlayer.m in Sources */,
 				B7740A4619B6857700695A2B /* AppDelegate.m in Sources */,

@@ -682,11 +682,6 @@
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="799" height="380"/>
                 <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <stackView orientation="horizontal" alignment="centerY" horizontalHuggingPriority="249" verticalHuggingPriority="249" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kJW-Xn-gXb">
-                        <rect key="frame" x="0.0" y="0.0" width="799" height="380"/>
-                    </stackView>
-                </subviews>
             </view>
             <toolbar key="toolbar" implicitIdentifier="E77B4206-BC21-4EA4-9487-26FFEA2850C8" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="hJl-p5-b4G">
                 <allowedToolbarItems>
