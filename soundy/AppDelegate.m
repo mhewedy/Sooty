@@ -23,6 +23,7 @@
 @property (strong) AudioPlayer* audioPlayer;
 @property (strong) SoundApi* soundApi;
 
+@property (strong) SearchResultViewController* searchResultVC;
 
 @end
 
@@ -47,8 +48,8 @@
     self.soundApi.searchCallbackSelector = @selector(searchResultReturned:);
     //
     
-    NSViewController* listVC = [[ListViewController alloc]initWithNibName:@"ListViewController" bundle:nil];
-    NSViewController* searchResultVC = [[SearchResultViewController alloc]initWithNibName:@"SearchResultViewController" bundle:nil];
+    self.searchResultVC = [[SearchResultViewController alloc]initWithNibName:@"SearchResultViewController" bundle:nil];
+    self.window.contentView = self.searchResultVC.view;
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -57,17 +58,14 @@
 
 #pragma mark - Search Field
 - (IBAction)searchAction:(id)sender {
+    [self.progressIndicator startAnimation:self];
+    [self.searchResultVC hideViews];
     [self.soundApi search:self.searchField.stringValue];
 }
 
 -(void) searchResultReturned:(NSArray*) results{
-    if (results.count > 0){
-        SearchResultViewController* searchVC = [[SearchResultViewController alloc]initWithNibName:@"SearchResultViewController" bundle:nil];
-        searchVC.results = results;
-        self.window.contentView = searchVC.view;
-    }else{
-        
-    }
+    [self.progressIndicator stopAnimation:self];
+    self.searchResultVC.tracks = results;
 }
 
 #pragma mark - UI Control actions

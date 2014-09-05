@@ -10,6 +10,9 @@
 
 @interface SearchResultViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate>
 
-@property (strong) NSArray* results;
+@property (nonatomic, strong) NSArray* tracks;
+
+- (void) hideViews;
+
 
 @end
