@@ -39,12 +39,6 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         self.player = [[AVPlayer alloc]init];
         [self addObserver:self forKeyPath:@"player.rate" options:NSKeyValueObservingOptionNew context:AVPlayerRateContext];
         [self addObserver:self forKeyPath:@"player.currentItem.status" options:NSKeyValueObservingOptionNew context:AVPlayerItemStatusContext];
-        
-        self.playPauseButton    = [self.playerView viewWithTag:1];
-        self.playNextButton     = [self.playerView viewWithTag:2];
-        self.playPrevButton     = [self.playerView viewWithTag:3];
-        self.timeSlider         = [self.playerView viewWithTag:6];
-        self.volumeSlider       = [self.playerView viewWithTag:4];
     }
     return self;
 }
@@ -95,6 +89,16 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 {
     _tracks = mytracks;
 //    [self enableDisableControls];
+}
+
+- (void) setPlayerView:(NSView *)myPlayerView{
+    _playerView = myPlayerView;
+    
+    self.playPauseButton    = [self.playerView viewWithTag:1];
+    self.playNextButton     = [self.playerView viewWithTag:2];
+    self.playPrevButton     = [self.playerView viewWithTag:3];
+    self.timeSlider         = [self.playerView viewWithTag:6];
+    self.volumeSlider       = [self.playerView viewWithTag:4];
 }
 
 #pragma - mark Obeserver callback

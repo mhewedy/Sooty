@@ -15,7 +15,7 @@
 
 @interface AudioPlayer : NSObject
 
-@property (weak) NSView* playerView;
+@property (nonatomic, weak) NSView* playerView;
 @property (weak) NSProgressIndicator *progressIndicator;
 
 @property (nonatomic, strong) NSArray* tracks;
