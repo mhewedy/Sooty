@@ -85,12 +85,9 @@
 }
 
 - (IBAction)volumeSliderAction:(id)sender {
-//    self.audioPlayer.volume = self.volumeSlider.floatValue;
+    self.player.volume = self.volumeSlider.floatValue;
 }
 
-- (void) updateTimeSlider{
-//    self.timeSlider.doubleValue = self.audioPlayer.currentTime;
-}
 
 - (IBAction)play:(id)sender {
     [self.player play];
