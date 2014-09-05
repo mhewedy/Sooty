@@ -36,12 +36,13 @@
     }
 }
 
-#pragma - mark TableView DataSource
+#pragma - mark NSTableViewDataSource
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView{
-    NSLog(@"drawing : %lu objects", (unsigned long)self.tracks.count);
     return self.tracks.count;
 }
+
+#pragma - mark NSTableViewDelegate
 
 
 #pragma - mark Utils

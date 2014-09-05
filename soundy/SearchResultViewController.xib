@@ -159,5 +159,6 @@
             </subviews>
             <point key="canvasLocation" x="347.5" y="95"/>
         </customView>
+        <userDefaultsController representsSharedInstance="YES" id="1dL-r1-g48"/>
     </objects>
 </document>
