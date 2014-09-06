@@ -32,12 +32,10 @@
 
 -(void)connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse*)response
 {
-    NSLog(@"didReceiveResponse");
     self.data = [[NSMutableData alloc] init]; // _data being an ivar
 }
 -(void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data
 {
-    NSLog(@"didReceiveData");
     [self.data appendData:data];
 }
 -(void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
