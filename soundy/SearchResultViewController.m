@@ -25,19 +25,18 @@
 {
     _tracks = mytracks;
     
-    if (self.tracks){   // user enter search token in search field
+    if (self.tracks){
         if (self.tracks.count != 0){
             self.tableScrollView.hidden = NO;
             self.message.hidden = YES;
             
             [self.tableView reloadData];
+            [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:YES];
         }else{
             self.message.hidden = NO;
             self.tableScrollView.hidden = YES;
         }
     }
-    
-    [self.tableView reloadData];
 }
 
 #pragma - mark NSTableViewDataSource
