@@ -46,7 +46,7 @@ static NSString* CLIENT_ID = @"85652ec093beadb4c647450f597b16ad";
             track.username = dict[@"user"][@"username"];
             track.streamURL = [NSString stringWithFormat:@"%@?client_id=%@", dict[@"stream_url"], CLIENT_ID];
             track.originalURL = dict[@"permalink_url"];
-            track.duration = [NSString stringWithFormat:@"%.2f", (([dict[@"duration"] longValue])/ (1000* 60.0))];
+            track.duration = [NSString stringWithFormat:@"%.2f", [self calcDuration:[dict[@"duration"] longValue]]];
             
             [myResultArr addObject:track];
         }
@@ -54,6 +54,14 @@ static NSString* CLIENT_ID = @"85652ec093beadb4c647450f597b16ad";
     }else{
         [self alert:error.localizedDescription];
     }
+}
+
+- (float) calcDuration:(long) longDuration{
+    float duration = (longDuration/ (1000* 60.0));
+    duration = floorf(duration * 100) / 100;
+    float seconds = duration - floorf(duration);
+    seconds = 60 * seconds / 100;
+    return ((int) duration) + seconds;
 }
 
 
