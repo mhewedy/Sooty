@@ -30,6 +30,8 @@
 @implementation AppDelegate
             
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    
+    [self.window makeFirstResponder:self.searchField];
 
     self.audioPlayer = [[AudioPlayer alloc]init];
     self.audioPlayer.playerView = self.playerView;
