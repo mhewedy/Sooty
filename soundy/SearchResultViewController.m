@@ -34,6 +34,8 @@
         self.message.hidden = NO;
         self.tableScrollView.hidden = YES;
     }
+    
+    [self.tableView reloadData];
 }
 
 #pragma - mark NSTableViewDataSource
@@ -42,7 +44,31 @@
     return self.tracks.count;
 }
 
+
 #pragma - mark NSTableViewDelegate
+
+- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
+    
+    NSTableCellView* result = nil;
+    NSString* valueToDisplay = nil;
+    
+    if ([tableColumn.identifier isEqual: @"titleColumn"]){
+        
+        result = [tableView makeViewWithIdentifier:@"titleColumn" owner:self];
+        valueToDisplay = [[self.tracks objectAtIndex:row] title];
+    }else if ([tableColumn.identifier isEqual: @"userColumn"]){
+        
+        result = [tableView makeViewWithIdentifier:@"userColumn" owner:self];
+        valueToDisplay = [[self.tracks objectAtIndex:row] username];
+    }else if ([tableColumn.identifier isEqual: @"genreColumn"]){
+        
+        result = [tableView makeViewWithIdentifier:@"genreColumn" owner:self];
+        valueToDisplay = [[self.tracks objectAtIndex:row] genre];
+    }
+    
+    result.textField.stringValue = valueToDisplay;
+    return result;
+}
 
 
 #pragma - mark Utils

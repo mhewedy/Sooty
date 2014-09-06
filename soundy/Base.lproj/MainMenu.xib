@@ -727,9 +727,6 @@ IA
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="U0e-ei-Ckl">
                                     <rect key="frame" x="52" y="12" width="62" height="17"/>
                                     <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="pka-Nq-gE6"/>
-                                    <connections>
-                                        <action selector="volumeSliderAction:" target="Voe-Tx-rLC" id="ebD-Xa-g0n"/>
-                                    </connections>
                                 </slider>
                                 <textField verticalHuggingPriority="750" fixedFrame="YES" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="NRB-dX-QgO">
                                     <rect key="frame" x="1" y="13" width="45" height="14"/>
@@ -741,11 +738,7 @@ IA
                                 </textField>
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="JvU-6g-gG7">
                                     <rect key="frame" x="317" y="10" width="258" height="17"/>
-                                    <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="7Mt-dQ-PCh">
-                                        <connections>
-                                            <action selector="timeSliderAction:" target="Voe-Tx-rLC" id="c53-oj-kIs"/>
-                                        </connections>
-                                    </sliderCell>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="7Mt-dQ-PCh"/>
                                 </slider>
                                 <textField verticalHuggingPriority="750" fixedFrame="YES" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="PdL-r4-d5I">
                                     <rect key="frame" x="279" y="12" width="31" height="14"/>

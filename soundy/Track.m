@@ -10,4 +10,9 @@
 
 @implementation Track
 
+
+- (id) copyWithZone:(NSZone *)zone {
+    return self;
+}
+
 @end
