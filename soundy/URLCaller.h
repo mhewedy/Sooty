@@ -14,7 +14,7 @@
 @property (weak) id target;
 @property SEL selector;
 
--(instancetype) initWithTarget:(id) target selector:(SEL)selector NS_DESIGNATED_INITIALIZER;
+-(instancetype) initWithTarget:(id) target selector:(SEL)selector;
 -(void) call:(NSString*) url;
 
 @end
