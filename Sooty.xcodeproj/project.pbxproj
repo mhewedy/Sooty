@@ -51,14 +51,14 @@
 		B769FAA019B7C9A600EB2D4D /* URLCaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLCaller.m; sourceTree = "<group>"; };
 		B769FAA619B7DA0F00EB2D4D /* Track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
 		B769FAA719B7DA0F00EB2D4D /* Track.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
-		B7740A3D19B6857700695A2B /* soundy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = soundy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7740A3D19B6857700695A2B /* Sooty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sooty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7740A4119B6857700695A2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7740A4219B6857700695A2B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B7740A4419B6857700695A2B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B7740A4519B6857700695A2B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B7740A4719B6857700695A2B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B7740A4A19B6857700695A2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		B7740A5019B6857700695A2B /* soundyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = soundyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7740A5019B6857700695A2B /* SootyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SootyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7740A5519B6857700695A2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7740A5619B6857700695A2B /* soundyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = soundyTests.m; sourceTree = "<group>"; };
 		B783244119BA0F0D0038084C /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
@@ -149,7 +149,7 @@
 		B7740A3419B6857700695A2B = {
 			isa = PBXGroup;
 			children = (
-				B7740A3F19B6857700695A2B /* soundy */,
+				B7740A3F19B6857700695A2B /* Sooty */,
 				B7740A5319B6857700695A2B /* soundyTests */,
 				B7740A3E19B6857700695A2B /* Products */,
 				B7E19E6019B79EFC000CB167 /* frameworks */,
@@ -159,13 +159,13 @@
 		B7740A3E19B6857700695A2B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B7740A3D19B6857700695A2B /* soundy.app */,
-				B7740A5019B6857700695A2B /* soundyTests.xctest */,
+				B7740A3D19B6857700695A2B /* Sooty.app */,
+				B7740A5019B6857700695A2B /* SootyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B7740A3F19B6857700695A2B /* soundy */ = {
+		B7740A3F19B6857700695A2B /* Sooty */ = {
 			isa = PBXGroup;
 			children = (
 				B75DA7EE19B9BC11002EC534 /* player */,
@@ -180,6 +180,7 @@
 				B7740A4919B6857700695A2B /* MainMenu.xib */,
 				B7740A4019B6857700695A2B /* Supporting Files */,
 			);
+			name = Sooty;
 			path = soundy;
 			sourceTree = "<group>";
 		};
@@ -220,9 +221,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B7740A3C19B6857700695A2B /* soundy */ = {
+		B7740A3C19B6857700695A2B /* Sooty */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B7740A5A19B6857700695A2B /* Build configuration list for PBXNativeTarget "soundy" */;
+			buildConfigurationList = B7740A5A19B6857700695A2B /* Build configuration list for PBXNativeTarget "Sooty" */;
 			buildPhases = (
 				B7740A3919B6857700695A2B /* Sources */,
 				B7740A3A19B6857700695A2B /* Frameworks */,
@@ -232,14 +233,14 @@
 			);
 			dependencies = (
 			);
-			name = soundy;
+			name = Sooty;
 			productName = soundy;
-			productReference = B7740A3D19B6857700695A2B /* soundy.app */;
+			productReference = B7740A3D19B6857700695A2B /* Sooty.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B7740A4F19B6857700695A2B /* soundyTests */ = {
+		B7740A4F19B6857700695A2B /* SootyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B7740A5D19B6857700695A2B /* Build configuration list for PBXNativeTarget "soundyTests" */;
+			buildConfigurationList = B7740A5D19B6857700695A2B /* Build configuration list for PBXNativeTarget "SootyTests" */;
 			buildPhases = (
 				B7740A4C19B6857700695A2B /* Sources */,
 				B7740A4D19B6857700695A2B /* Frameworks */,
@@ -250,9 +251,9 @@
 			dependencies = (
 				B7740A5219B6857700695A2B /* PBXTargetDependency */,
 			);
-			name = soundyTests;
+			name = SootyTests;
 			productName = soundyTests;
-			productReference = B7740A5019B6857700695A2B /* soundyTests.xctest */;
+			productReference = B7740A5019B6857700695A2B /* SootyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -273,7 +274,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B7740A3819B6857700695A2B /* Build configuration list for PBXProject "soundy" */;
+			buildConfigurationList = B7740A3819B6857700695A2B /* Build configuration list for PBXProject "Sooty" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -286,8 +287,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B7740A3C19B6857700695A2B /* soundy */,
-				B7740A4F19B6857700695A2B /* soundyTests */,
+				B7740A3C19B6857700695A2B /* Sooty */,
+				B7740A4F19B6857700695A2B /* SootyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -344,7 +345,7 @@
 /* Begin PBXTargetDependency section */
 		B7740A5219B6857700695A2B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B7740A3C19B6857700695A2B /* soundy */;
+			target = B7740A3C19B6857700695A2B /* Sooty */;
 			targetProxy = B7740A5119B6857700695A2B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -444,7 +445,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = soundy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Sooty;
 			};
 			name = Debug;
 		};
@@ -455,7 +456,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = soundy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Sooty;
 			};
 			name = Release;
 		};
@@ -474,7 +475,7 @@
 				);
 				INFOPLIST_FILE = soundyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SootyTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/soundy.app/Contents/MacOS/soundy";
 			};
 			name = Debug;
@@ -490,7 +491,7 @@
 				);
 				INFOPLIST_FILE = soundyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SootyTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/soundy.app/Contents/MacOS/soundy";
 			};
 			name = Release;
@@ -498,7 +499,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B7740A3819B6857700695A2B /* Build configuration list for PBXProject "soundy" */ = {
+		B7740A3819B6857700695A2B /* Build configuration list for PBXProject "Sooty" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B7740A5819B6857700695A2B /* Debug */,
@@ -507,7 +508,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B7740A5A19B6857700695A2B /* Build configuration list for PBXNativeTarget "soundy" */ = {
+		B7740A5A19B6857700695A2B /* Build configuration list for PBXNativeTarget "Sooty" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B7740A5B19B6857700695A2B /* Debug */,
@@ -516,7 +517,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B7740A5D19B6857700695A2B /* Build configuration list for PBXNativeTarget "soundyTests" */ = {
+		B7740A5D19B6857700695A2B /* Build configuration list for PBXNativeTarget "SootyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B7740A5E19B6857700695A2B /* Debug */,

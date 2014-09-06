@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B7740A3C19B6857700695A2B"
-               BuildableName = "soundy.app"
-               BlueprintName = "soundy"
-               ReferencedContainer = "container:soundy.xcodeproj">
+               BuildableName = "Sooty.app"
+               BlueprintName = "Sooty"
+               ReferencedContainer = "container:Sooty.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B7740A4F19B6857700695A2B"
-               BuildableName = "soundyTests.xctest"
-               BlueprintName = "soundyTests"
-               ReferencedContainer = "container:soundy.xcodeproj">
+               BuildableName = "SootyTests.xctest"
+               BlueprintName = "SootyTests"
+               ReferencedContainer = "container:Sooty.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B7740A4F19B6857700695A2B"
-               BuildableName = "soundyTests.xctest"
-               BlueprintName = "soundyTests"
-               ReferencedContainer = "container:soundy.xcodeproj">
+               BuildableName = "SootyTests.xctest"
+               BlueprintName = "SootyTests"
+               ReferencedContainer = "container:Sooty.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B7740A3C19B6857700695A2B"
-            BuildableName = "soundy.app"
-            BlueprintName = "soundy"
-            ReferencedContainer = "container:soundy.xcodeproj">
+            BuildableName = "Sooty.app"
+            BlueprintName = "Sooty"
+            ReferencedContainer = "container:Sooty.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B7740A3C19B6857700695A2B"
-            BuildableName = "soundy.app"
-            BlueprintName = "soundy"
-            ReferencedContainer = "container:soundy.xcodeproj">
+            BuildableName = "Sooty.app"
+            BlueprintName = "Sooty"
+            ReferencedContainer = "container:Sooty.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B7740A3C19B6857700695A2B"
-            BuildableName = "soundy.app"
-            BlueprintName = "soundy"
-            ReferencedContainer = "container:soundy.xcodeproj">
+            BuildableName = "Sooty.app"
+            BlueprintName = "Sooty"
+            ReferencedContainer = "container:Sooty.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
