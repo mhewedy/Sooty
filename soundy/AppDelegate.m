@@ -64,8 +64,8 @@
 
 #pragma mark - UI Control actions
 
-- (IBAction)temp:(id)sender {
-    [self.audioPlayer playPauseAction:sender];
-}
+//- (IBAction)temp:(id)sender {
+//    [self.audioPlayer playPauseAction:sender];
+//}
 
 @end

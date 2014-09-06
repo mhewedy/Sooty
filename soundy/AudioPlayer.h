@@ -23,8 +23,7 @@
 
 
 - (void) play:(int) trackIndex;
-- (void) playPauseAction:(id)sender;
-- (void) playNextAction:(id) sender;
-- (void) playPrevAction:(id) sender;
+- (void) playNext;
+- (void) playPrev;
 
 @end

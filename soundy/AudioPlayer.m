@@ -43,6 +43,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     return self;
 }
 
+#pragma - mark Public APIs
 
 - (void) play:(int) trackIndex{
     if (self.tracks == nil){
@@ -50,46 +51,19 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         return;
     }
     
-    [self.progressIndicator startAnimation:self];
-    Track* currentTrack = [self trackAtIndex:trackIndex];
-    AVURLAsset* asset = [AVAsset assetWithURL:[NSURL URLWithString:currentTrack.streamURL]];
-    NSArray* assetKeys = @[@"playable", @"hasProtectedContent", @"tracks"];
-    
-    [asset loadValuesAsynchronouslyForKeys:assetKeys completionHandler:^(void){
-        
-        [self.progressIndicator stopAnimation:self];
-        [self enableDisableControls];
-        
-        dispatch_async(dispatch_get_main_queue(), ^(void){
-            
-            for (NSString *key in assetKeys){
-                NSError *error = nil;
-                if ([asset statusOfValueForKey:key error:&error] == AVKeyValueStatusFailed){
-                    [self handelPlaybackError:error];
-                    return;
-                }
-            }
-            if (![asset isPlayable] || [asset hasProtectedContent]){
-                [self handelPlaybackError:nil];
-                return;
-            }
-            [self.player replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithAsset:asset]];
-            __weak AudioPlayer* weakSelf = self;
-            [self setTimeObserverToken:[[self player] addPeriodicTimeObserverForInterval:CMTimeMake(1, 10) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
-                weakSelf.timeSlider.doubleValue = CMTimeGetSeconds(time);
-            }]];
-            
-        });
-    }];
+    [self prepareTrack:trackIndex];
+    [self play];
+}
+
+- (void) playNext{
+    [self play:++self.currentTrackIndex];
+}
+
+- (void) playPrev{
+    [self play:--self.currentTrackIndex];
 }
 
 #pragma - mark Custome propreties
-
-- (void)setTracks:(NSArray *) mytracks
-{
-    _tracks = mytracks;
-//    [self enableDisableControls];
-}
 
 - (void) setPlayerView:(NSView *)myPlayerView{
     _playerView = myPlayerView;
@@ -124,36 +98,61 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     }
 }
 
+#pragma - mark Play methods
 
-#pragma - mark UI Control Actions
+- (void) prepareTrack:(int) trackIndex{
+    
+    [self.progressIndicator startAnimation:self];
+    Track* currentTrack = [self trackAtIndex:trackIndex];
+    AVURLAsset* asset = [AVAsset assetWithURL:[NSURL URLWithString:currentTrack.streamURL]];
+    NSArray* assetKeys = @[@"playable", @"hasProtectedContent", @"tracks"];
+    
+    [asset loadValuesAsynchronouslyForKeys:assetKeys completionHandler:^(void){
+        
+        [self.progressIndicator stopAnimation:self];
+        [self enableDisableControls];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            
+            for (NSString *key in assetKeys){
+                NSError *error = nil;
+                if ([asset statusOfValueForKey:key error:&error] == AVKeyValueStatusFailed){
+                    [self handelPlaybackError:error];
+                    return;
+                }
+            }
+            if (![asset isPlayable] || [asset hasProtectedContent]){
+                [self handelPlaybackError:nil];
+                return;
+            }
+            
+            [self.player replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithAsset:asset]];
+            
+            __weak AudioPlayer* weakSelf = self;
+            [self setTimeObserverToken:[[self player] addPeriodicTimeObserverForInterval:CMTimeMake(1, 10) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
+                weakSelf.timeSlider.doubleValue = CMTimeGetSeconds(time);
+            }]];
+            
+        });
+    }];
+}
 
-- (void) playPauseAction:(id)sender
-{
-    if (self.player.rate != 1.f)
-    {
-        if (self.currentTime == [self duration])
+- (void) play{
+    if (self.player.rate != 1.f){
+        if (self.currentTime == [self duration]){
             [self setCurrentTime:0.f];
+        }
         [self.player play];
-    }
-    else
-    {
+    }else{
         [self.player pause];
     }
-}
-
-- (void) playNextAction:(id) sender{
-    [self play:++self.currentTrackIndex];
-}
-
-- (void) playPrevAction:(id) sender{
-    [self play:--self.currentTrackIndex];
 }
 
 #pragma - mark Utils
 
 - (void) handelPlaybackError:(NSError*) error{
     NSLog(@"error '%@' for track at %i, playing next track...", error.localizedDescription, self.currentTrackIndex);
-    [self play:++self.currentTrackIndex];
+    [self playNext];
 }
 
 - (Track*) trackAtIndex:(int) trackIndex{
