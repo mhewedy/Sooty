@@ -11,6 +11,7 @@
 #import "NSObject+Util.h"
 #import "AppDelegate.h"
 
+
 static void *AVPlayerRateContext = &AVPlayerRateContext;
 static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
@@ -53,6 +54,10 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     }
 
     [self play];
+}
+
+- (void) seekToTime:(double) time{
+    self.currentTime = time;
 }
 
 #pragma - mark Obeserver callback
@@ -106,13 +111,13 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
             }
             
             [self.player replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithAsset:asset]];
+            [[self.playerView viewWithTag:PlayerViewTimeSlider] setMaxValue:CMTimeGetSeconds(asset.duration)];
             
             __weak AudioPlayer* weakSelf = self;
             [self setTimeObserverToken:[[self player] addPeriodicTimeObserverForInterval:CMTimeMake(1, 10) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
                 
                 [[weakSelf.playerView viewWithTag:PlayerViewTimeSlider] setDoubleValue:CMTimeGetSeconds(time)];
             }]];
-            
         });
     }];
 }

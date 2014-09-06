@@ -90,6 +90,7 @@
 }
 
 - (IBAction)timeSliderAction:(id)sender {
+    [self.audioPlayer seekToTime:[[self.playerView viewWithTag:PlayerViewTimeSlider] doubleValue]];
 }
 
 #pragma mark - Util
@@ -104,6 +105,8 @@
         }
     }
     [[self.playerView viewWithTag:PlayerViewPlayPauseButton] setEnabled:playEnabled];
+    [[self.playerView viewWithTag:PlayerViewTimeSlider] setEnabled:playEnabled];
+    [[self.playerView viewWithTag:PlayerViewVolumeSlider] setEnabled:playEnabled];
     [[self.playerView viewWithTag:PlayerViewPlayNextButton] setEnabled:otherEnabled];
     [[self.playerView viewWithTag:PlayerViewPlayPrevButton] setEnabled:otherEnabled];
 }

@@ -24,5 +24,6 @@
 
 
 - (void) play:(int) trackIndex;
+- (void) seekToTime:(double) time;
 
 @end
