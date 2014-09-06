@@ -8,17 +8,13 @@
 
 #import "AudioPlayer.h"
 #import "Track.h"
+#import "NSObject+Util.h"
+#import "AppDelegate.h"
 
 static void *AVPlayerRateContext = &AVPlayerRateContext;
 static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 @interface AudioPlayer ()
-
-@property (weak) NSButton* playPauseButton;
-@property (weak) NSButton* playNextButton;
-@property (weak) NSButton* playPrevButton;
-@property (weak) NSSlider* timeSlider;
-@property (weak) NSSlider* volumeSlider;
 
 @property (strong) AVPlayer* player;
 @property (strong) id timeObserverToken;
@@ -39,6 +35,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         self.player = [[AVPlayer alloc]init];
         [self addObserver:self forKeyPath:@"player.rate" options:NSKeyValueObservingOptionNew context:AVPlayerRateContext];
         [self addObserver:self forKeyPath:@"player.currentItem.status" options:NSKeyValueObservingOptionNew context:AVPlayerItemStatusContext];
+        self.currentTrackIndex = -1;
     }
     return self;
 }
@@ -51,28 +48,11 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         return;
     }
     
-    [self prepareTrack:trackIndex];
+    if (self.currentTrackIndex != trackIndex){
+        [self prepareTrack:trackIndex];
+    }
+
     [self play];
-}
-
-- (void) playNext{
-    [self play:++self.currentTrackIndex];
-}
-
-- (void) playPrev{
-    [self play:--self.currentTrackIndex];
-}
-
-#pragma - mark Custome propreties
-
-- (void) setPlayerView:(NSView *)myPlayerView{
-    _playerView = myPlayerView;
-    
-    self.playPauseButton    = [self.playerView viewWithTag:1];
-    self.playNextButton     = [self.playerView viewWithTag:2];
-    self.playPrevButton     = [self.playerView viewWithTag:3];
-    self.timeSlider         = [self.playerView viewWithTag:6];
-    self.volumeSlider       = [self.playerView viewWithTag:4];
 }
 
 #pragma - mark Obeserver callback
@@ -82,9 +62,9 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     if (context == AVPlayerRateContext) {
         float rate = [change[NSKeyValueChangeNewKey] floatValue];
         if (rate != 1.f){
-            self.playPauseButton.title = @"Play";
+            [[self.playerView viewWithTag:PlayerViewPlayPauseButton]setTitle: @"Play"];
         }else{
-            self.playPauseButton.title = @"Pause";
+            [[self.playerView viewWithTag:PlayerViewPlayPauseButton]setTitle: @"Pause"];
         }
     } else if (context == AVPlayerItemStatusContext) {
         
@@ -110,7 +90,6 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     [asset loadValuesAsynchronouslyForKeys:assetKeys completionHandler:^(void){
         
         [self.progressIndicator stopAnimation:self];
-        [self enableDisableControls];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             
@@ -130,7 +109,8 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
             
             __weak AudioPlayer* weakSelf = self;
             [self setTimeObserverToken:[[self player] addPeriodicTimeObserverForInterval:CMTimeMake(1, 10) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
-                weakSelf.timeSlider.doubleValue = CMTimeGetSeconds(time);
+                
+                [[weakSelf.playerView viewWithTag:PlayerViewTimeSlider] setDoubleValue:CMTimeGetSeconds(time)];
             }]];
             
         });
@@ -152,7 +132,9 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 - (void) handelPlaybackError:(NSError*) error{
     NSLog(@"error '%@' for track at %i, playing next track...", error.localizedDescription, self.currentTrackIndex);
-    [self playNext];
+    
+    // TODO remove dependency on AppDelegate
+    [(AppDelegate*)[NSApplication sharedApplication].delegate playNextAction:nil];
 }
 
 - (Track*) trackAtIndex:(int) trackIndex{
@@ -183,19 +165,6 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 - (void)setCurrentTime:(double)time
 {
     [self.player seekToTime:CMTimeMakeWithSeconds(time, 1) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
-}
-
-- (void) enableDisableControls{
-    BOOL playEnabled, otherEnabled = NO;
-    if (self.tracks.count > 0){
-        playEnabled = YES;
-        if (self.tracks.count > 1){
-            otherEnabled = YES;
-        }
-    }
-    self.playPauseButton.enabled = playEnabled;
-    self.playNextButton.enabled = otherEnabled;
-    self.playPrevButton.enabled = otherEnabled;
 }
 
 - (void)dealloc

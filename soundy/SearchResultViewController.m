@@ -31,7 +31,7 @@
             self.message.hidden = YES;
             
             [self.tableView reloadData];
-            [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:YES];
+            [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
         }else{
             self.message.hidden = NO;
             self.tableScrollView.hidden = YES;
@@ -80,6 +80,18 @@
 
 - (void) resetView {
     self.message.hidden = YES;
+}
+
+- (long) selectedTrackIndex{
+    return self.tableView.selectedRow;
+}
+
+- (void) moveToNext{
+    [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:self.tableView.selectedRow + 1] byExtendingSelection:NO];
+}
+
+- (void) moveToPrev{
+    [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:self.tableView.selectedRow - 1] byExtendingSelection:NO];
 }
 
 @end

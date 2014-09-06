@@ -13,6 +13,8 @@
 @property (nonatomic, strong) NSArray* tracks;
 
 - (void) resetView;
-
+- (long) selectedTrackIndex;
+- (void) moveToNext;
+- (void) moveToPrev;
 
 @end

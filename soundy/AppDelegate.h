@@ -13,5 +13,7 @@
 
 @property (weak) IBOutlet NSWindow *window;
 
+- (IBAction)playNextAction:(id)sender;
+
 @end
 

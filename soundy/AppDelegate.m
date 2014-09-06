@@ -20,9 +20,9 @@
 @property (weak) IBOutlet NSSearchField *searchField;
 @property (weak) IBOutlet NSProgressIndicator *progressIndicator;
 
-@property (strong) AudioPlayer* audioPlayer;
 @property (strong) SoundApi* soundApi;
 
+@property (strong) AudioPlayer* audioPlayer;
 @property (strong) SearchResultViewController* searchResultVC;
 
 @end
@@ -51,21 +51,61 @@
 
 #pragma mark - Search Field
 - (IBAction)searchAction:(id)sender {
+    
+    if ([self.searchField.stringValue isEqualTo:@""]){
+        return;
+    }
+    
     [self.progressIndicator startAnimation:self];
+    
     [self.searchResultVC resetView];
     [self.soundApi search:self.searchField.stringValue];
 }
 
 -(void) searchResultReturned:(NSArray*) results{
     [self.progressIndicator stopAnimation:self];
+    
     self.searchResultVC.tracks = results;
     self.audioPlayer.tracks = results;
+    [self enableDisablePlayerView:results];
 }
 
 #pragma mark - UI Control actions
 
-//- (IBAction)temp:(id)sender {
-//    [self.audioPlayer playPauseAction:sender];
-//}
+- (IBAction)playPauseAction:(id)sender {
+    [self.audioPlayer play:(int)[self.searchResultVC selectedTrackIndex]];
+}
+
+- (IBAction)playNextAction:(id)sender {
+    [self.searchResultVC moveToNext];
+    [self.audioPlayer play:(int)[self.searchResultVC selectedTrackIndex]];
+}
+
+- (IBAction)playPrevAction:(id)sender {
+    [self.searchResultVC moveToPrev];
+    [self.audioPlayer play:(int)[self.searchResultVC selectedTrackIndex]];
+}
+
+- (IBAction)volumeSliderAction:(id)sender {
+}
+
+- (IBAction)timeSliderAction:(id)sender {
+}
+
+#pragma mark - Util
+
+-(void) enableDisablePlayerView:(NSArray*) tracks{
+
+    BOOL playEnabled = NO, otherEnabled = NO;
+    if (tracks.count > 0){
+        playEnabled = YES;
+        if (tracks.count > 1){
+            otherEnabled = YES;
+        }
+    }
+    [[self.playerView viewWithTag:PlayerViewPlayPauseButton] setEnabled:playEnabled];
+    [[self.playerView viewWithTag:PlayerViewPlayNextButton] setEnabled:otherEnabled];
+    [[self.playerView viewWithTag:PlayerViewPlayPrevButton] setEnabled:otherEnabled];
+}
 
 @end

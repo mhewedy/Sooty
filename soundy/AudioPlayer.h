@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
+#import "PlayerViewHelper.h"
 
 @import AppKit.NSSlider;
 @import AppKit.NSButton;
@@ -15,15 +16,13 @@
 
 @interface AudioPlayer : NSObject
 
-@property (nonatomic, weak) NSView* playerView;
+@property (weak) NSView* playerView;
 @property (weak) NSProgressIndicator *progressIndicator;
 
-@property (nonatomic, strong) NSArray* tracks;
+@property (strong) NSArray* tracks;
 @property (readonly) int currentTrackIndex;
 
 
 - (void) play:(int) trackIndex;
-- (void) playNext;
-- (void) playPrev;
 
 @end
