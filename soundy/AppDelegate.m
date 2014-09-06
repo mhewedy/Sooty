@@ -87,6 +87,7 @@
 }
 
 - (IBAction)volumeSliderAction:(id)sender {
+    [self.audioPlayer adjustVolume:[[self.playerView viewWithTag:PlayerViewVolumeSlider] doubleValue]];
 }
 
 - (IBAction)timeSliderAction:(id)sender {

@@ -25,5 +25,6 @@
 
 - (void) play:(int) trackIndex;
 - (void) seekToTime:(double) time;
+- (void) adjustVolume:(double) volume;
 
 @end

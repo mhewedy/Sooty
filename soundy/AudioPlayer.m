@@ -23,7 +23,6 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 @property (assign) int currentTrackIndex;
 @property (assign) double currentTime;
 @property (readonly) double duration;
-@property (assign) float volume;
 
 @end
 
@@ -37,6 +36,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         [self addObserver:self forKeyPath:@"player.rate" options:NSKeyValueObservingOptionNew context:AVPlayerRateContext];
         [self addObserver:self forKeyPath:@"player.currentItem.status" options:NSKeyValueObservingOptionNew context:AVPlayerItemStatusContext];
         self.currentTrackIndex = -1;
+        [[self.playerView viewWithTag:PlayerViewVolumeSlider] setMaxValue:1.0];
     }
     return self;
 }
@@ -58,6 +58,9 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 - (void) seekToTime:(double) time{
     self.currentTime = time;
+}
+- (void) adjustVolume:(double) volume{
+    self.player.volume = volume;
 }
 
 #pragma - mark Obeserver callback
@@ -115,7 +118,6 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
             
             __weak AudioPlayer* weakSelf = self;
             [self setTimeObserverToken:[[self player] addPeriodicTimeObserverForInterval:CMTimeMake(1, 10) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
-                
                 [[weakSelf.playerView viewWithTag:PlayerViewTimeSlider] setDoubleValue:CMTimeGetSeconds(time)];
             }]];
         });
