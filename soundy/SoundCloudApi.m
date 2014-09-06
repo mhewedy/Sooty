@@ -46,8 +46,7 @@ static NSString* CLIENT_ID = @"85652ec093beadb4c647450f597b16ad";
             track.username = dict[@"user"][@"username"];
             track.streamURL = [NSString stringWithFormat:@"%@?client_id=%@", dict[@"stream_url"], CLIENT_ID];
             track.originalURL = dict[@"permalink_url"];
-            
-            NSLog(@"%@", track.title);
+            track.duration = [NSString stringWithFormat:@"%.2f", (([dict[@"duration"] longValue])/ (1000* 60.0))];
             
             [myResultArr addObject:track];
         }

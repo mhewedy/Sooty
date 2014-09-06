@@ -64,6 +64,10 @@
         
         result = [tableView makeViewWithIdentifier:@"genreColumn" owner:self];
         valueToDisplay = [[self.tracks objectAtIndex:row] genre];
+    }else if ([tableColumn.identifier isEqual: @"durationColumn"]){
+        
+        result = [tableView makeViewWithIdentifier:@"durationColumn" owner:self];
+        valueToDisplay = ((Track*)[self.tracks objectAtIndex:row]).duration;
     }
     
     result.textField.stringValue = valueToDisplay;

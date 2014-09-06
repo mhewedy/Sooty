@@ -16,5 +16,6 @@
 @property (strong) NSString* genre;
 @property (strong) NSString* streamURL;
 @property (strong) NSString* originalURL;
+@property (strong) NSString* duration;
 
 @end
