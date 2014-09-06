@@ -25,14 +25,16 @@
 {
     _tracks = mytracks;
     
-    if ([self.tracks count] != 0){
-        self.tableScrollView.hidden = NO;
-        self.message.hidden = YES;
-        
-        [self.tableView reloadData];
-    }else{
-        self.message.hidden = NO;
-        self.tableScrollView.hidden = YES;
+    if (self.tracks){   // user enter search token in search field
+        if (self.tracks.count != 0){
+            self.tableScrollView.hidden = NO;
+            self.message.hidden = YES;
+            
+            [self.tableView reloadData];
+        }else{
+            self.message.hidden = NO;
+            self.tableScrollView.hidden = YES;
+        }
     }
     
     [self.tableView reloadData];

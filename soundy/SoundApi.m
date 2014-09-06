@@ -21,10 +21,14 @@
     if (!self.searchURL){
         NSLog(@"searchURL is null, prehaps you need to use a subclass implementation to set the value of searchURL ");
     }else{
-        self.urlCaller = [[URLCaller alloc]initWithTarget:self selector:@selector(searchResponseReceived:)];
-        NSRange placeholderRange = [self.searchURL rangeOfString:@"${token}"];
+        if (token.length > 0){
+            self.urlCaller = [[URLCaller alloc]initWithTarget:self selector:@selector(searchResponseReceived:)];
+            NSRange placeholderRange = [self.searchURL rangeOfString:@"${token}"];
+            [self.urlCaller call:[self.searchURL stringByReplacingCharactersInRange:placeholderRange withString:token]];
+        }else{
+            [self.searchCallbackTarget performSelector:self.searchCallbackSelector withObject:nil afterDelay:0.0f];
+        }
         
-        [self.urlCaller call:[self.searchURL stringByReplacingCharactersInRange:placeholderRange withString:token]];
     }
 }
 
