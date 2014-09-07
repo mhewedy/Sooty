@@ -11,6 +11,9 @@
 #import "NSObject+Util.h"
 #import "AppDelegate.h"
 
+#define AVPlayerPlayStatusStopped (0.f)
+#define AVPlayerPlayStatusPlaying (1.f)
+
 
 static void *AVPlayerRateContext = &AVPlayerRateContext;
 static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
@@ -49,11 +52,12 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         return;
     }
     
-    if (self.currentTrackIndex != trackIndex){
+    if (self.player.rate == AVPlayerPlayStatusStopped){
         [self prepareTrack:trackIndex];
+        [self play];
+    }else{
+        [self.player pause];
     }
-
-    [self play];
 }
 
 - (void) seekToTime:(double) time{
@@ -71,13 +75,13 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         float rate = [change[NSKeyValueChangeNewKey] floatValue];
         if (rate != 1.f){   // if not playing
             
-            // TODO:
+            
+            NSLog(@"%hhd", self.player.currentItem.playbackBufferEmpty);
+            
             // if not playing because of buffering, then continue play => [self play]
-            // (**DONE**) if not playing because of end of player item (player current time == player item duration) => play next item
             if (CMTimeGetSeconds(self.player.currentTime) == CMTimeGetSeconds(self.player.currentItem.duration)){
-                // TODO remove dependency on AppDelegate
                 [(AppDelegate*)[NSApplication sharedApplication].delegate playNextAction:nil];
-            }else if (true){ // should changed to if pause because of buffering
+            }else if (false){ // should changed to if pause because of buffering
                 [self play];
             }else{
                 [[self.playerView viewWithTag:PlayerViewPlayPauseButton]setTitle: @"Play"];
@@ -134,7 +138,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 }
 
 - (void) play{
-    if (self.player.rate != 1.f){
+    if (self.player.rate != AVPlayerPlayStatusPlaying){
         if (self.currentTime == [self duration]){
             [self setCurrentTime:0.f];
         }

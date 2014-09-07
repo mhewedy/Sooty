@@ -53,22 +53,20 @@
     NSTableCellView* result = nil;
     NSString* valueToDisplay = nil;
     
+    Track* track = [self.tracks objectAtIndex:row];
+    
     if ([tableColumn.identifier isEqual: @"titleColumn"]){
-        
         result = [tableView makeViewWithIdentifier:@"titleColumn" owner:self];
-        valueToDisplay = [[self.tracks objectAtIndex:row] title];
+        valueToDisplay = track.title;
     }else if ([tableColumn.identifier isEqual: @"userColumn"]){
-        
         result = [tableView makeViewWithIdentifier:@"userColumn" owner:self];
-        valueToDisplay = [[self.tracks objectAtIndex:row] username];
+        valueToDisplay = track.username;
     }else if ([tableColumn.identifier isEqual: @"genreColumn"]){
-        
         result = [tableView makeViewWithIdentifier:@"genreColumn" owner:self];
-        valueToDisplay = [[self.tracks objectAtIndex:row] genre];
+        valueToDisplay = track.genre;
     }else if ([tableColumn.identifier isEqual: @"durationColumn"]){
-        
         result = [tableView makeViewWithIdentifier:@"durationColumn" owner:self];
-        valueToDisplay = ((Track*)[self.tracks objectAtIndex:row]).duration;
+        valueToDisplay = track.duration;
     }
     
     result.textField.stringValue = valueToDisplay;

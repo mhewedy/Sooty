@@ -10,6 +10,7 @@
 #import "NSObject+Util.h"
 #import "AudioPlayer.h"
 #import "SoundCloudApi.h"
+#import "SootyServiceApi.h"
 
 #import "SearchResultViewController.h"
 #import "ListViewController.h"
@@ -37,7 +38,7 @@
     self.audioPlayer.playerView = self.playerView;
     self.audioPlayer.progressIndicator = self.progressIndicator;
     
-    self.soundApi = [[SoundCloudApi alloc]init];
+    self.soundApi = [[SootyServiceApi alloc]init];
     self.soundApi.searchCallbackTarget = self;
     self.soundApi.searchCallbackSelector = @selector(searchResultReturned:);
     

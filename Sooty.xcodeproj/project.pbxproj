@@ -22,6 +22,7 @@
 		B7740A5719B6857700695A2B /* soundyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B7740A5619B6857700695A2B /* soundyTests.m */; };
 		B783244419BA0F0D0038084C /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B783244219BA0F0D0038084C /* ListViewController.m */; };
 		B783244519BA0F0D0038084C /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B783244319BA0F0D0038084C /* ListViewController.xib */; };
+		B7B4456419BD190500813603 /* SootyServiceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B4456319BD190500813603 /* SootyServiceApi.m */; };
 		B7E19E5F19B79EF8000CB167 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7E19E5E19B79EF8000CB167 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,8 @@
 		B783244119BA0F0D0038084C /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		B783244219BA0F0D0038084C /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		B783244319BA0F0D0038084C /* ListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
+		B7B4456219BD190500813603 /* SootyServiceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SootyServiceApi.h; sourceTree = "<group>"; };
+		B7B4456319BD190500813603 /* SootyServiceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SootyServiceApi.m; sourceTree = "<group>"; };
 		B7E19E5E19B79EF8000CB167 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -131,6 +134,8 @@
 				B75A8B7E19B7DB9600B17E49 /* SoundApi.m */,
 				B75A8B8319B7E4AC00B17E49 /* SoundCloudApi.h */,
 				B75A8B8419B7E4AC00B17E49 /* SoundCloudApi.m */,
+				B7B4456219BD190500813603 /* SootyServiceApi.h */,
+				B7B4456319BD190500813603 /* SootyServiceApi.m */,
 			);
 			name = api;
 			sourceTree = "<group>";
@@ -328,6 +333,7 @@
 				B75A8B7F19B7DB9600B17E49 /* SoundApi.m in Sources */,
 				B75A8B9E19B7FB3000B17E49 /* SearchResultViewController.m in Sources */,
 				B769FA9C19B7C5F600EB2D4D /* NSObject+Util.m in Sources */,
+				B7B4456419BD190500813603 /* SootyServiceApi.m in Sources */,
 				B769FAA819B7DA0F00EB2D4D /* Track.m in Sources */,
 				B75A8B8519B7E4AC00B17E49 /* SoundCloudApi.m in Sources */,
 				B7740A4319B6857700695A2B /* main.m in Sources */,
