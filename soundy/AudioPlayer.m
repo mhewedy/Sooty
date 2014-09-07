@@ -72,11 +72,13 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         if (rate != 1.f){   // if not playing
             
             // TODO:
-            // if not playing because of internet buffering, then continue play => [self play]
+            // if not playing because of buffering, then continue play => [self play]
             // (**DONE**) if not playing because of end of player item (player current time == player item duration) => play next item
             if (CMTimeGetSeconds(self.player.currentTime) == CMTimeGetSeconds(self.player.currentItem.duration)){
                 // TODO remove dependency on AppDelegate
                 [(AppDelegate*)[NSApplication sharedApplication].delegate playNextAction:nil];
+            }else if (true){ // should changed to if pause because of buffering
+                [self play];
             }else{
                 [[self.playerView viewWithTag:PlayerViewPlayPauseButton]setTitle: @"Play"];
             }
@@ -96,6 +98,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 #pragma - mark Play methods
 
 - (void) prepareTrack:(int) trackIndex{
+    
     [self.progressIndicator startAnimation:self];
     Track* currentTrack = [self trackAtIndex:trackIndex];
     AVURLAsset* asset = [AVAsset assetWithURL:[NSURL URLWithString:currentTrack.streamURL]];
