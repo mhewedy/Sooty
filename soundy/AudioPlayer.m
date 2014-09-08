@@ -90,7 +90,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
                 if (self.currentTrackIndex < self.tracks.count){
                     [(AppDelegate*)[NSApplication sharedApplication].delegate playNextAction:nil];
                 }
-            }else if (false){/** handel buffereing issue */
+            }else if (false /*player stopped bacause of buffering*/){
                 [self play];
             }else{
                 [[self.playerView viewWithTag:PlayerViewPlayPauseButton]setTitle: @"Play"];
