@@ -74,17 +74,17 @@
 #pragma mark - UI Control actions
 
 - (IBAction)playPauseAction:(id)sender {
-    [self.audioPlayer play:(int)[self.searchResultVC selectedTrackIndex]];
+    [self.audioPlayer play:(int)[self.searchResultVC selectedTrackIndex] nextPrev:NO];
 }
 
 - (IBAction)playNextAction:(id)sender {
     [self.searchResultVC moveToNext];
-    [self.audioPlayer play:(int)[self.searchResultVC selectedTrackIndex]];
+    [self.audioPlayer play:(int)[self.searchResultVC selectedTrackIndex] nextPrev:YES];
 }
 
 - (IBAction)playPrevAction:(id)sender {
     [self.searchResultVC moveToPrev];
-    [self.audioPlayer play:(int)[self.searchResultVC selectedTrackIndex]];
+    [self.audioPlayer play:(int)[self.searchResultVC selectedTrackIndex] nextPrev:YES];
 }
 
 - (IBAction)volumeSliderAction:(id)sender {

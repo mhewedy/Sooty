@@ -46,17 +46,25 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 #pragma - mark Public APIs
 
-- (void) play:(int) trackIndex{
+- (void) play:(int) trackIndex nextPrev:(BOOL) nextPrev{
     if (self.tracks == nil){
         NSLog(@"tracks should be set before call play");
         return;
     }
     
-    if (self.player.rate == AVPlayerPlayStatusStopped){
-        [self prepareTrack:trackIndex];
-        [self play];
-    }else{
+    if (nextPrev){
         [self.player pause];
+        [self prepareTrack:trackIndex];
+        [self.player play];
+    }else{
+        if (self.player.rate == AVPlayerPlayStatusPlaying){
+            [self.player pause];
+        }else{
+            if (self.currentTrackIndex != trackIndex){
+                [self prepareTrack:trackIndex];
+            }
+            [self.player play];
+        }
     }
 }
 
@@ -73,15 +81,14 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 {
     if (context == AVPlayerRateContext) {
         float rate = [change[NSKeyValueChangeNewKey] floatValue];
-        if (rate != 1.f){   // if not playing
-            
-            
-            NSLog(@"%hhd", self.player.currentItem.playbackBufferEmpty);
-            
-            // if not playing because of buffering, then continue play => [self play]
+        
+        if (rate != AVPlayerPlayStatusPlaying){
             if (CMTimeGetSeconds(self.player.currentTime) == CMTimeGetSeconds(self.player.currentItem.duration)){
-                [(AppDelegate*)[NSApplication sharedApplication].delegate playNextAction:nil];
+                if (self.currentTrackIndex < self.tracks.count){
+                    [(AppDelegate*)[NSApplication sharedApplication].delegate playNextAction:nil];
+                }
             }else if (false){ // should changed to if pause because of buffering
+                // if not playing because of buffering, then continue play => [self play]
                 [self play];
             }else{
                 [[self.playerView viewWithTag:PlayerViewPlayPauseButton]setTitle: @"Play"];
@@ -152,8 +159,6 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 - (void) handelPlaybackError:(NSError*) error{
     NSLog(@"error '%@' for track at %i, playing next track...", error.localizedDescription, self.currentTrackIndex);
-    
-    // TODO remove dependency on AppDelegate
     [(AppDelegate*)[NSApplication sharedApplication].delegate playNextAction:nil];
 }
 
