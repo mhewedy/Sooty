@@ -27,7 +27,7 @@
 - (void) adjustVolume:(double) volume;
 
 
-- (void) play:(int) trackIndex;
+- (void) play:(int) trackIndex forcePlay:(BOOL) forcePlay;
 - (int) playNext:(BOOL) byUserClick;
 - (int) playPrev:(BOOL) byUserClick;
 

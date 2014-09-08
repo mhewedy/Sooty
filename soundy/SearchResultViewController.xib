@@ -171,6 +171,7 @@
                                 <connections>
                                     <outlet property="dataSource" destination="-2" id="md4-u8-YIM"/>
                                     <outlet property="delegate" destination="-2" id="8Jd-8x-NSa"/>
+                                    <outlet property="menu" destination="wNc-Jk-SiV" id="7Yn-3F-plt"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -193,5 +194,25 @@
             <point key="canvasLocation" x="343" y="95"/>
         </customView>
         <userDefaultsController representsSharedInstance="YES" id="1dL-r1-g48"/>
+        <menu autoenablesItems="NO" id="wNc-Jk-SiV">
+            <items>
+                <menuItem title="Play" id="8Gf-ia-g1b">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="playCotextMenuAction:" target="-2" id="ZZK-NP-CZb"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Go to Website" id="08o-mC-Cfg" userLabel="Go to website">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="goToWebsiteContextMenuAction:" target="-2" id="pOc-Cg-r4V"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <connections>
+                <outlet property="delegate" destination="-2" id="TLV-vC-QDP"/>
+            </connections>
+            <point key="canvasLocation" x="190" y="384.5"/>
+        </menu>
     </objects>
 </document>

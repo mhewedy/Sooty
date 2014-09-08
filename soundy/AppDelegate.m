@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "NSObject+Util.h"
 #import "AudioPlayer.h"
 #import "SoundCloudApi.h"
 #import "SootyServiceApi.h"
@@ -74,7 +73,7 @@
 #pragma mark - UI Control actions
 
 - (IBAction)playPauseAction:(id)sender {
-    [self.audioPlayer play:(int)[self.searchResultVC selectedTrackIndex]];
+    [self play:(int)[self.searchResultVC selectedTrackIndex] forcePlay:NO];
 }
 
 - (IBAction)playNextAction:(id)sender {
@@ -97,7 +96,11 @@
 
 #pragma mark - Util
 
--(void) enableDisablePlayerView:(NSArray*) tracks forceDisable:(BOOL) forceDisable{
+- (void) play:(int) trackIndex forcePlay:(BOOL)forcePlay{
+    [self.audioPlayer play:trackIndex forcePlay:forcePlay];
+}
+
+- (void) enableDisablePlayerView:(NSArray*) tracks forceDisable:(BOOL) forceDisable{
 
     BOOL playEnabled = NO, otherEnabled = NO;
     if (tracks.count > 0){

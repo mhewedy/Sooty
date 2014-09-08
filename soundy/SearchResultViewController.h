@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface SearchResultViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate>
+@interface SearchResultViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate, NSMenuDelegate>
 
 @property (nonatomic, strong) NSArray* tracks;
 

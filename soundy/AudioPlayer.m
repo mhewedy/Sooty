@@ -46,20 +46,27 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 #pragma - mark Public APIs
 
-- (void) play:(int) trackIndex{
+- (void) play:(int) trackIndex forcePlay:(BOOL) forcePlay{
     if (self.tracks == nil){
         NSLog(@"tracks should be set before call play");
         return;
     }
-    if (self.currentTrackIndex == NoRecordsPlayedYet){
-        [self prepareTrackAndPlay:trackIndex];
-    }else{
-        if (self.player.rate == AVPlayerPlayStatusPlaying){
-            [self.player pause];
+    
+    if (!forcePlay){
+        if (self.currentTrackIndex == NoRecordsPlayedYet){
+            [self prepareTrackAndPlay:trackIndex];
         }else{
-            [self.player play];
+            if (self.player.rate == AVPlayerPlayStatusPlaying){
+                [self.player pause];
+            }else{
+                [self.player play];
+            }
         }
+    }else{
+        [self stopPlayer];
+        [self prepareTrackAndPlay:trackIndex];
     }
+    
 }
 
 - (int) playNext:(BOOL) byUserClick{

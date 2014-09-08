@@ -8,6 +8,7 @@
 
 #import "SearchResultViewController.h"
 #import "Track.h"
+#import "AppDelegate.h"
 
 @interface SearchResultViewController ()
 
@@ -45,7 +46,6 @@
     return self.tracks.count;
 }
 
-
 #pragma - mark NSTableViewDelegate
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
@@ -73,7 +73,6 @@
     return result;
 }
 
-
 #pragma - mark Utils
 
 - (void) resetView {
@@ -88,5 +87,25 @@
     index = index%self.tracks.count;
     [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
 }
+
+#pragma - mark Actions
+
+- (IBAction)playCotextMenuAction:(id)sender {
+    [SootyAppDelegate play:(int)self.tableView.clickedRow forcePlay:YES];
+}
+
+- (IBAction)goToWebsiteContextMenuAction:(id)sender {
+    Track* track = self.tracks[self.tableView.clickedRow];
+    [[NSWorkspace sharedWorkspace]openURL:[NSURL URLWithString:track.originalURL ]];
+}
+
+#pragma - make NSMenuDelegte
+
+- (void)menuWillOpen:(NSMenu *)menu{
+    long row = self.tableView.clickedRow;
+    [[menu itemAtIndex:0] setEnabled:row >= 0];
+    [[menu itemAtIndex:1] setEnabled:row >= 0];
+}
+
 
 @end
