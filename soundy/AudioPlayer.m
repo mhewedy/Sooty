@@ -83,6 +83,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 - (void) setTracks:(NSArray *)tracks{
     _tracks = tracks;
     self.currentTrackIndex = NoRecordsPlayedYet;
+    [self.player pause];
 }
 
 #pragma - mark Obeserver callback
