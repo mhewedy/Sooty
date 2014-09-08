@@ -38,7 +38,7 @@
     self.audioPlayer.playerView = self.playerView;
     self.audioPlayer.progressIndicator = self.progressIndicator;
     
-    self.soundApi = [[SootyServiceApi alloc]init];
+    self.soundApi = [[SoundCloudApi alloc]init];
     self.soundApi.searchCallbackTarget = self;
     self.soundApi.searchCallbackSelector = @selector(searchResultReturned:);
     
@@ -74,17 +74,17 @@
 #pragma mark - UI Control actions
 
 - (IBAction)playPauseAction:(id)sender {
-    [self.audioPlayer play:(int)[self.searchResultVC selectedTrackIndex] nextPrev:NO];
+    [self.audioPlayer play:(int)[self.searchResultVC selectedTrackIndex] nextPrev:NO userClickedNextPrev:sender?YES:NO];
 }
 
 - (IBAction)playNextAction:(id)sender {
     [self.searchResultVC moveToNext];
-    [self.audioPlayer play:(int)[self.searchResultVC selectedTrackIndex] nextPrev:YES];
+    [self.audioPlayer play:(int)[self.searchResultVC selectedTrackIndex] nextPrev:YES userClickedNextPrev:sender?YES:NO];
 }
 
 - (IBAction)playPrevAction:(id)sender {
     [self.searchResultVC moveToPrev];
-    [self.audioPlayer play:(int)[self.searchResultVC selectedTrackIndex] nextPrev:YES];
+    [self.audioPlayer play:(int)[self.searchResultVC selectedTrackIndex] nextPrev:YES userClickedNextPrev:sender?YES:NO];
 }
 
 - (IBAction)volumeSliderAction:(id)sender {

@@ -46,24 +46,26 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 #pragma - mark Public APIs
 
-- (void) play:(int) trackIndex nextPrev:(BOOL) nextPrev{
+- (void) play:(int) trackIndex nextPrev:(BOOL)nextPrev userClickedNextPrev:(BOOL)userClickedNextPrev{
     if (self.tracks == nil){
         NSLog(@"tracks should be set before call play");
         return;
     }
     
     if (nextPrev){
-        [self.player pause];
-        [self prepareTrack:trackIndex];
-        [self.player play];
+        if (userClickedNextPrev){
+            [self.player pause];
+        }
+        [self prepareTrackAndPlay:trackIndex];
     }else{
         if (self.player.rate == AVPlayerPlayStatusPlaying){
             [self.player pause];
         }else{
             if (self.currentTrackIndex != trackIndex){
-                [self prepareTrack:trackIndex];
+                [self prepareTrackAndPlay:trackIndex];
+            }else{
+                [self.player play];
             }
-            [self.player play];
         }
     }
 }
@@ -83,12 +85,12 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         float rate = [change[NSKeyValueChangeNewKey] floatValue];
         
         if (rate != AVPlayerPlayStatusPlaying){
+            
             if (CMTimeGetSeconds(self.player.currentTime) == CMTimeGetSeconds(self.player.currentItem.duration)){
                 if (self.currentTrackIndex < self.tracks.count){
                     [(AppDelegate*)[NSApplication sharedApplication].delegate playNextAction:nil];
                 }
-            }else if (false){ // should changed to if pause because of buffering
-                // if not playing because of buffering, then continue play => [self play]
+            }else if (false){/** handel buffereing issue */
                 [self play];
             }else{
                 [[self.playerView viewWithTag:PlayerViewPlayPauseButton]setTitle: @"Play"];
@@ -108,7 +110,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 #pragma - mark Play methods
 
-- (void) prepareTrack:(int) trackIndex{
+- (void) prepareTrackAndPlay:(int) trackIndex{
     
     [self.progressIndicator startAnimation:self];
     Track* currentTrack = [self trackAtIndex:trackIndex];
@@ -135,6 +137,8 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
             
             [self.player replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithAsset:asset]];
             [[self.playerView viewWithTag:PlayerViewTimeSlider] setMaxValue:CMTimeGetSeconds(asset.duration)];
+
+            [self.player play];
             
             __weak AudioPlayer* weakSelf = self;
             [self setTimeObserverToken:[[self player] addPeriodicTimeObserverForInterval:CMTimeMake(1, 10) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
