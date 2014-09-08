@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define SootyAppDelegate ((AppDelegate*)[NSApplication sharedApplication].delegate)
+
 @import AppKit.NSWindow;
 @import AppKit.NSAlert;
 

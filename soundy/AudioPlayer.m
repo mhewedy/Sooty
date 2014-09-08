@@ -46,29 +46,33 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 #pragma - mark Public APIs
 
-- (void) play:(int) trackIndex nextPrev:(BOOL)nextPrev userClickedNextPrev:(BOOL)userClickedNextPrev{
+- (void) play:(int) trackIndex{
     if (self.tracks == nil){
         NSLog(@"tracks should be set before call play");
         return;
     }
     
-    if (nextPrev){
-        if (userClickedNextPrev){
-            [self.player pause];
-        }
+    if (self.currentTrackIndex == NoRecordsPlayedYet){
         [self prepareTrackAndPlay:trackIndex];
     }else{
-        
-        if (self.currentTrackIndex == NoRecordsPlayedYet){
-            [self prepareTrackAndPlay:trackIndex];
+        if (self.player.rate == AVPlayerPlayStatusPlaying){
+            [self.player pause];
         }else{
-            if (self.player.rate == AVPlayerPlayStatusPlaying){
-                [self.player pause];
-            }else{
-                [self.player play];
-            }
+            [self.player play];
         }
     }
+}
+
+- (void) playNextPrev:(int) trackIndex byUserClick:(BOOL) byUserClick{
+    if (self.tracks == nil){
+        NSLog(@"tracks should be set before call play");
+        return;
+    }
+    
+    if (byUserClick){
+        [self.player pause];
+    }
+    [self prepareTrackAndPlay:trackIndex];
 }
 
 - (void) seekToTime:(double) time{
@@ -97,7 +101,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
             
             if (CMTimeGetSeconds(self.player.currentTime) == CMTimeGetSeconds(self.player.currentItem.duration)){
                 if (self.currentTrackIndex < self.tracks.count){
-                    [(AppDelegate*)[NSApplication sharedApplication].delegate playNextAction:nil];
+                    [SootyAppDelegate playNextAction:nil];
                 }
             }else if (false /*player stopped bacause of buffering*/){
                 [self play];
@@ -172,7 +176,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 - (void) handelPlaybackError:(NSError*) error{
     NSLog(@"error '%@' for track at %i, playing next track...", error.localizedDescription, self.currentTrackIndex);
-    [(AppDelegate*)[NSApplication sharedApplication].delegate playNextAction:nil];
+    [SootyAppDelegate playNextAction:nil];
 }
 
 - (Track*) trackAtIndex:(int) trackIndex{

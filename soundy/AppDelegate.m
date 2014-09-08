@@ -58,9 +58,9 @@
     }
     
     [self.progressIndicator startAnimation:self];
-    
     [self.searchResultVC resetView];
     [self.soundApi search:self.searchField.stringValue];
+    [self enableDisablePlayerView:nil forceDisable:YES];
 }
 
 -(void) searchResultReturned:(NSArray*) results{
@@ -68,23 +68,23 @@
     
     self.searchResultVC.tracks = results;
     self.audioPlayer.tracks = results;
-    [self enableDisablePlayerView:results];
+    [self enableDisablePlayerView:results forceDisable:NO];
 }
 
 #pragma mark - UI Control actions
 
 - (IBAction)playPauseAction:(id)sender {
-    [self.audioPlayer play:(int)[self.searchResultVC selectedTrackIndex] nextPrev:NO userClickedNextPrev:sender?YES:NO];
+    [self.audioPlayer play:(int)[self.searchResultVC selectedTrackIndex]];
 }
 
 - (IBAction)playNextAction:(id)sender {
     [self.searchResultVC moveToNext];
-    [self.audioPlayer play:(int)[self.searchResultVC selectedTrackIndex] nextPrev:YES userClickedNextPrev:sender?YES:NO];
+    [self.audioPlayer playNextPrev:(int)[self.searchResultVC selectedTrackIndex] byUserClick:sender?YES:NO];
 }
 
 - (IBAction)playPrevAction:(id)sender {
     [self.searchResultVC moveToPrev];
-    [self.audioPlayer play:(int)[self.searchResultVC selectedTrackIndex] nextPrev:YES userClickedNextPrev:sender?YES:NO];
+    [self.audioPlayer playNextPrev:(int)[self.searchResultVC selectedTrackIndex] byUserClick:sender?YES:NO];
 }
 
 - (IBAction)volumeSliderAction:(id)sender {
@@ -97,7 +97,7 @@
 
 #pragma mark - Util
 
--(void) enableDisablePlayerView:(NSArray*) tracks{
+-(void) enableDisablePlayerView:(NSArray*) tracks forceDisable:(BOOL) forceDisable{
 
     BOOL playEnabled = NO, otherEnabled = NO;
     if (tracks.count > 0){
@@ -106,11 +106,11 @@
             otherEnabled = YES;
         }
     }
-    [[self.playerView viewWithTag:PlayerViewPlayPauseButton] setEnabled:playEnabled];
-    [[self.playerView viewWithTag:PlayerViewTimeSlider] setEnabled:playEnabled];
-    [[self.playerView viewWithTag:PlayerViewVolumeSlider] setEnabled:playEnabled];
-    [[self.playerView viewWithTag:PlayerViewPlayNextButton] setEnabled:otherEnabled];
-    [[self.playerView viewWithTag:PlayerViewPlayPrevButton] setEnabled:otherEnabled];
+    [[self.playerView viewWithTag:PlayerViewPlayPauseButton] setEnabled:!forceDisable && playEnabled];
+    [[self.playerView viewWithTag:PlayerViewTimeSlider] setEnabled:!forceDisable && playEnabled];
+    [[self.playerView viewWithTag:PlayerViewVolumeSlider] setEnabled:!forceDisable && playEnabled];
+    [[self.playerView viewWithTag:PlayerViewPlayNextButton] setEnabled:!forceDisable && otherEnabled];
+    [[self.playerView viewWithTag:PlayerViewPlayPrevButton] setEnabled:!forceDisable && otherEnabled];
 }
 
 @end

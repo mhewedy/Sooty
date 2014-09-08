@@ -23,8 +23,11 @@
 @property (readonly) int currentTrackIndex;
 
 
-- (void) play:(int) trackIndex nextPrev:(BOOL)nextPrev userClickedNextPrev:(BOOL)userClickedNextPrev;
 - (void) seekToTime:(double) time;
 - (void) adjustVolume:(double) volume;
+
+
+- (void) play:(int) trackIndex;
+- (void) playNextPrev:(int) trackIndex byUserClick:(BOOL) byUserClick;
 
 @end
