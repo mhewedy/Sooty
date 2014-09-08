@@ -85,6 +85,7 @@
 }
 
 - (void) moveToTrackAt:(int) index{
+    index = index%self.tracks.count;
     [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
 }
 
