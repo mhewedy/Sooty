@@ -207,7 +207,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 - (void) stopPlayer{
     [self.player pause];
-    [[self.playerView viewWithTag:PlayerViewTimeSlider] setDoubleValue:0.f];
+    [self setCurrentTime:0.f];
 }
 
 - (void)dealloc
