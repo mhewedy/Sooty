@@ -83,7 +83,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 - (void) setTracks:(NSArray *)tracks{
     _tracks = tracks;
     self.currentTrackIndex = NoRecordsPlayedYet;
-    [self.player pause];
+    [self stopPlayer];
 }
 
 #pragma - mark Obeserver callback
@@ -203,6 +203,11 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 - (void)setCurrentTime:(double)time
 {
     [self.player seekToTime:CMTimeMakeWithSeconds(time, 1) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
+}
+
+- (void) stopPlayer{
+    [self.player pause];
+    [[self.playerView viewWithTag:PlayerViewTimeSlider] setDoubleValue:0.f];
 }
 
 - (void)dealloc
