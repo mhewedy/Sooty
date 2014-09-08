@@ -78,13 +78,13 @@
 }
 
 - (IBAction)playNextAction:(id)sender {
-    [self.searchResultVC moveToNext];
-    [self.audioPlayer playNextPrev:(int)[self.searchResultVC selectedTrackIndex] byUserClick:sender?YES:NO];
+    int trackId = [self.audioPlayer playNext:sender?YES:NO];
+    [self.searchResultVC moveToTrackAt:trackId];
 }
 
 - (IBAction)playPrevAction:(id)sender {
-    [self.searchResultVC moveToPrev];
-    [self.audioPlayer playNextPrev:(int)[self.searchResultVC selectedTrackIndex] byUserClick:sender?YES:NO];
+    int trackId = [self.audioPlayer playPrev:sender?YES:NO];
+    [self.searchResultVC moveToTrackAt:trackId];
 }
 
 - (IBAction)volumeSliderAction:(id)sender {

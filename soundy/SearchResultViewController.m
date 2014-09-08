@@ -84,12 +84,8 @@
     return self.tableView.selectedRow;
 }
 
-- (void) moveToNext{
-    [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:self.tableView.selectedRow + 1] byExtendingSelection:NO];
-}
-
-- (void) moveToPrev{
-    [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:self.tableView.selectedRow - 1] byExtendingSelection:NO];
+- (void) moveToTrackAt:(int) index{
+    [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
 }
 
 @end

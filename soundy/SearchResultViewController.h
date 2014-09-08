@@ -14,7 +14,6 @@
 
 - (void) resetView;
 - (long) selectedTrackIndex;
-- (void) moveToNext;
-- (void) moveToPrev;
+- (void) moveToTrackAt:(int) index;
 
 @end

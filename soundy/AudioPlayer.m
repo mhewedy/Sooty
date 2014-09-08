@@ -51,7 +51,6 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         NSLog(@"tracks should be set before call play");
         return;
     }
-    
     if (self.currentTrackIndex == NoRecordsPlayedYet){
         [self prepareTrackAndPlay:trackIndex];
     }else{
@@ -63,16 +62,22 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     }
 }
 
-- (void) playNextPrev:(int) trackIndex byUserClick:(BOOL) byUserClick{
-    if (self.tracks == nil){
-        NSLog(@"tracks should be set before call play");
-        return;
-    }
-    
+- (int) playNext:(BOOL) byUserClick{
     if (byUserClick){
         [self.player pause];
     }
-    [self prepareTrackAndPlay:trackIndex];
+    int nextTrack = self.currentTrackIndex + 1;
+    [self prepareTrackAndPlay:nextTrack];
+    return nextTrack;
+}
+
+- (int) playPrev:(BOOL) byUserClick{
+    if (byUserClick){
+        [self.player pause];
+    }
+    int prevTrack = self.currentTrackIndex - 1;
+    [self prepareTrackAndPlay:prevTrack];
+    return prevTrack;
 }
 
 - (void) seekToTime:(double) time{

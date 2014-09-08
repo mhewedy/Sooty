@@ -28,6 +28,7 @@
 
 
 - (void) play:(int) trackIndex;
-- (void) playNextPrev:(int) trackIndex byUserClick:(BOOL) byUserClick;
+- (int) playNext:(BOOL) byUserClick;
+- (int) playPrev:(BOOL) byUserClick;
 
 @end
