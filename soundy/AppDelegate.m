@@ -96,6 +96,10 @@
 
 #pragma mark - Util
 
+- (void) markPlayingTrack:(PlaybackStatus) playbackStatus{
+    [self.searchResultVC markPlayingTrack:playbackStatus];
+}
+
 - (void) play:(int) trackIndex forcePlay:(BOOL)forcePlay{
     [self.audioPlayer play:trackIndex forcePlay:forcePlay];
 }

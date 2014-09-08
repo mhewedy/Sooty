@@ -66,7 +66,6 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         [self stopPlayer];
         [self prepareTrackAndPlay:trackIndex];
     }
-    
 }
 
 - (int) playNext:(BOOL) byUserClick{
@@ -108,6 +107,8 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 {
     if (context == AVPlayerRateContext) {
         float rate = [change[NSKeyValueChangeNewKey] floatValue];
+        
+        [SootyAppDelegate markPlayingTrack:(PlaybackStatus){self.currentTrackIndex, rate == AVPlayerPlayStatusPlaying}];
         
         if (rate != AVPlayerPlayStatusPlaying){
             

@@ -15,6 +15,7 @@
 @property (weak) IBOutlet NSTableView *tableView;
 @property (strong) IBOutlet NSTextField *message;
 @property (weak) IBOutlet NSScrollView *tableScrollView;
+@property PlaybackStatus playbackStatus;
 
 @end
 
@@ -55,7 +56,20 @@
     
     Track* track = [self.tracks objectAtIndex:row];
     
-    if ([tableColumn.identifier isEqual: @"titleColumn"]){
+    if ([tableColumn.identifier isEqual: @"playColumn"]){
+        result = [tableView makeViewWithIdentifier:@"playColumn" owner:self];
+        
+        if (row == self.playbackStatus.playedTrackIndex){
+            if (self.playbackStatus.isPlaying){
+                valueToDisplay = @"►";
+                //➤
+            }else{
+                valueToDisplay = @"◼";
+            }
+        }else{
+            valueToDisplay = @"";
+        }
+    }else if ([tableColumn.identifier isEqual: @"titleColumn"]){
         result = [tableView makeViewWithIdentifier:@"titleColumn" owner:self];
         valueToDisplay = track.title;
     }else if ([tableColumn.identifier isEqual: @"userColumn"]){
@@ -86,6 +100,12 @@
 - (void) moveToTrackAt:(int) index{
     index = index%self.tracks.count;
     [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
+}
+
+- (void) markPlayingTrack:(PlaybackStatus) playbackStatus{
+    self.playbackStatus = playbackStatus;
+    [self.tableView reloadData];
+//    [self.tableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:trackIndex] columnIndexes:[NSIndexSet indexSetWithIndex:0]];
 }
 
 #pragma - mark Actions

@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+typedef struct{
+    int playedTrackIndex;
+    BOOL isPlaying;
+}PlaybackStatus;
+
+
 #define SootyAppDelegate ((AppDelegate*)[NSApplication sharedApplication].delegate)
 
 @import AppKit.NSWindow;

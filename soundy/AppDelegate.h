@@ -17,5 +17,7 @@
 - (IBAction)playNextAction:(id)sender;
 - (void) play:(int) trackIndex forcePlay:(BOOL)forcePlay;
 
+- (void) markPlayingTrack:(PlaybackStatus) playbackStatus;
+
 @end
 
