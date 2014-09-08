@@ -19,7 +19,7 @@
 @property (weak) NSView* playerView;
 @property (weak) NSProgressIndicator *progressIndicator;
 
-@property (strong) NSArray* tracks;
+@property (nonatomic, strong) NSArray* tracks;
 @property (readonly) int currentTrackIndex;
 
 

@@ -40,6 +40,7 @@
 }
 -(void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
 {
+    [self alert:error.localizedDescription];
     NSLog(@"didFailWithError");
 }
 -(void)connectionDidFinishLoading:(NSURLConnection*)connection

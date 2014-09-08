@@ -16,7 +16,7 @@
 {
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:@"Ok"];
-    [alert setMessageText:@"soundy"];
+    [alert setMessageText:@"Sooty"];
     [alert setInformativeText:msg];
     [alert setAlertStyle:NSWarningAlertStyle];
     [alert beginSheetModalForWindow:window modalDelegate:self didEndSelector:nil contextInfo:nil];

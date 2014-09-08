@@ -13,13 +13,13 @@
 
 #define AVPlayerPlayStatusStopped (0.f)
 #define AVPlayerPlayStatusPlaying (1.f)
+#define NoRecordsPlayedYet        (-1)
 
 
 static void *AVPlayerRateContext = &AVPlayerRateContext;
 static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 @interface AudioPlayer ()
-
 @property (strong) AVPlayer* player;
 @property (strong) id timeObserverToken;
 
@@ -38,7 +38,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         self.player = [[AVPlayer alloc]init];
         [self addObserver:self forKeyPath:@"player.rate" options:NSKeyValueObservingOptionNew context:AVPlayerRateContext];
         [self addObserver:self forKeyPath:@"player.currentItem.status" options:NSKeyValueObservingOptionNew context:AVPlayerItemStatusContext];
-        self.currentTrackIndex = -1;
+        self.currentTrackIndex = NoRecordsPlayedYet;
         [[self.playerView viewWithTag:PlayerViewVolumeSlider] setMaxValue:1.0];
     }
     return self;
@@ -58,11 +58,12 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         }
         [self prepareTrackAndPlay:trackIndex];
     }else{
-        if (self.player.rate == AVPlayerPlayStatusPlaying){
-            [self.player pause];
+        
+        if (self.currentTrackIndex == NoRecordsPlayedYet){
+            [self prepareTrackAndPlay:trackIndex];
         }else{
-            if (self.currentTrackIndex != trackIndex){
-                [self prepareTrackAndPlay:trackIndex];
+            if (self.player.rate == AVPlayerPlayStatusPlaying){
+                [self.player pause];
             }else{
                 [self.player play];
             }
@@ -75,6 +76,13 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 }
 - (void) adjustVolume:(double) volume{
     self.player.volume = volume;
+}
+
+#pragma - mark Custom Properties
+
+- (void) setTracks:(NSArray *)tracks{
+    _tracks = tracks;
+    self.currentTrackIndex = NoRecordsPlayedYet;
 }
 
 #pragma - mark Obeserver callback
