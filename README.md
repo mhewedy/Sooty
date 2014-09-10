@@ -19,7 +19,7 @@ So, I started writing my own.
   For example, **Sooty** is using [**SootyService** ](https://github.com/MuhammadHewedy/SootyService "SootyService") which is a simlation service used to simulate the audio provider services. (built mainly for development purposes)
 
 ###Download
-Download version Sooty.app v 0.1 from here [**Sooty_0.1.tgz** ](https://raw.githubusercontent.com/MuhammadHewedy/Sooty/master/bin/Sooty_0.1.tgz "Sooty_0.1.tgz") 
+Download version `Sooty.app` `v0.1` from here [**Sooty_0.1.tgz** ](https://raw.githubusercontent.com/MuhammadHewedy/Sooty/master/bin/Sooty_0.1.tgz "Sooty_0.1.tgz") 
 
 ###DEV Status
 Sooty is in its early stages, You can access to its plan at Trello here: [Sooty Plan](https://trello.com/b/CZw9cygi/sooty-plan "Sooty Plan")
