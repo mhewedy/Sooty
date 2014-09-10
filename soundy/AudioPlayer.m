@@ -107,22 +107,11 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 {
     if (context == AVPlayerRateContext) {
         float rate = [change[NSKeyValueChangeNewKey] floatValue];
-        
-        NSLog(@"rate==> %f", rate);
-        
+
         [SootyAppDelegate markPlayingTrack:(PlaybackStatus){self.currentTrackIndex, rate == AVPlayerPlayStatusPlaying}];
         
         if (rate != AVPlayerPlayStatusPlaying){
-            
-            if (CMTimeGetSeconds(self.player.currentTime) == CMTimeGetSeconds(self.player.currentItem.duration)){
-                if (self.currentTrackIndex < self.tracks.count){
-                    [SootyAppDelegate playNextAction:nil];
-                }
-            }else if (false /*player stopped bacause of buffering*/){
-                [self play];
-            }else{
-                [[self.playerView viewWithTag:PlayerViewPlayPauseButton]setTitle: @"Play"];
-            }
+            [[self.playerView viewWithTag:PlayerViewPlayPauseButton]setTitle: @"Play"];
         }else{
             [[self.playerView viewWithTag:PlayerViewPlayPauseButton]setTitle: @"Pause"];
         }
@@ -164,6 +153,10 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
             }
             
             [self.player replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithAsset:asset]];
+            
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mediaNotArriveAtTime:) name:AVPlayerItemPlaybackStalledNotification object:self.player.currentItem];
+            [[NSNotificationCenter defaultCenter] addObserver:SootyAppDelegate selector:@selector(playNextAction:) name:AVPlayerItemDidPlayToEndTimeNotification object:self.player.currentItem];
+            
             [[self.playerView viewWithTag:PlayerViewTimeSlider] setMaxValue:CMTimeGetSeconds(asset.duration)];
 
             [self.player play];
@@ -174,6 +167,10 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
             }]];
         });
     }];
+}
+
+-(void)mediaNotArriveAtTime:(NSNotification *) notification {
+    [self.player play];
 }
 
 - (void) play{
