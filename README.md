@@ -3,6 +3,13 @@ Sooty
 
 Online streaming Player, designed as **SouldCloud** client 
 
+
+![Sooty](https://raw.githubusercontent.com/MuhammadHewedy/Sooty/master/Sooty.png "Sooty")
+
+
+
+
+
 I believe that, online services should have a desktop clients for better user experience.  
 
 Web is god, but for not all purposes, it might for online publishing, corporate businesses, but for personal staff, desktop clients would be better.
