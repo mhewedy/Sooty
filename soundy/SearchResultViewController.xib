@@ -36,7 +36,6 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <tableViewGridLines key="gridStyleMask" dashed="YES"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
                                     <tableColumn identifier="playColumn" width="17" minWidth="10" maxWidth="3.4028234663852886e+38" id="qGc-aJ-Hwv" userLabel="Play">
@@ -167,7 +166,7 @@
                                             </tableCellView>
                                         </prototypeCellViews>
                                     </tableColumn>
-                                    <tableColumn identifier="genreColumn" width="129" minWidth="10" maxWidth="3.4028234663852886e+38" id="fax-dn-TYo">
+                                    <tableColumn identifier="genreColumn" width="133" minWidth="10" maxWidth="3.4028234663852886e+38" id="fax-dn-TYo">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Genre">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>

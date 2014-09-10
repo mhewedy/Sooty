@@ -108,6 +108,8 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     if (context == AVPlayerRateContext) {
         float rate = [change[NSKeyValueChangeNewKey] floatValue];
         
+        NSLog(@"rate==> %f", rate);
+        
         [SootyAppDelegate markPlayingTrack:(PlaybackStatus){self.currentTrackIndex, rate == AVPlayerPlayStatusPlaying}];
         
         if (rate != AVPlayerPlayStatusPlaying){
