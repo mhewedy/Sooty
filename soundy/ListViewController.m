@@ -18,8 +18,6 @@ Persist static int currPlayListNumber = 1;
 
 @property (weak) IBOutlet NSTableView *tableView;
 
-@property NSMutableArray* list;
-
 @end
 
 @implementation ListViewController
@@ -45,7 +43,7 @@ Persist static int currPlayListNumber = 1;
 }
 
 - (void) tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
-    if (row > IndexOfSearchResultEntry){
+    if (row > IndexOfSearchResultEntry &&  ((NSString*)object).length > 0){
         if ([self.list containsObject:object]){
             [self alert:@"Playlist with same name exists."];
             return;
@@ -55,7 +53,9 @@ Persist static int currPlayListNumber = 1;
         [self.playLists removeObjectForKey:self.list[row]];
         
         self.list[row] = object;
-        self.playLists[self.list[row]] = tmpPlayList;
+        if (tmpPlayList){
+            self.playLists[self.list[row]] = tmpPlayList;
+        }
     }
 }
 

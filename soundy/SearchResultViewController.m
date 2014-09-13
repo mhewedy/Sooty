@@ -103,6 +103,27 @@
     long row = self.tableView.clickedRow;
     [[menu itemAtIndex:0] setEnabled:row >= 0];
     [[menu itemAtIndex:1] setEnabled:row >= 0];
+    
+    
+    NSLog(@"%@ %li", menu.itemArray, menu.numberOfItems);
+    NSInteger numItems = menu.numberOfItems;
+    for (int i=2; i< numItems; i++){
+//        [menu removeItem:[menu itemAtIndex:i]];
+        
+        NSLog(@"%@", [menu itemAtIndex:i]);
+    }
+    
+    for (int i=1; i < SootyAppDelegate.listVC.list.count; i++) {
+        
+        NSString* playListName = SootyAppDelegate.listVC.list [i];
+        NSMenuItem* mi = [menu addItemWithTitle:[NSString stringWithFormat:@"Add to %@", playListName] action:@selector(addTrackToPlayList:) keyEquivalent:@""];
+        [mi setEnabled:row >= 0];
+        [mi setTarget:self];
+    }
+}
+
+- (void) addTrackToPlayList:(NSMenuItem*) menuItem{
+    NSLog(@">>>");
 }
 
 

@@ -12,7 +12,6 @@
 #import "SootyServiceApi.h"
 
 #import "SearchResultViewController.h"
-#import "ListViewController.h"
 
 @interface AppDelegate ()
 
@@ -26,7 +25,6 @@
 
 @property (strong) AudioPlayer* audioPlayer;
 @property (strong) SearchResultViewController* searchResultVC;
-@property (strong) ListViewController* listVC;
 
 @end
 

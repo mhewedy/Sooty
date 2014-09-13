@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <AVFoundation/AVFoundation.h>
+#import "ListViewController.h"
 #import "NSObject+Util.h"
 
 #define SearchResults (@"Search Results")
@@ -15,6 +16,7 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (weak) IBOutlet NSWindow *window;
+@property (strong) ListViewController* listVC;
 
 - (IBAction)playNextAction:(id)sender;
 

@@ -11,6 +11,7 @@
 
 @interface ListViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate, NSMenuDelegate>
 
+@property NSMutableArray* list;
 Persist @property NSMutableDictionary *playLists;
 
 @end
