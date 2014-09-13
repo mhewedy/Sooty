@@ -69,7 +69,7 @@
     [self.progressIndicator stopAnimation:self];
     self.listVC.playLists[SearchResults] = results;
 
-    [self setSearchResult:results playListName:nil];
+    [self setSearchResult:results playListName:SearchResults];
 }
 
 #pragma mark - UI Control actions

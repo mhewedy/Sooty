@@ -10,6 +10,8 @@
 #import "Track.h"
 #import "AppDelegate.h"
 
+#define AddToMenuItem (@"Add to %@")
+
 @interface SearchResultViewController ()
 
 @property (weak) IBOutlet NSTableView *tableView;
@@ -36,8 +38,9 @@
             [self.tableView scrollRowToVisible:0];
             [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
         }else{
-            self.message.hidden = NO;
-            self.tableScrollView.hidden = YES;
+            // FIXBUG: disable message view for sake of playlists
+//            self.message.hidden = NO;
+//            self.tableScrollView.hidden = YES;
         }
     }
 }
@@ -112,14 +115,14 @@
         [menu removeItemAtIndex:2];// sparator
     }
 
-    if (SootyAppDelegate.listVC.list.count > 1){
+    if ([self.myPlaylistName isEqualToString:SearchResults] && SootyAppDelegate.listVC.list.count > 1){
         [menu addItem:[NSMenuItem separatorItem]];
         
         for (int i=1; i < SootyAppDelegate.listVC.list.count; i++) {
             NSString* playListName = SootyAppDelegate.listVC.list[i];
             
             if (![self.myPlaylistName isEqualToString:playListName]){
-                NSMenuItem* mi = [menu addItemWithTitle:[NSString stringWithFormat:@"Add to %@", playListName] action:@selector(addTrackToPlayList:) keyEquivalent:@""];
+                NSMenuItem* mi = [menu addItemWithTitle:[NSString stringWithFormat:AddToMenuItem, playListName] action:@selector(addTrackToPlayList:) keyEquivalent:@""];
                 [mi setEnabled:row >= 0];
                 [mi setTarget:self];
             }
@@ -128,7 +131,13 @@
 }
 
 - (void) addTrackToPlayList:(NSMenuItem*) menuItem{
-    NSLog(@"TODO");
+    NSString* playList = [menuItem.title substringFromIndex:AddToMenuItem.length-2];
+    Track* track = self.tracks[self.tableView.clickedRow];
+    
+    if (!SootyAppDelegate.listVC.playLists[playList]){
+        SootyAppDelegate.listVC.playLists[playList] = [[NSMutableArray alloc]init];
+    }
+    [SootyAppDelegate.listVC.playLists[playList] addObject:track];
 }
 
 
