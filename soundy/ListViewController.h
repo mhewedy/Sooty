@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface ListViewController : NSViewController
+@interface ListViewController : NSViewController <NSTableViewDataSource, NSMenuDelegate>
 
 @end
