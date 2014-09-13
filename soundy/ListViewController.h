@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "NSObject+Util.h"
 
-@interface ListViewController : NSViewController <NSTableViewDataSource, NSMenuDelegate>
+@interface ListViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate, NSMenuDelegate>
 
 Persist @property NSMutableDictionary *playLists;
 

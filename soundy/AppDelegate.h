@@ -10,14 +10,17 @@
 #import <AVFoundation/AVFoundation.h>
 #import "NSObject+Util.h"
 
+#define SearchResults (@"Search Results")
+
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (weak) IBOutlet NSWindow *window;
 
 - (IBAction)playNextAction:(id)sender;
-- (void) play:(int) trackIndex forcePlay:(BOOL)forcePlay;
 
+- (void) play:(int) trackIndex forcePlay:(BOOL)forcePlay;
 - (void) markPlayingTrack:(PlaybackStatus) playbackStatus;
+- (void) setSearchResult:(NSArray*) results;
 
 @end
 

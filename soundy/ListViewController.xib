@@ -45,6 +45,7 @@
                                 </tableColumns>
                                 <connections>
                                     <outlet property="dataSource" destination="-2" id="yoU-gc-PbH"/>
+                                    <outlet property="delegate" destination="-2" id="k4h-V7-Odn"/>
                                     <outlet property="menu" destination="UVA-DI-Oap" id="2sW-IX-ee7"/>
                                 </connections>
                             </tableView>

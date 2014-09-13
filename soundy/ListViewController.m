@@ -7,6 +7,7 @@
 //
 
 #import "ListViewController.h"
+#import "AppDelegate.h"
 
 #define IndexOfSearchResultEntry (0)
 #define DefaultPlayListName (@"New PlayList")
@@ -27,8 +28,8 @@ Persist static int currPlayListNumber = 1;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.list = [[NSMutableArray alloc]initWithObjects:@"Search Results", nil];
-        self.playLists = [[NSMutableDictionary alloc]initWithObjectsAndKeys:nil, @"0", nil];
+        self.list = [[NSMutableArray alloc]initWithObjects:SearchResults, nil];
+        self.playLists = [[NSMutableDictionary alloc]initWithObjectsAndKeys:nil, SearchResults, nil];
     }
     return self;
 }
@@ -58,6 +59,14 @@ Persist static int currPlayListNumber = 1;
     }
 }
 
+#pragma - mark NSTableViewDelegate
+-(void)tableViewSelectionDidChange:(NSNotification *)notification{
+    NSInteger row = [[notification object] selectedRow];
+    if (row >= 0){
+        [SootyAppDelegate setSearchResult:self.playLists[self.list[row]]];
+    }
+}
+
 #pragma - mark NSMenuDelegate
 
 - (void) menuWillOpen:(NSMenu *)menu{
@@ -80,8 +89,6 @@ Persist static int currPlayListNumber = 1;
         [self.tableView reloadData];
         NSInteger row = self.tableView.numberOfRows-1;
         [self.tableView editColumn:0 row:row withEvent:nil select:YES];
-        
-        self.playLists[self.list[row]] = [NSMutableArray array];
     }
 }
 

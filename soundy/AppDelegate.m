@@ -69,11 +69,9 @@
 
 -(void) searchResultReturned:(NSArray*) results{
     [self.progressIndicator stopAnimation:self];
-    self.listVC.playLists[@"0"] = results;
+    self.listVC.playLists[SearchResults] = results;
 
-    self.searchResultVC.tracks = results;
-    self.audioPlayer.tracks = results;
-    [self enableDisablePlayerView:results forceDisable:NO];
+    [self setSearchResult:results];
 }
 
 #pragma mark - UI Control actions
@@ -101,6 +99,12 @@
 }
 
 #pragma mark - Util
+
+- (void) setSearchResult:(NSArray*) results{
+    self.searchResultVC.tracks = results;
+    self.audioPlayer.tracks = results;
+    [self enableDisablePlayerView:results forceDisable:NO];
+}
 
 - (void) markPlayingTrack:(PlaybackStatus) playbackStatus{
     [self.searchResultVC markPlayingTrack:playbackStatus];
