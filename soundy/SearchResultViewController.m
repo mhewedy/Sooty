@@ -118,7 +118,7 @@
         for (int i=1; i < SootyAppDelegate.listVC.list.count; i++) {
             NSString* playListName = SootyAppDelegate.listVC.list[i];
             
-            if ([self.myPlaylistName isNotEqualTo:playListName]){
+            if (![self.myPlaylistName isEqualToString:playListName]){
                 NSMenuItem* mi = [menu addItemWithTitle:[NSString stringWithFormat:@"Add to %@", playListName] action:@selector(addTrackToPlayList:) keyEquivalent:@""];
                 [mi setEnabled:row >= 0];
                 [mi setTarget:self];
