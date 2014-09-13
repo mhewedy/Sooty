@@ -16,6 +16,8 @@
 
 @interface AppDelegate ()
 
+@property (weak) IBOutlet NSStackView *stackView;
+
 @property (weak) IBOutlet NSView *playerView;
 @property (weak) IBOutlet NSSearchField *searchField;
 @property (weak) IBOutlet NSProgressIndicator *progressIndicator;
@@ -24,6 +26,7 @@
 
 @property (strong) AudioPlayer* audioPlayer;
 @property (strong) SearchResultViewController* searchResultVC;
+@property (strong) ListViewController* listVC;
 
 @end
 
@@ -42,7 +45,12 @@
     self.soundApi.searchCallbackSelector = @selector(searchResultReturned:);
     
     self.searchResultVC = [[SearchResultViewController alloc]initWithNibName:@"SearchResultViewController" bundle:nil];
-    self.window.contentView = self.searchResultVC.view;
+    self.listVC = [[ListViewController alloc]initWithNibName:@"ListViewController" bundle:nil];
+    
+    [self.stackView addSubview:self.listVC.view];
+    [self.stackView addSubview:self.searchResultVC.view];
+
+//    self.window.contentView = self.searchResultVC.view;
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {

@@ -19,6 +19,7 @@
                 <outlet property="prevButton" destination="mVM-FP-cal" id="sGL-kc-Y67"/>
                 <outlet property="progressIndicator" destination="bt5-KY-wR6" id="bcu-Jk-cZg"/>
                 <outlet property="searchField" destination="FbW-4b-Yoc" id="EUQ-B3-bHO"/>
+                <outlet property="stackView" destination="TQc-jJ-xYE" id="p5d-rU-JXp"/>
                 <outlet property="timeSlider" destination="JvU-6g-gG7" id="aTN-PF-C1C"/>
                 <outlet property="volumeSlider" destination="U0e-ei-Ckl" id="yne-VZ-YGz"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
@@ -677,11 +678,16 @@
         <window title="Sooty" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="799" height="380"/>
+            <rect key="contentRect" x="335" y="390" width="800" height="380"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="799" height="380"/>
+                <rect key="frame" x="0.0" y="0.0" width="800" height="380"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView orientation="horizontal" alignment="centerY" horizontalHuggingPriority="249" verticalHuggingPriority="249" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TQc-jJ-xYE">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="380"/>
+                    </stackView>
+                </subviews>
             </view>
             <toolbar key="toolbar" implicitIdentifier="E77B4206-BC21-4EA4-9487-26FFEA2850C8" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="hJl-p5-b4G">
                 <allowedToolbarItems>
@@ -798,7 +804,7 @@ IA
                     <toolbarItem reference="IJv-ur-C8O"/>
                 </defaultToolbarItems>
             </toolbar>
-            <point key="canvasLocation" x="-145.5" y="382"/>
+            <point key="canvasLocation" x="-146" y="382"/>
         </window>
     </objects>
 </document>
