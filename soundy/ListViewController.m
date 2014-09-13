@@ -63,8 +63,6 @@ Persist static int currPlayListNumber = 1;
 - (void) menuWillOpen:(NSMenu *)menu{
     long row = self.tableView.clickedRow;
     [[menu itemAtIndex:0] setEnabled:row > IndexOfSearchResultEntry];
-    
-    NSLog(@"%@", self.playLists);
 }
 
 #pragma - mark Actions
@@ -91,11 +89,12 @@ Persist static int currPlayListNumber = 1;
 - (IBAction)removeMenuAction:(id)sender {
     NSInteger row = self.tableView.clickedRow;
     if (row > IndexOfSearchResultEntry){
+        // remove playlist for the entry
+        [self.playLists removeObjectForKey:self.list[row]];
+        // remove the entry itself
         [self.list removeObjectAtIndex:row];
         [self.tableView abortEditing];
         [self.tableView reloadData];
-        
-        [self.playLists removeObjectForKey:self.list[row]];
     }
 }
 
