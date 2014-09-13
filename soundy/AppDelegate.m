@@ -69,11 +69,10 @@
 
 -(void) searchResultReturned:(NSArray*) results{
     [self.progressIndicator stopAnimation:self];
-    
+    self.listVC.playLists[@"0"] = results;
+
     self.searchResultVC.tracks = results;
     self.audioPlayer.tracks = results;
-    self.listVC.playLists[@"0"] = results;
-    
     [self enableDisablePlayerView:results forceDisable:NO];
 }
 

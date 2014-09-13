@@ -71,7 +71,6 @@ Persist static int currPlayListNumber = 1;
     [self addPlayList:DefaultPlayListName];
 }
 
-
 - (void) addPlayList:(NSString*) playListName{
     
     if ([self.list containsObject:playListName]){
