@@ -83,7 +83,6 @@
 - (void) markPlayingTrack:(PlaybackStatus) playbackStatus{
     self.playbackStatus = playbackStatus;
     [self.tableView reloadData];
-//    [self.tableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:trackIndex] columnIndexes:[NSIndexSet indexSetWithIndex:0]];
 }
 
 #pragma - mark Actions
@@ -117,10 +116,13 @@
         [menu addItem:[NSMenuItem separatorItem]];
         
         for (int i=1; i < SootyAppDelegate.listVC.list.count; i++) {
-            NSString* playListName = SootyAppDelegate.listVC.list [i];
-            NSMenuItem* mi = [menu addItemWithTitle:[NSString stringWithFormat:@"Add to %@", playListName] action:@selector(addTrackToPlayList:) keyEquivalent:@""];
-            [mi setEnabled:row >= 0];
-            [mi setTarget:self];
+            NSString* playListName = SootyAppDelegate.listVC.list[i];
+            
+            if ([self.myPlaylistName isNotEqualTo:playListName]){
+                NSMenuItem* mi = [menu addItemWithTitle:[NSString stringWithFormat:@"Add to %@", playListName] action:@selector(addTrackToPlayList:) keyEquivalent:@""];
+                [mi setEnabled:row >= 0];
+                [mi setTarget:self];
+            }
         }
     }
 }

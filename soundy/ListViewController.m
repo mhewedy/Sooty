@@ -63,7 +63,7 @@ Persist static int currPlayListNumber = 1;
 -(void)tableViewSelectionDidChange:(NSNotification *)notification{
     NSInteger row = [[notification object] selectedRow];
     if (row >= 0){
-        [SootyAppDelegate setSearchResult:self.playLists[self.list[row]]];
+        [SootyAppDelegate setSearchResult:self.playLists[self.list[row]] playListName:self.list[row]];
     }
 }
 
