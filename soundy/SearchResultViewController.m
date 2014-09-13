@@ -33,6 +33,7 @@
             self.message.hidden = YES;
             
             [self.tableView reloadData];
+            [self.tableView scrollRowToVisible:0];
             [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
         }else{
             self.message.hidden = NO;
@@ -47,44 +48,21 @@
     return self.tracks.count;
 }
 
-#pragma - mark NSTableViewDelegate
-
-- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
+- (id) tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
     
-    NSTableCellView* result = nil;
-    NSString* valueToDisplay = nil;
-    
-    Track* track = [self.tracks objectAtIndex:row];
-    
-    if ([tableColumn.identifier isEqual: @"playColumn"]){
-        result = [tableView makeViewWithIdentifier:@"playColumn" owner:self];
-        
+    Track* track = self.tracks[row];
+    if ([tableColumn.identifier isEqualToString:@"play"]){
         if (row == self.playbackStatus.playedTrackIndex){
             if (self.playbackStatus.isPlaying){
-                valueToDisplay = @"►";
-                //➤
+                return @"►";
             }else{
-                valueToDisplay = @"◼";
+                return @"◼";
             }
-        }else{
-            valueToDisplay = @"";
         }
-    }else if ([tableColumn.identifier isEqual: @"titleColumn"]){
-        result = [tableView makeViewWithIdentifier:@"titleColumn" owner:self];
-        valueToDisplay = track.title;
-    }else if ([tableColumn.identifier isEqual: @"userColumn"]){
-        result = [tableView makeViewWithIdentifier:@"userColumn" owner:self];
-        valueToDisplay = track.username;
-    }else if ([tableColumn.identifier isEqual: @"genreColumn"]){
-        result = [tableView makeViewWithIdentifier:@"genreColumn" owner:self];
-        valueToDisplay = track.genre;
-    }else if ([tableColumn.identifier isEqual: @"durationColumn"]){
-        result = [tableView makeViewWithIdentifier:@"durationColumn" owner:self];
-        valueToDisplay = track.duration;
+        return @"";
+    }else{
+        return [track valueForKey:tableColumn.identifier];
     }
-    
-    result.textField.stringValue = valueToDisplay;
-    return result;
 }
 
 #pragma - mark Utils

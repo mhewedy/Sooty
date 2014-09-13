@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "NSObject+Util.h"
 
-@interface SearchResultViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate, NSMenuDelegate>
+@interface SearchResultViewController : NSViewController <NSTableViewDataSource, NSMenuDelegate>
 
 @property (nonatomic, strong) NSArray* tracks;
 
