@@ -15,6 +15,7 @@ typedef struct{
 
 
 #define SootyAppDelegate ((AppDelegate*)[NSApplication sharedApplication].delegate)
+#define Persist
 
 @import AppKit.NSWindow;
 @import AppKit.NSAlert;

@@ -9,7 +9,6 @@
 #import "NSObject+Util.h"
 #import "AppDelegate.h"
 
-
 @implementation NSObject (Util)
 
 -(void)alert:(NSWindow*) window withMessage: (NSString*) msg

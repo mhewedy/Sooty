@@ -49,8 +49,6 @@
     
     [self.stackView addSubview:self.listVC.view];
     [self.stackView addSubview:self.searchResultVC.view];
-
-//    self.window.contentView = self.searchResultVC.view;
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -59,7 +57,6 @@
 
 #pragma mark - Search Field
 - (IBAction)searchAction:(id)sender {
-    
     if ([self.searchField.stringValue isEqualTo:@""]){
         return;
     }
@@ -75,6 +72,8 @@
     
     self.searchResultVC.tracks = results;
     self.audioPlayer.tracks = results;
+    self.listVC.playLists[@"0"] = results;
+    
     [self enableDisablePlayerView:results forceDisable:NO];
 }
 

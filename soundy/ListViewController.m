@@ -7,11 +7,16 @@
 //
 
 #import "ListViewController.h"
+
 #define IndexOfSearchResultEntry (0)
+#define DefaultPlayListName (@"New PlayList")
+
+Persist static int currPlayListNumber = 1;
 
 @interface ListViewController ()
 
 @property (weak) IBOutlet NSTableView *tableView;
+
 @property NSMutableArray* list;
 
 @end
@@ -23,6 +28,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.list = [[NSMutableArray alloc]initWithObjects:@"Search Results", nil];
+        self.playLists = [[NSMutableDictionary alloc]initWithObjectsAndKeys:nil, @"0", nil];
     }
     return self;
 }
@@ -39,7 +45,16 @@
 
 - (void) tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
     if (row > IndexOfSearchResultEntry){
+        if ([self.list containsObject:object]){
+            [self alert:@"Playlist with same name exists."];
+            return;
+        }
+
+        id tmpPlayList = self.playLists[self.list[row]];
+        [self.playLists removeObjectForKey:self.list[row]];
+        
         self.list[row] = object;
+        self.playLists[self.list[row]] = tmpPlayList;
     }
 }
 
@@ -48,14 +63,29 @@
 - (void) menuWillOpen:(NSMenu *)menu{
     long row = self.tableView.clickedRow;
     [[menu itemAtIndex:0] setEnabled:row > IndexOfSearchResultEntry];
+    
+    NSLog(@"%@", self.playLists);
 }
 
 #pragma - mark Actions
 
 - (IBAction)addPlaylist:(id)sender {
-    [self.list addObject:@"New Playlist"];
-    [self.tableView reloadData];
-    [self.tableView editColumn:0 row:self.tableView.numberOfRows-1 withEvent:nil select:YES];
+    [self addPlayList:DefaultPlayListName];
+}
+
+
+- (void) addPlayList:(NSString*) playListName{
+    
+    if ([self.list containsObject:playListName]){
+        [self addPlayList:[NSString stringWithFormat:@"%@ (%i)", DefaultPlayListName, currPlayListNumber++]];
+    }else{
+        [self.list addObject:playListName];
+        [self.tableView reloadData];
+        NSInteger row = self.tableView.numberOfRows-1;
+        [self.tableView editColumn:0 row:row withEvent:nil select:YES];
+        
+        self.playLists[self.list[row]] = [NSMutableArray array];
+    }
 }
 
 - (IBAction)removeMenuAction:(id)sender {
@@ -64,6 +94,8 @@
         [self.list removeObjectAtIndex:row];
         [self.tableView abortEditing];
         [self.tableView reloadData];
+        
+        [self.playLists removeObjectForKey:self.list[row]];
     }
 }
 
