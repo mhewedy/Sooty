@@ -38,7 +38,7 @@
     self.audioPlayer.playerView = self.playerView;
     self.audioPlayer.progressIndicator = self.progressIndicator;
     
-    self.soundApi = [[SoundCloudApi alloc]init];
+    self.soundApi = [[SootyServiceApi alloc]init];
     self.soundApi.searchCallbackTarget = self;
     self.soundApi.searchCallbackSelector = @selector(searchResultReturned:);
     
@@ -67,9 +67,9 @@
 
 -(void) searchResultReturned:(NSArray*) results{
     [self.progressIndicator stopAnimation:self];
-    self.listVC.playLists[SearchResults] = results;
+    self.listVC.playLists[SearchResultsPlayList] = results;
 
-    [self setSearchResult:results playListName:SearchResults];
+    [self setSearchResult:results playListName:SearchResultsPlayList];
 }
 
 #pragma mark - UI Control actions

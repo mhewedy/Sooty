@@ -26,8 +26,8 @@ Persist static int currPlayListNumber = 1;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.list = [[NSMutableArray alloc]initWithObjects:SearchResults, nil];
-        self.playLists = [[NSMutableDictionary alloc]initWithObjectsAndKeys:nil, SearchResults, nil];
+        self.list = [[NSMutableArray alloc]initWithObjects:SearchResultsPlayList, nil];
+        self.playLists = [[NSMutableDictionary alloc]initWithObjectsAndKeys:nil, SearchResultsPlayList, nil];
     }
     return self;
 }

@@ -115,7 +115,7 @@
         [menu removeItemAtIndex:2];// sparator
     }
 
-    if ([self.myPlaylistName isEqualToString:SearchResults] && SootyAppDelegate.listVC.list.count > 1){
+    if ([self.myPlaylistName isEqualToString:SearchResultsPlayList] && SootyAppDelegate.listVC.list.count > 1){
         [menu addItem:[NSMenuItem separatorItem]];
         
         for (int i=1; i < SootyAppDelegate.listVC.list.count; i++) {

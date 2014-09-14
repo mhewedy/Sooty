@@ -11,7 +11,7 @@
 #import "ListViewController.h"
 #import "NSObject+Util.h"
 
-#define SearchResults (@"Search Results")
+#define SearchResultsPlayList (@"SearchResultsPlayList")
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
