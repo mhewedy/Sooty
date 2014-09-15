@@ -93,12 +93,9 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     self.player.volume = volume;
 }
 
-#pragma - mark Custom Properties
-
-- (void) setTracks:(NSArray *)tracks{
-    _tracks = tracks;
-    self.currentTrackIndex = NoRecordsPlayedYet;
+- (void) resetPlayer{
     [self stopPlayer];
+    self.currentTrackIndex = NoRecordsPlayedYet;
 }
 
 #pragma - mark Obeserver callback

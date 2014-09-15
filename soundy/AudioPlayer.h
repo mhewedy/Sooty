@@ -30,5 +30,6 @@
 - (void) play:(int) trackIndex forcePlay:(BOOL) forcePlay;
 - (int) playNext:(BOOL) byUserClick;
 - (int) playPrev:(BOOL) byUserClick;
+- (void) resetPlayer;
 
 @end

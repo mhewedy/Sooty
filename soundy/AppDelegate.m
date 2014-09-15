@@ -38,7 +38,7 @@
     self.audioPlayer.playerView = self.playerView;
     self.audioPlayer.progressIndicator = self.progressIndicator;
     
-    self.soundApi = [[SootyServiceApi alloc]init];
+    self.soundApi = [[SoundCloudApi alloc]init];
     self.soundApi.searchCallbackTarget = self;
     self.soundApi.searchCallbackSelector = @selector(searchResultReturned:);
     
@@ -67,6 +67,8 @@
 
 -(void) searchResultReturned:(NSArray*) results{
     [self.progressIndicator stopAnimation:self];
+    
+    [self.audioPlayer resetPlayer];
     
     self.listVC.playlists[SearchResultsPlaylist] = results;
     [self.listVC selectDefaultPlaylist];

@@ -29,13 +29,14 @@
     
     if (self.tracks){
         if (self.tracks.count != 0){
-            [self.tableView reloadData];
             [self.tableView scrollRowToVisible:0];
             [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
         }else{
             [self alert:@"No results found!"];
         }
     }
+    
+    [self.tableView reloadData];
 }
 
 #pragma - mark NSTableViewDataSource
