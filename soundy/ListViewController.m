@@ -8,15 +8,16 @@
 
 #import "ListViewController.h"
 #import "AppDelegate.h"
+#import "DBUtil.h"
+
 
 #define IndexOfSearchResultEntry (0)
 #define DefaultPlaylistName (@"New Playlist")
 
-Persist static int currPlaylistNumber = 1;
-
 @interface ListViewController ()
 
 @property (weak) IBOutlet NSTableView *tableView;
+Persist @property int currPlaylistNumber;
 
 @end
 
@@ -26,8 +27,9 @@ Persist static int currPlaylistNumber = 1;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.list = [[NSMutableArray alloc]initWithObjects:SearchResultsPlaylist, nil];
-        self.playlists = [[NSMutableDictionary alloc]initWithObjectsAndKeys:nil, SearchResultsPlaylist, nil];
+        self.list = [DBUtil loadPlaylistsKeys];
+        self.playlists = [DBUtil loadPlaylists];
+        self.currPlaylistNumber = [DBUtil loadPlaylistNumber];
         
         
         // set background for view
@@ -35,6 +37,7 @@ Persist static int currPlaylistNumber = 1;
         [viewLayer setBackgroundColor:CGColorCreateGenericRGB(0.0, 0.0, 0.0, 0.1)];
         [self.view setWantsLayer:YES];
         [self.view setLayer:viewLayer];
+        
     }
     return self;
 }
@@ -71,6 +74,9 @@ Persist static int currPlaylistNumber = 1;
         }
         
         [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+
+        [DBUtil savePlaylistKeys:self.list];
+        [DBUtil savePlaylists:self.playlists];
     }
 }
 
@@ -98,16 +104,16 @@ Persist static int currPlaylistNumber = 1;
 - (void) addPlaylist:(NSString*) playlistName{
     
     if ([self.list containsObject:playlistName]){
-        [self addPlaylist:[NSString stringWithFormat:@"%@ (%i)", DefaultPlaylistName, currPlaylistNumber++]];
+        [self addPlaylist:[NSString stringWithFormat:@"%@ (%i)", DefaultPlaylistName, self.currPlaylistNumber++]];
     }else{
         [self.list addObject:playlistName];
         [self.tableView reloadData];
         NSInteger row = self.tableView.numberOfRows-1;
         [self.tableView editColumn:0 row:row withEvent:nil select:YES];
     }
+    
+    [DBUtil savePlaylistKeys:self.list];
 }
-
-
 
 - (IBAction)removeMenuAction:(id)sender {
     NSInteger row = self.tableView.clickedRow;
@@ -120,6 +126,8 @@ Persist static int currPlaylistNumber = 1;
         [self.tableView reloadData];
         [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row-1] byExtendingSelection:NO];
     }
+    
+    [DBUtil savePlaylistKeys:self.list];
 }
 
 

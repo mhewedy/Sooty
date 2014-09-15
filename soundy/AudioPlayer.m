@@ -129,6 +129,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     
     [self.progressIndicator startAnimation:self];
     Track* currentTrack = [self trackAtIndex:trackIndex];
+    NSLog(@"%@", currentTrack.streamURL);
     AVURLAsset* asset = [AVAsset assetWithURL:[NSURL URLWithString:currentTrack.streamURL]];
     NSArray* assetKeys = @[@"playable", @"hasProtectedContent", @"tracks"];
     

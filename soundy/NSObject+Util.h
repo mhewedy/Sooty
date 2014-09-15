@@ -22,7 +22,7 @@ typedef struct{
 
 @interface NSObject (Util)
 
--(void)alert:(NSWindow*) window withMessage: (NSString*) msg;
--(void)alert:(NSString*) msg;
+- (void)alert:(NSWindow*) window withMessage: (NSString*) msg;
+- (void)alert:(NSString*) msg;
 
 @end

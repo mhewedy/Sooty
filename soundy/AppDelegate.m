@@ -32,6 +32,10 @@
             
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     
+//    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"playlistsKeysPersistanceKey"];
+//    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"playlistsPersistanceKey"];
+//    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"playlistNumberPersistanceKey"];
+    
     [self.window makeFirstResponder:self.searchField];
 
     self.audioPlayer = [[AudioPlayer alloc]init];

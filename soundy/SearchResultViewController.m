@@ -9,6 +9,7 @@
 #import "SearchResultViewController.h"
 #import "Track.h"
 #import "AppDelegate.h"
+#import "DBUtil.h"
 
 #define AddToMenuItem (@"Add to %@")
 
@@ -129,6 +130,10 @@
         SootyAppDelegate.listVC.playlists[playlist] = [[NSMutableArray alloc]init];
     }
     [SootyAppDelegate.listVC.playlists[playlist] addObject:track];
+    
+    
+    [DBUtil savePlaylistKeys:SootyAppDelegate.listVC.list];
+    [DBUtil savePlaylists:SootyAppDelegate.listVC.playlists];
 }
 
 
