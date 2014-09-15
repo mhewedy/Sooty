@@ -32,6 +32,12 @@ Persist static int currPlaylistNumber = 1;
     return self;
 }
 
+#pragma - mark Interface
+
+- (void) selectDefaultPlaylist{
+    [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:IndexOfSearchResultEntry] byExtendingSelection:NO];
+}
+
 #pragma - mark NSTableViewDataSource
 
 - (NSInteger) numberOfRowsInTableView:(NSTableView *)tableView{
@@ -92,6 +98,8 @@ Persist static int currPlaylistNumber = 1;
     }
 }
 
+
+
 - (IBAction)removeMenuAction:(id)sender {
     NSInteger row = self.tableView.clickedRow;
     if (row > IndexOfSearchResultEntry){
@@ -101,6 +109,7 @@ Persist static int currPlaylistNumber = 1;
         [self.list removeObjectAtIndex:row];
         [self.tableView abortEditing];
         [self.tableView reloadData];
+        [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row-1] byExtendingSelection:NO];
     }
 }
 

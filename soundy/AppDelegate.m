@@ -67,7 +67,9 @@
 
 -(void) searchResultReturned:(NSArray*) results{
     [self.progressIndicator stopAnimation:self];
+    
     self.listVC.playlists[SearchResultsPlaylist] = results;
+    [self.listVC selectDefaultPlaylist];
 
     [self setSearchResult:results playlistName:SearchResultsPlaylist];
 }

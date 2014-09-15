@@ -14,4 +14,6 @@
 @property NSMutableArray* list;
 Persist @property NSMutableDictionary *playlists;
 
+- (void) selectDefaultPlaylist;
+
 @end
