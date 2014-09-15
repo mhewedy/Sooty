@@ -61,6 +61,7 @@
     
     [self.progressIndicator startAnimation:self];
     [self.soundApi search:self.searchField.stringValue];
+
     [self enableDisablePlayerView:nil forceDisable:YES];
 }
 
@@ -69,6 +70,14 @@
     self.listVC.playlists[SearchResultsPlaylist] = results;
 
     [self setSearchResult:results playlistName:SearchResultsPlaylist];
+}
+
+- (void) setSearchResult:(NSArray*) results playlistName:(NSString*) playlistName{
+    self.searchResultVC.tracks = results;
+    self.searchResultVC.myPlaylistName = playlistName;
+    self.audioPlayer.tracks = results;
+    
+    [self enableDisablePlayerView:results forceDisable:NO];
 }
 
 #pragma mark - UI Control actions
@@ -96,13 +105,6 @@
 }
 
 #pragma mark - Util
-
-- (void) setSearchResult:(NSArray*) results playlistName:(NSString*) playlistName{
-    self.searchResultVC.tracks = results;
-    self.searchResultVC.myPlaylistName = playlistName;
-    self.audioPlayer.tracks = results;
-    [self enableDisablePlayerView:results forceDisable:NO];
-}
 
 - (void) markPlayingTrack:(PlaybackStatus) playbackStatus{
     [self.searchResultVC markPlayingTrack:playbackStatus];
