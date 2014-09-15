@@ -11,7 +11,9 @@
 #import "ListViewController.h"
 #import "NSObject+Util.h"
 
-#define SearchResultsPlayList (@"SearchResultsPlayList")
+
+
+#define SootyAppDelegate ((AppDelegate*)[NSApplication sharedApplication].delegate)
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 

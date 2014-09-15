@@ -8,14 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#define Persist
+#define SearchResultsPlayList (@"Search Results")
+
 typedef struct{
     int playedTrackIndex;
     BOOL isPlaying;
 }PlaybackStatus;
-
-
-#define SootyAppDelegate ((AppDelegate*)[NSApplication sharedApplication].delegate)
-#define Persist
 
 @import AppKit.NSWindow;
 @import AppKit.NSAlert;
