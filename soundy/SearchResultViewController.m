@@ -15,8 +15,6 @@
 @interface SearchResultViewController ()
 
 @property (weak) IBOutlet NSTableView *tableView;
-@property (strong) IBOutlet NSTextField *message;
-@property (weak) IBOutlet NSScrollView *tableScrollView;
 @property PlaybackStatus playbackStatus;
 
 @end
@@ -31,16 +29,11 @@
     
     if (self.tracks){
         if (self.tracks.count != 0){
-            self.tableScrollView.hidden = NO;
-            self.message.hidden = YES;
-            
             [self.tableView reloadData];
             [self.tableView scrollRowToVisible:0];
             [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
         }else{
-            // FIXBUG: disable message view for sake of playlists
-//            self.message.hidden = NO;
-//            self.tableScrollView.hidden = YES;
+            [self alert:@"No results found!"];
         }
     }
 }
@@ -69,10 +62,6 @@
 }
 
 #pragma - mark Utils
-
-- (void) resetView {
-    self.message.hidden = YES;
-}
 
 - (long) selectedTrackIndex{
     return self.tableView.selectedRow;

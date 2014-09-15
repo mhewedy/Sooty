@@ -14,7 +14,6 @@
 @property (nonatomic, strong) NSArray* tracks;
 @property (nonatomic, strong) NSString* myPlaylistName;
 
-- (void) resetView;
 - (long) selectedTrackIndex;
 - (void) moveToTrackAt:(int) index;
 - (void) markPlayingTrack:(PlaybackStatus) playbackStatus;

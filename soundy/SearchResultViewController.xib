@@ -6,7 +6,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SearchResultViewController">
             <connections>
-                <outlet property="message" destination="4yP-eI-DrB" id="g7s-6N-Ciw"/>
                 <outlet property="tableScrollView" destination="S4C-NJ-vRg" id="oA6-d7-2aD"/>
                 <outlet property="tableView" destination="RVU-hi-T6l" id="dfV-5P-5HM"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -18,14 +17,6 @@
             <rect key="frame" x="0.0" y="0.0" width="800" height="380"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4yP-eI-DrB">
-                    <rect key="frame" x="362" y="202" width="178" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No result found." id="5vl-tX-pEI">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
                 <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="20" horizontalPageScroll="10" verticalLineScroll="20" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4C-NJ-vRg">
                     <rect key="frame" x="160" y="0.0" width="640" height="380"/>
                     <clipView key="contentView" ambiguous="YES" misplaced="YES" id="dz5-xk-90v">
@@ -33,6 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" autosaveColumns="NO" rowHeight="18" headerView="pte-sV-qY9" id="RVU-hi-T6l">
+                                <rect key="frame" x="0.0" y="0.0" width="638" height="20"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
