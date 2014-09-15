@@ -62,6 +62,8 @@ Persist static int currPlaylistNumber = 1;
         if (tmpPlaylist){
             self.playlists[self.list[row]] = tmpPlaylist;
         }
+        
+        [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
     }
 }
 
