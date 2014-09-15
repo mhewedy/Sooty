@@ -17,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0J-er-nnV">
-                    <rect key="frame" x="1" y="28" width="160" height="352"/>
+                    <rect key="frame" x="0.0" y="20" width="161" height="360"/>
                     <clipView key="contentView" ambiguous="YES" misplaced="YES" id="ER6-o8-DBc">
                         <rect key="frame" x="1" y="17" width="238" height="117"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,7 +29,7 @@
                                 <color key="backgroundColor" red="0.82745105028152466" green="0.85098046064376831" blue="0.88235300779342651" alpha="1" colorSpace="deviceRGB"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn width="155" minWidth="40" maxWidth="1000" id="IYq-3k-U0V">
+                                    <tableColumn width="156" minWidth="40" maxWidth="1000" id="IYq-3k-U0V">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Playlists">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -62,10 +62,12 @@
                     </scroller>
                 </scrollView>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mOD-Hb-4uA">
-                    <rect key="frame" x="9" y="6" width="18" height="19"/>
+                    <rect key="frame" x="0.0" y="1" width="26" height="19"/>
                     <buttonCell key="cell" type="recessed" title="+" bezelStyle="recessed" imagePosition="left" alignment="center" inset="2" id="kqj-Yy-T2g">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="systemBold"/>
+                        <string key="keyEquivalent">A</string>
+                        <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                     </buttonCell>
                     <connections>
                         <action selector="newPlaylist:" target="-2" id="ESj-XE-Ht4"/>

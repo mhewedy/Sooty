@@ -28,6 +28,13 @@ Persist static int currPlaylistNumber = 1;
     if (self) {
         self.list = [[NSMutableArray alloc]initWithObjects:SearchResultsPlaylist, nil];
         self.playlists = [[NSMutableDictionary alloc]initWithObjectsAndKeys:nil, SearchResultsPlaylist, nil];
+        
+        
+        // set background for view
+        CALayer *viewLayer = [CALayer layer];
+        [viewLayer setBackgroundColor:CGColorCreateGenericRGB(0.0, 0.0, 0.0, 0.1)];
+        [self.view setWantsLayer:YES];
+        [self.view setLayer:viewLayer];
     }
     return self;
 }
