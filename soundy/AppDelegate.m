@@ -66,9 +66,9 @@
 
 -(void) searchResultReturned:(NSArray*) results{
     [self.progressIndicator stopAnimation:self];
-    self.listVC.playLists[SearchResultsPlayList] = results;
+    self.listVC.playlists[SearchResultsPlaylist] = results;
 
-    [self setSearchResult:results playListName:SearchResultsPlayList];
+    [self setSearchResult:results playlistName:SearchResultsPlaylist];
 }
 
 #pragma mark - UI Control actions
@@ -97,9 +97,9 @@
 
 #pragma mark - Util
 
-- (void) setSearchResult:(NSArray*) results playListName:(NSString*) playListName{
+- (void) setSearchResult:(NSArray*) results playlistName:(NSString*) playlistName{
     self.searchResultVC.tracks = results;
-    self.searchResultVC.myPlaylistName = playListName;
+    self.searchResultVC.myPlaylistName = playlistName;
     self.audioPlayer.tracks = results;
     [self enableDisablePlayerView:results forceDisable:NO];
 }

@@ -10,9 +10,9 @@
 #import "AppDelegate.h"
 
 #define IndexOfSearchResultEntry (0)
-#define DefaultPlayListName (@"New PlayList")
+#define DefaultPlaylistName (@"New Playlist")
 
-Persist static int currPlayListNumber = 1;
+Persist static int currPlaylistNumber = 1;
 
 @interface ListViewController ()
 
@@ -26,8 +26,8 @@ Persist static int currPlayListNumber = 1;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.list = [[NSMutableArray alloc]initWithObjects:SearchResultsPlayList, nil];
-        self.playLists = [[NSMutableDictionary alloc]initWithObjectsAndKeys:nil, SearchResultsPlayList, nil];
+        self.list = [[NSMutableArray alloc]initWithObjects:SearchResultsPlaylist, nil];
+        self.playlists = [[NSMutableDictionary alloc]initWithObjectsAndKeys:nil, SearchResultsPlaylist, nil];
     }
     return self;
 }
@@ -49,12 +49,12 @@ Persist static int currPlayListNumber = 1;
             return;
         }
 
-        id tmpPlayList = self.playLists[self.list[row]];
-        [self.playLists removeObjectForKey:self.list[row]];
+        id tmpPlaylist = self.playlists[self.list[row]];
+        [self.playlists removeObjectForKey:self.list[row]];
         
         self.list[row] = object;
-        if (tmpPlayList){
-            self.playLists[self.list[row]] = tmpPlayList;
+        if (tmpPlaylist){
+            self.playlists[self.list[row]] = tmpPlaylist;
         }
     }
 }
@@ -63,7 +63,7 @@ Persist static int currPlayListNumber = 1;
 -(void)tableViewSelectionDidChange:(NSNotification *)notification{
     NSInteger row = [[notification object] selectedRow];
     if (row >= 0){
-        [SootyAppDelegate setSearchResult:self.playLists[self.list[row]] playListName:self.list[row]];
+        [SootyAppDelegate setSearchResult:self.playlists[self.list[row]] playlistName:self.list[row]];
     }
 }
 
@@ -76,16 +76,16 @@ Persist static int currPlayListNumber = 1;
 
 #pragma - mark Actions
 
-- (IBAction)addPlaylist:(id)sender {
-    [self addPlayList:DefaultPlayListName];
+- (IBAction) newPlaylist:(id)sender {
+    [self addPlaylist:DefaultPlaylistName];
 }
 
-- (void) addPlayList:(NSString*) playListName{
+- (void) addPlaylist:(NSString*) playlistName{
     
-    if ([self.list containsObject:playListName]){
-        [self addPlayList:[NSString stringWithFormat:@"%@ (%i)", DefaultPlayListName, currPlayListNumber++]];
+    if ([self.list containsObject:playlistName]){
+        [self addPlaylist:[NSString stringWithFormat:@"%@ (%i)", DefaultPlaylistName, currPlaylistNumber++]];
     }else{
-        [self.list addObject:playListName];
+        [self.list addObject:playlistName];
         [self.tableView reloadData];
         NSInteger row = self.tableView.numberOfRows-1;
         [self.tableView editColumn:0 row:row withEvent:nil select:YES];
@@ -96,7 +96,7 @@ Persist static int currPlayListNumber = 1;
     NSInteger row = self.tableView.clickedRow;
     if (row > IndexOfSearchResultEntry){
         // remove playlist for the entry
-        [self.playLists removeObjectForKey:self.list[row]];
+        [self.playlists removeObjectForKey:self.list[row]];
         // remove the entry itself
         [self.list removeObjectAtIndex:row];
         [self.tableView abortEditing];

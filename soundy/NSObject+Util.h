@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define Persist
-#define SearchResultsPlayList (@"Search Results")
+#define SearchResultsPlaylist (@"Search Results")
 
 typedef struct{
     int playedTrackIndex;

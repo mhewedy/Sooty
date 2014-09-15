@@ -24,7 +24,7 @@
 
 - (void) play:(int) trackIndex forcePlay:(BOOL)forcePlay;
 - (void) markPlayingTrack:(PlaybackStatus) playbackStatus;
-- (void) setSearchResult:(NSArray*) results playListName:(NSString*) playlistName;
+- (void) setSearchResult:(NSArray*) results playlistName:(NSString*) playlistName;
 
 @end
 

@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="EVg-Xo-9EY" id="fsK-8m-JjJ">
-                                <rect key="frame" x="0.0" y="0.0" width="158" height="19"/>
+                                <rect key="frame" x="0.0" y="0.0" width="155" height="19"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -72,7 +72,7 @@
                         <font key="font" size="13" name="ZapfDingbatsITC"/>
                     </buttonCell>
                     <connections>
-                        <action selector="addPlaylist:" target="-2" id="Mgb-0z-DHd"/>
+                        <action selector="newPlaylist:" target="-2" id="lMk-yn-TW3"/>
                     </connections>
                 </button>
             </subviews>

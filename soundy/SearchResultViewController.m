@@ -104,14 +104,14 @@
         [menu removeItemAtIndex:2];// sparator
     }
 
-    if ([self.myPlaylistName isEqualToString:SearchResultsPlayList] && SootyAppDelegate.listVC.list.count > 1){
+    if ([self.myPlaylistName isEqualToString:SearchResultsPlaylist] && SootyAppDelegate.listVC.list.count > 1){
         [menu addItem:[NSMenuItem separatorItem]];
         
         for (int i=1; i < SootyAppDelegate.listVC.list.count; i++) {
-            NSString* playListName = SootyAppDelegate.listVC.list[i];
+            NSString* playlistName = SootyAppDelegate.listVC.list[i];
             
-            if (![self.myPlaylistName isEqualToString:playListName]){
-                NSMenuItem* mi = [menu addItemWithTitle:[NSString stringWithFormat:AddToMenuItem, playListName] action:@selector(addTrackToPlayList:) keyEquivalent:@""];
+            if (![self.myPlaylistName isEqualToString:playlistName]){
+                NSMenuItem* mi = [menu addItemWithTitle:[NSString stringWithFormat:AddToMenuItem, playlistName] action:@selector(addTrackToPlaylist:) keyEquivalent:@""];
                 [mi setEnabled:row >= 0];
                 [mi setTarget:self];
             }
@@ -119,14 +119,14 @@
     }
 }
 
-- (void) addTrackToPlayList:(NSMenuItem*) menuItem{
-    NSString* playList = [menuItem.title substringFromIndex:AddToMenuItem.length-2];
+- (void) addTrackToPlaylist:(NSMenuItem*) menuItem{
+    NSString* playlist = [menuItem.title substringFromIndex:AddToMenuItem.length-2];
     Track* track = self.tracks[self.tableView.clickedRow];
     
-    if (!SootyAppDelegate.listVC.playLists[playList]){
-        SootyAppDelegate.listVC.playLists[playList] = [[NSMutableArray alloc]init];
+    if (!SootyAppDelegate.listVC.playlists[playlist]){
+        SootyAppDelegate.listVC.playlists[playlist] = [[NSMutableArray alloc]init];
     }
-    [SootyAppDelegate.listVC.playLists[playList] addObject:track];
+    [SootyAppDelegate.listVC.playlists[playlist] addObject:track];
 }
 
 
