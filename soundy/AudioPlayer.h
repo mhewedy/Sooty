@@ -20,6 +20,8 @@
 @property (weak) NSProgressIndicator *progressIndicator;
 
 @property (nonatomic, strong) NSArray* tracks;
+@property (nonatomic, strong) NSString* playlistName;
+
 @property (readonly) int currentTrackIndex;
 
 

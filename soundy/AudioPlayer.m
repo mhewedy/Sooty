@@ -105,7 +105,8 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     if (context == AVPlayerRateContext) {
         float rate = [change[NSKeyValueChangeNewKey] floatValue];
 
-        [SootyAppDelegate markPlayingTrack:(PlaybackStatus){self.currentTrackIndex, rate == AVPlayerPlayStatusPlaying}];
+        [SootyAppDelegate markPlayingTrack:(PlaybackStatus){self.currentTrackIndex, rate == AVPlayerPlayStatusPlaying,
+            (__bridge CFStringRef) self.playlistName}];
         
         if (rate != AVPlayerPlayStatusPlaying){
             [[self.playerView viewWithTag:PlayerViewPlayPauseButton]setTitle: @"Play"];
@@ -195,7 +196,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     }else{
         self.currentTrackIndex = trackIndex;
     }
-    NSLog(@"playing track# %i", self.currentTrackIndex);
+    NSLog(@"playing track# %i of %@", self.currentTrackIndex, self.playlistName);
     return self.tracks[self.currentTrackIndex];
 }
 

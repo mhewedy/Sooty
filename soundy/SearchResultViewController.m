@@ -35,7 +35,6 @@
             [self alert:@"No results found!"];
         }
     }
-    
     [self.tableView reloadData];
 }
 
@@ -49,7 +48,9 @@
     
     Track* track = self.tracks[row];
     if ([tableColumn.identifier isEqualToString:@"play"]){
-        if (row == self.playbackStatus.playedTrackIndex){
+        if (row == self.playbackStatus.playedTrackIndex &&
+            [self.playlistName isEqualToString:(__bridge NSString *)self.playbackStatus.playlist]){
+            
             if (self.playbackStatus.isPlaying){
                 return @"►";
             }else{
@@ -105,13 +106,13 @@
         [menu removeItemAtIndex:2];// sparator
     }
 
-    if ([self.myPlaylistName isEqualToString:SearchResultsPlaylist] && SootyAppDelegate.listVC.list.count > 1){
+    if ([self.playlistName isEqualToString:SearchResultsPlaylist] && SootyAppDelegate.listVC.list.count > 1){
         [menu addItem:[NSMenuItem separatorItem]];
         
         for (int i=1; i < SootyAppDelegate.listVC.list.count; i++) {
             NSString* playlistName = SootyAppDelegate.listVC.list[i];
             
-            if (![self.myPlaylistName isEqualToString:playlistName]){
+            if (![self.playlistName isEqualToString:playlistName]){
                 NSMenuItem* mi = [menu addItemWithTitle:[NSString stringWithFormat:AddToMenuItem, playlistName] action:@selector(addTrackToPlaylist:) keyEquivalent:@""];
                 [mi setEnabled:row >= 0];
                 [mi setTarget:self];

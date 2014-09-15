@@ -12,7 +12,7 @@
 @interface SearchResultViewController : NSViewController <NSTableViewDataSource, NSMenuDelegate>
 
 @property (nonatomic, strong) NSArray* tracks;
-@property (nonatomic, strong) NSString* myPlaylistName;
+@property (nonatomic, strong) NSString* playlistName;
 
 - (long) selectedTrackIndex;
 - (void) moveToTrackAt:(int) index;

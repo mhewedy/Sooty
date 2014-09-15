@@ -78,8 +78,10 @@
 
 - (void) setSearchResult:(NSArray*) results playlistName:(NSString*) playlistName{
     self.searchResultVC.tracks = results;
-    self.searchResultVC.myPlaylistName = playlistName;
+    self.searchResultVC.playlistName = playlistName;
+
     self.audioPlayer.tracks = results;
+    self.audioPlayer.playlistName = playlistName;
     
     [self enableDisablePlayerView:results forceDisable:NO];
 }
@@ -111,7 +113,7 @@
 #pragma mark - Util
 
 - (void) markPlayingTrack:(PlaybackStatus) playbackStatus{
-    [self.searchResultVC markPlayingTrack:playbackStatus];
+//    [self.searchResultVC markPlayingTrack:playbackStatus];
 }
 
 - (void) play:(int) trackIndex forcePlay:(BOOL)forcePlay{

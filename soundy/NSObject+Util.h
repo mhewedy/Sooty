@@ -14,6 +14,7 @@
 typedef struct{
     int playedTrackIndex;
     BOOL isPlaying;
+    CFStringRef playlist;
 }PlaybackStatus;
 
 @import AppKit.NSWindow;
