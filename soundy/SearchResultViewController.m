@@ -124,13 +124,15 @@
 
 - (void) addTrackToPlaylist:(NSMenuItem*) menuItem{
     NSString* playlist = [menuItem.title substringFromIndex:AddToMenuItem.length-2];
-    Track* track = self.tracks[self.tableView.clickedRow];
     
     if (!SootyAppDelegate.listVC.playlists[playlist]){
         SootyAppDelegate.listVC.playlists[playlist] = [[NSMutableArray alloc]init];
     }
-    [SootyAppDelegate.listVC.playlists[playlist] addObject:track];
     
+    [self.tableView.selectedRowIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+        Track* track = self.tracks[idx];
+        [SootyAppDelegate.listVC.playlists[playlist] addObject:track];
+    }];
     
     [DBUtil savePlaylistKeys:SootyAppDelegate.listVC.list];
     [DBUtil savePlaylists:SootyAppDelegate.listVC.playlists];
