@@ -25,7 +25,7 @@ So, I started writing my own.
  - Can add any other Digital Distribution Platforms.
 
 ###Download
-Download version `Sooty_v0.4.dmg` from here [**Sooty_v0.4.dmg** ](https://raw.githubusercontent.com/MuhammadHewedy/Sooty/master/bin/Sooty_v0.4.dmg "Sooty_v0.4.dmg") 
+Download version `Sooty_v0.5.dmg` from here [**Sooty_v0.5.dmg** ](https://raw.githubusercontent.com/MuhammadHewedy/Sooty/master/bin/Sooty_v0.5.dmg "Sooty_v0.5.dmg") 
 
 ###DEV Status
 Sooty is in its early stages, You can access to its plan at Trello here: [Sooty Plan](https://trello.com/b/CZw9cygi/sooty-plan "Sooty Plan")
