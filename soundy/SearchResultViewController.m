@@ -50,6 +50,7 @@
     
     Track* track = self.tracks[row];
     if ([tableColumn.identifier isEqualToString:@"play"]){
+        
         if (row == self.playbackStatus.playedTrackIndex &&
             [self.playlistName isEqualToString:(__bridge NSString *)self.playbackStatus.playlist]){
             

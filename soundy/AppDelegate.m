@@ -25,6 +25,7 @@
 
 @property (strong) AudioPlayer* audioPlayer;
 @property (strong) SearchResultViewController* searchResultVC;
+@property (strong) NSString* currentPlaylist;
 
 @end
 
@@ -72,7 +73,7 @@
 -(void) searchResultReturned:(NSArray*) results{
     [self.progressIndicator stopAnimation:self];
     
-    [self.audioPlayer resetPlayer];
+//    [self.audioPlayer resetPlayer];
     
     self.listVC.playlists[SearchResultsPlaylist] = results;
     [self.listVC selectDefaultPlaylist];
@@ -81,11 +82,12 @@
 }
 
 - (void) setSearchResult:(NSArray*) results playlistName:(NSString*) playlistName{
+
     self.searchResultVC.tracks = results;
     self.searchResultVC.playlistName = playlistName;
 
     self.audioPlayer.tracks = results;
-    self.audioPlayer.playlistName = playlistName;
+    self.currentPlaylist = playlistName;
     
     [self enableDisablePlayerView:results forceDisable:NO];
 }
@@ -114,14 +116,15 @@
     [self.audioPlayer seekToTime:[[self.playerView viewWithTag:PlayerViewTimeSlider] doubleValue]];
 }
 
+- (void) play:(int) trackIndex forcePlay:(BOOL)forcePlay{
+    self.audioPlayer.playlistName = self.currentPlaylist;
+    [self.audioPlayer play:trackIndex forcePlay:forcePlay];
+}
+
 #pragma mark - Util
 
 - (void) markPlayingTrack:(PlaybackStatus) playbackStatus{
-//    [self.searchResultVC markPlayingTrack:playbackStatus];
-}
-
-- (void) play:(int) trackIndex forcePlay:(BOOL)forcePlay{
-    [self.audioPlayer play:trackIndex forcePlay:forcePlay];
+    [self.searchResultVC markPlayingTrack:playbackStatus];
 }
 
 - (void) enableDisablePlayerView:(NSArray*) tracks forceDisable:(BOOL) forceDisable{
