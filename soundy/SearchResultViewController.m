@@ -12,6 +12,7 @@
 #import "DBUtil.h"
 
 #define AddToMenuItem (@"Add to %@")
+#define RemoveMenuItem (@"Remove")
 
 @interface SearchResultViewController ()
 
@@ -106,8 +107,13 @@
     if (menu.numberOfItems == 3){
         [menu removeItemAtIndex:2];// sparator
     }
-
-    if ([self.playlistName isEqualToString:SearchResultsPlaylist] && SootyAppDelegate.listVC.list.count > 1){
+    
+    if (![self.playlistName isEqualToString:SearchResultsPlaylist]){
+        [menu addItem:[NSMenuItem separatorItem]];
+        NSMenuItem* mi = [menu addItemWithTitle:RemoveMenuItem action:@selector(removeTrackFromPlaylist:) keyEquivalent:@""];
+        [mi setTarget:self];
+        
+    }else if (SootyAppDelegate.listVC.list.count > 1){
         [menu addItem:[NSMenuItem separatorItem]];
         
         for (int i=1; i < SootyAppDelegate.listVC.list.count; i++) {
@@ -136,6 +142,18 @@
     
     [DBUtil savePlaylistKeys:SootyAppDelegate.listVC.list];
     [DBUtil savePlaylists:SootyAppDelegate.listVC.playlists];
+}
+
+- (void) removeTrackFromPlaylist:(NSMenuItem*) menuItem{
+    
+    NSRange selectedRange = NSMakeRange(self.tableView.selectedRowIndexes.firstIndex, self.tableView.selectedRowIndexes.count);
+    [SootyAppDelegate.listVC.playlists[self.playlistName] removeObjectsInRange:selectedRange];
+    
+    [DBUtil savePlaylistKeys:SootyAppDelegate.listVC.list];
+    [DBUtil savePlaylists:SootyAppDelegate.listVC.playlists];
+ 
+    [self.tableView reloadData];
+
 }
 
 
