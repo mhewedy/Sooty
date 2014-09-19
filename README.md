@@ -18,8 +18,14 @@ So, I started writing my own.
   - It is designed to be configurable to be used with different audio streaming services as well.   
   For example, **Sooty** is using [**SootyService** ](https://github.com/MuhammadHewedy/SootyService "SootyService") which is a simlation service used to simulate the audio provider services. (built mainly for development purposes)
 
+###Features
+ - Search in SoundCloud.com 
+ - Ability to have Multipe Playlists
+ - Ability to add/remove tracks from Playlists
+ - Can add any other Digital Distribution Platforms.
+
 ###Download
-Download version `Sooty.app` `v0.3` from here [**Sooty_0.3.tar.gz** ](https://raw.githubusercontent.com/MuhammadHewedy/Sooty/master/bin/Sooty_0.3.tar.gz "Sooty_0.3.tar.gz") 
+Download version `Sooty_v0.4.dmg` from here [**Sooty_v0.4.dmg** ](https://raw.githubusercontent.com/MuhammadHewedy/Sooty/master/bin/Sooty_v0.4.dmg "Sooty_v0.4.dmg") 
 
 ###DEV Status
 Sooty is in its early stages, You can access to its plan at Trello here: [Sooty Plan](https://trello.com/b/CZw9cygi/sooty-plan "Sooty Plan")
