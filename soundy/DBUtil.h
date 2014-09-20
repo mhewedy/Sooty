@@ -10,7 +10,7 @@
 #import "NSObject+Util.h"
 
 #define PlaylistPersistenceKeyPlaylistDictionary            (@"PlaylistPersistenceKeyPlaylistDictionary")
-#define PlaylistPersistenceKeyPlaylistKeys                 (@"PlaylistPersistenceKeyPlaylistKeys")
+#define PlaylistPersistenceKeyPlaylistKeys                  (@"PlaylistPersistenceKeyPlaylistKeys")
 #define PlaylistPersistenceKeyPlaylistNumber                (@"PlaylistPersistenceKeyPlaylistNumber")
 
 @interface DBUtil : NSObject
