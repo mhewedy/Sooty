@@ -108,8 +108,6 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         [SootyAppDelegate markPlayingTrack:(PlaybackStatus){self.currentTrackIndex, rate == AVPlayerPlayStatusPlaying,
             (__bridge CFStringRef) self.playlistName}];
         
-        
-        
         SootyAppDelegate.window.title = [NSString stringWithFormat:@"%@ [%@] - %@ - %@", @"Sooty", rate == AVPlayerPlayStatusPlaying ? @"Play" : @"Pause", self.playlistName, self.currentTrackIndex > NoRecordsPlayedYet && self.tracks.count > self.currentTrackIndex ?[self.tracks[self.currentTrackIndex] title] : @""];
         
         if (rate != AVPlayerPlayStatusPlaying){
