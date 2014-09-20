@@ -9,16 +9,11 @@
 #import "DBUtil.h"
 #import "Track.h"
 
-#define playlistsKeysPersistanceKey (@"playlistsKeysPersistanceKey")
-#define playlistsPersistanceKey (@"playlistsPersistanceKey")
-#define playlistNumberPersistanceKey (@"playlistNumberPersistanceKey")
-
-
 @implementation DBUtil
 
 // Load from db
 + (NSMutableArray*) loadPlaylistsKeys{
-    NSMutableArray* ret = [[NSUserDefaults standardUserDefaults] objectForKey:playlistsKeysPersistanceKey];
+    NSMutableArray* ret = [[NSUserDefaults standardUserDefaults] objectForKey:PlaylistPersistenceKeyPlaylistKeys];
     if (!ret){
         ret = [[NSMutableArray alloc]initWithObjects:SearchResultsPlaylist, nil];
     }
@@ -33,7 +28,7 @@
 }
 
 + (NSMutableDictionary*) loadPlaylists{
-    NSMutableDictionary* ret = [[NSUserDefaults standardUserDefaults] objectForKey:playlistsPersistanceKey];
+    NSMutableDictionary* ret = [[NSUserDefaults standardUserDefaults] objectForKey:PlaylistPersistenceKeyPlaylistDictionary];
     if (!ret){
         ret = [[NSMutableDictionary alloc]initWithObjectsAndKeys:nil, SearchResultsPlaylist, nil];
     }
@@ -68,7 +63,7 @@
 }
 
 + (int) loadPlaylistNumber{
-    int ret = (int)[[NSUserDefaults standardUserDefaults] integerForKey:playlistNumberPersistanceKey];
+    int ret = (int)[[NSUserDefaults standardUserDefaults] integerForKey:PlaylistPersistenceKeyPlaylistNumber];
     if (ret == 0){
         ret = 1;
     }
@@ -77,7 +72,7 @@
 
 // save to db
 + (void) savePlaylistKeys:(NSArray*) playlistKeys{
-    [[NSUserDefaults standardUserDefaults] setObject:playlistKeys forKey:playlistsKeysPersistanceKey];
+    [[NSUserDefaults standardUserDefaults] setObject:playlistKeys forKey:PlaylistPersistenceKeyPlaylistKeys];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -111,12 +106,12 @@
         }
     }];
     
-    [[NSUserDefaults standardUserDefaults] setObject:plistComplaintDict forKey:playlistsPersistanceKey];
+    [[NSUserDefaults standardUserDefaults] setObject:plistComplaintDict forKey:PlaylistPersistenceKeyPlaylistDictionary];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 + (void) savePlaylistNumber:(int) num{
-    [[NSUserDefaults standardUserDefaults] setInteger:num forKey:playlistNumberPersistanceKey];
+    [[NSUserDefaults standardUserDefaults] setInteger:num forKey:PlaylistPersistenceKeyPlaylistNumber];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 //

@@ -12,6 +12,7 @@
 #import "SootyServiceApi.h"
 
 #import "SearchResultViewController.h"
+#import "DBUtil.h"
 
 @interface AppDelegate ()
 
@@ -32,10 +33,6 @@
 @implementation AppDelegate
             
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    
-//    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"playlistsKeysPersistanceKey"];
-//    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"playlistsPersistanceKey"];
-//    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"playlistNumberPersistanceKey"];
     
     [self.window makeFirstResponder:self.searchField];
 
@@ -141,6 +138,13 @@
     [[self.playerView viewWithTag:PlayerViewVolumeSlider] setEnabled:!forceDisable && playEnabled];
     [[self.playerView viewWithTag:PlayerViewPlayNextButton] setEnabled:!forceDisable && otherEnabled];
     [[self.playerView viewWithTag:PlayerViewPlayPrevButton] setEnabled:!forceDisable && otherEnabled];
+}
+
+-(void) resetPlaylists{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:PlaylistPersistenceKeyPlaylistDictionary];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:PlaylistPersistenceKeyPlaylistKeys];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:PlaylistPersistenceKeyPlaylistNumber];
+
 }
 
 @end

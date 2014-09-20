@@ -9,16 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "NSObject+Util.h"
 
+#define PlaylistPersistenceKeyPlaylistDictionary            (@"PlaylistPersistenceKeyPlaylistDictionary")
+#define PlaylistPersistenceKeyPlaylistKeys                 (@"PlaylistPersistenceKeyPlaylistKeys")
+#define PlaylistPersistenceKeyPlaylistNumber                (@"PlaylistPersistenceKeyPlaylistNumber")
+
 @interface DBUtil : NSObject
-
-
-// ----------
 
 + (NSMutableArray*) loadPlaylistsKeys;
 + (NSMutableDictionary*) loadPlaylists;
 + (int) loadPlaylistNumber;
 
-// save to db
 + (void) savePlaylistKeys:(NSArray*) playlistKeys;
 + (void) savePlaylists:(NSDictionary*) playlists;
 + (void) savePlaylistNumber:(int) num;
