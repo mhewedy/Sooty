@@ -37,4 +37,11 @@
     [self doesNotRecognizeSelector:_cmd];
 }
 
+- (NSString*) name{
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+
+
+
 @end

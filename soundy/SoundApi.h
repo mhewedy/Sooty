@@ -18,4 +18,6 @@
 
 -(void) search:(NSString*) token;
 
+- (NSString*) name;
+
 @end

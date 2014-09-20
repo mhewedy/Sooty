@@ -49,6 +49,8 @@
     
     [self.stackView addSubview:self.listVC.view];
     [self.stackView addSubview:self.searchResultVC.view];
+    
+    [[self.searchField cell] setPlaceholderString:[NSString stringWithFormat:@"Search %@", self.soundApi.name]];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {

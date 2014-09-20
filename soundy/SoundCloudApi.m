@@ -64,5 +64,9 @@ static NSString* CLIENT_ID = @"85652ec093beadb4c647450f597b16ad";
     return ((int) duration) + seconds;
 }
 
+- (NSString*) name{
+    return @"SoundCloud";
+}
+
 
 @end
