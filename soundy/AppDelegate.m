@@ -57,6 +57,10 @@
     // Insert code here to tear down your application
 }
 
+- (BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender{
+    return YES;
+}
+
 #pragma mark - Search Field
 - (IBAction)searchAction:(id)sender {
     if ([self.searchField.stringValue isEqualTo:@""]){
