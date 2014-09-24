@@ -70,13 +70,8 @@
     
     [[self.searchField cell] setPlaceholderString:[NSString stringWithFormat:@"Search %@", self.soundApi.name]];
     
-    // -- SPMediaTapKey
-    
-    SPMediaKeyTap* keyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
     if([SPMediaKeyTap usesGlobalMediaKeyTap]) {
-        [keyTap startWatchingMediaKeys];
-    } else {
-        NSLog(@"Media key monitoring disabled");
+        [[[SPMediaKeyTap alloc] initWithDelegate:self] startWatchingMediaKeys];
     }
 }
 
