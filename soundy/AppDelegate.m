@@ -46,6 +46,7 @@
     
     self.searchResultVC = [[SearchResultViewController alloc]initWithNibName:@"SearchResultViewController" bundle:nil];
     self.listVC = [[ListViewController alloc]initWithNibName:@"ListViewController" bundle:nil];
+    [self.listVC selectDefaultPlaylist];
     
     [self.stackView addSubview:self.listVC.view];
     [self.stackView addSubview:self.searchResultVC.view];
