@@ -73,6 +73,8 @@
     if([SPMediaKeyTap usesGlobalMediaKeyTap]) {
         [[[SPMediaKeyTap alloc] initWithDelegate:self] startWatchingMediaKeys];
     }
+    
+    [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -214,6 +216,12 @@
         }
         NSLog(@"%@", debugString);
     }
+}
+
+#pragma mark - NSUserNotificationCenterDelegate
+
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification{
+    return YES;
 }
 
 @end

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class Track;
+
 #define Persist
 #define SearchResultsPlaylist (@"Search Results")
 
@@ -24,5 +26,6 @@ typedef struct{
 
 - (void)alert:(NSWindow*) window withMessage: (NSString*) msg;
 - (void)alert:(NSString*) msg;
+- (void) showNotification:(NSString*) playStatus aboutTrack:(Track*) track;
 
 @end

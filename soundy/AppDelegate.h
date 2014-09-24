@@ -17,7 +17,7 @@
 @end
 
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate>
 
 @property (weak) IBOutlet NSWindow *window;
 @property (strong) ListViewController* listVC;

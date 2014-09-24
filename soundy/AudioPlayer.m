@@ -78,6 +78,9 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     }
     int nextTrack = self.currentTrackIndex + 1;
     [self prepareTrackAndPlay:nextTrack];
+    
+    [self showNotification:@"" aboutTrack:self.tracks[self.currentTrackIndex]];
+    
     return nextTrack;
 }
 
@@ -92,6 +95,9 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     }
     int prevTrack = self.currentTrackIndex - 1;
     [self prepareTrackAndPlay:prevTrack];
+    
+    [self showNotification:@"" aboutTrack:self.tracks[self.currentTrackIndex]];
+    
     return prevTrack;
 }
 
@@ -141,6 +147,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     [self.progressIndicator startAnimation:self];
     Track* currentTrack = [self trackAtIndex:trackIndex];
     NSLog(@"%@", currentTrack.streamURL);
+    
     AVURLAsset* asset = [AVAsset assetWithURL:[NSURL URLWithString:currentTrack.streamURL]];
     NSArray* assetKeys = @[@"playable", @"hasProtectedContent", @"tracks"];
     

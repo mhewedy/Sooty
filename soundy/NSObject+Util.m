@@ -8,6 +8,7 @@
 
 #import "NSObject+Util.h"
 #import "AppDelegate.h"
+#import "Track.h"
 
 @implementation NSObject (Util)
 
@@ -25,5 +26,13 @@
     NSWindow* window = [(AppDelegate *)[[NSApplication sharedApplication] delegate] window];
     [self alert:window withMessage:msg];
 }
+
+- (void) showNotification:(NSString*) playStatus aboutTrack:(Track*) track{
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = track.title;
+//    notification.soundName = NSUserNotificationDefaultSoundName;
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+}
+
 
 @end
