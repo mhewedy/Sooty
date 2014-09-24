@@ -23,7 +23,7 @@ So, I started writing my own.
  - Ability to have Multipe Playlists
  - Ability to add/remove tracks from Playlists
  - Can add any other Digital Distribution Platforms.
- - Use Max built-in Media Keys throw SPMediaKeyTap
+ - Use Mac built-in Media Keys throw SPMediaKeyTap
 
 ###Download
 Download latest verion from [Releases](https://github.com/MuhammadHewedy/Sooty/releases "Releases") section 
