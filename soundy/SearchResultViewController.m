@@ -112,6 +112,7 @@
     if (![self.playlistName isEqualToString:SearchResultsPlaylist]){
         [menu addItem:[NSMenuItem separatorItem]];
         NSMenuItem* mi = [menu addItemWithTitle:RemoveMenuItem action:@selector(removeTrackFromPlaylist:) keyEquivalent:@""];
+        [mi setEnabled:row >= 0];
         [mi setTarget:self];
         
     }else if (SootyAppDelegate.listVC.list.count > 1){
