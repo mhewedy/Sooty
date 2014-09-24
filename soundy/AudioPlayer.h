@@ -10,6 +10,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "PlayerViewHelper.h"
 
+#define NoRecordsPlayedYet        (-1)
+
 @import AppKit.NSSlider;
 @import AppKit.NSButton;
 @import AppKit.NSProgressIndicator;

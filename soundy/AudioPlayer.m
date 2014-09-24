@@ -13,7 +13,6 @@
 
 #define AVPlayerPlayStatusStopped (0.f)
 #define AVPlayerPlayStatusPlaying (1.f)
-#define NoRecordsPlayedYet        (-1)
 
 
 static void *AVPlayerRateContext = &AVPlayerRateContext;
@@ -69,6 +68,11 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 }
 
 - (int) playNext:(BOOL) byUserClick{
+    if (self.tracks == nil){
+        NSLog(@"tracks should be set before call play");
+        return NoRecordsPlayedYet;
+    }
+    
     if (byUserClick){
         [self.player pause];
     }
@@ -78,6 +82,11 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 }
 
 - (int) playPrev:(BOOL) byUserClick{
+    if (self.tracks == nil){
+        NSLog(@"tracks should be set before call play");
+        return NoRecordsPlayedYet;
+    }
+    
     if (byUserClick){
         [self.player pause];
     }

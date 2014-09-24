@@ -10,9 +10,24 @@
 #import "AudioPlayer.h"
 #import "SoundCloudApi.h"
 #import "SootyServiceApi.h"
-
+#import "SPMediaKeyTap.h"
 #import "SearchResultViewController.h"
 #import "DBUtil.h"
+
+
+@implementation SootyApp
+- (void)sendEvent:(NSEvent *)theEvent
+{
+    // If event tap is not installed, handle events that reach the app instead
+    if([theEvent type] == NSSystemDefined
+        && [theEvent subtype] == SPSystemDefinedEventMediaKeys)
+    {
+        [(id)[self delegate] mediaKeyTap:nil receivedMediaKeyEvent:theEvent];
+    }
+    [super sendEvent:theEvent];
+}
+@end
+
 
 @interface AppDelegate ()
 
@@ -104,12 +119,18 @@
 
 - (IBAction)playNextAction:(id)sender {
     int trackId = [self.audioPlayer playNext:sender?YES:NO];
-    [self.searchResultVC moveToTrackAt:trackId];
+
+    if (trackId != NoRecordsPlayedYet){
+        [self.searchResultVC moveToTrackAt:trackId];
+    }
 }
 
 - (IBAction)playPrevAction:(id)sender {
     int trackId = [self.audioPlayer playPrev:sender?YES:NO];
-    [self.searchResultVC moveToTrackAt:trackId];
+    
+    if (trackId != NoRecordsPlayedYet){
+        [self.searchResultVC moveToTrackAt:trackId];
+    }
 }
 
 - (IBAction)volumeSliderAction:(id)sender {
@@ -152,6 +173,41 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:PlaylistPersistenceKeyPlaylistKeys];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:PlaylistPersistenceKeyPlaylistNumber];
 
+}
+
+#pragma mark - SPMediaKeyTap
+
+-(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event;
+{
+    NSAssert([event type] == NSSystemDefined && [event subtype] == SPSystemDefinedEventMediaKeys, @"Unexpected NSEvent in mediaKeyTap:receivedMediaKeyEvent:");
+    // here be dragons...
+    int keyCode = (([event data1] & 0xFFFF0000) >> 16);
+    int keyFlags = ([event data1] & 0x0000FFFF);
+    BOOL keyIsPressed = (((keyFlags & 0xFF00) >> 8)) == 0xA;
+    int keyRepeat = (keyFlags & 0x1);
+    
+    if (keyIsPressed) {
+        NSString *debugString = [NSString stringWithFormat:@"%@", keyRepeat?@", repeated.":@"."];
+        switch (keyCode) {
+            case NX_KEYTYPE_PLAY:
+                [self playPauseAction:nil];
+                NSLog(@"NX_KEYTYPE_PLAY");
+                break;
+            case NX_KEYTYPE_FAST:
+                [self playNextAction:nil];
+                NSLog(@"NX_KEYTYPE_FAST");
+                break;
+            case NX_KEYTYPE_REWIND:
+                [self playPrevAction:nil];
+                NSLog(@"NX_KEYTYPE_REWIND");
+                break;
+            default:
+                debugString = [NSString stringWithFormat:@"Key %d pressed%@", keyCode, debugString];
+                break;
+                // More cases defined in hidsystem/ev_keymap.h
+        }
+        NSLog(@"%@", debugString);
+    }
 }
 
 @end

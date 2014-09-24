@@ -11,9 +11,11 @@
 #import "ListViewController.h"
 #import "NSObject+Util.h"
 
-
-
 #define SootyAppDelegate ((AppDelegate*)[NSApplication sharedApplication].delegate)
+
+@interface SootyApp : NSApplication
+@end
+
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 

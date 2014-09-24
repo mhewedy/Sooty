@@ -24,6 +24,8 @@
 		B783244519BA0F0D0038084C /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B783244319BA0F0D0038084C /* ListViewController.xib */; };
 		B7B4456419BD190500813603 /* SootyServiceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B4456319BD190500813603 /* SootyServiceApi.m */; };
 		B7C660BA19C7A1E1006FEDD4 /* DBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C660B919C7A1E1006FEDD4 /* DBUtil.m */; };
+		B7E116E519D3505E006FB959 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E116E219D3505E006FB959 /* NSObject+SPInvocationGrabbing.m */; };
+		B7E116E619D3505E006FB959 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E116E419D3505E006FB959 /* SPMediaKeyTap.m */; };
 		B7E19E5F19B79EF8000CB167 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7E19E5E19B79EF8000CB167 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +73,10 @@
 		B7B4456319BD190500813603 /* SootyServiceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SootyServiceApi.m; sourceTree = "<group>"; };
 		B7C660B819C7A1E1006FEDD4 /* DBUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUtil.h; sourceTree = "<group>"; };
 		B7C660B919C7A1E1006FEDD4 /* DBUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUtil.m; sourceTree = "<group>"; };
+		B7E116E119D3505E006FB959 /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
+		B7E116E219D3505E006FB959 /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
+		B7E116E319D3505E006FB959 /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
+		B7E116E419D3505E006FB959 /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
 		B7E19E5E19B79EF8000CB167 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -180,6 +186,7 @@
 		B7740A3F19B6857700695A2B /* Sooty */ = {
 			isa = PBXGroup;
 			children = (
+				B7E116DA19D34F63006FB959 /* mediakeytap */,
 				B75DA7EE19B9BC11002EC534 /* player */,
 				B769FAA219B7D86F00EB2D4D /* domain */,
 				B769FAA919B7DA2400EB2D4D /* api */,
@@ -220,6 +227,17 @@
 				B7740A5519B6857700695A2B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B7E116DA19D34F63006FB959 /* mediakeytap */ = {
+			isa = PBXGroup;
+			children = (
+				B7E116E119D3505E006FB959 /* NSObject+SPInvocationGrabbing.h */,
+				B7E116E219D3505E006FB959 /* NSObject+SPInvocationGrabbing.m */,
+				B7E116E319D3505E006FB959 /* SPMediaKeyTap.h */,
+				B7E116E419D3505E006FB959 /* SPMediaKeyTap.m */,
+			);
+			name = mediakeytap;
 			sourceTree = "<group>";
 		};
 		B7E19E6019B79EFC000CB167 /* frameworks */ = {
@@ -331,12 +349,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7E116E519D3505E006FB959 /* NSObject+SPInvocationGrabbing.m in Sources */,
 				B783244419BA0F0D0038084C /* ListViewController.m in Sources */,
 				B769FAA119B7C9A600EB2D4D /* URLCaller.m in Sources */,
 				B75DA7F119B9BC28002EC534 /* AudioPlayer.m in Sources */,
 				B7740A4619B6857700695A2B /* AppDelegate.m in Sources */,
 				B75A8B7F19B7DB9600B17E49 /* SoundApi.m in Sources */,
 				B75A8B9E19B7FB3000B17E49 /* SearchResultViewController.m in Sources */,
+				B7E116E619D3505E006FB959 /* SPMediaKeyTap.m in Sources */,
 				B769FA9C19B7C5F600EB2D4D /* NSObject+Util.m in Sources */,
 				B7B4456419BD190500813603 /* SootyServiceApi.m in Sources */,
 				B769FAA819B7DA0F00EB2D4D /* Track.m in Sources */,
