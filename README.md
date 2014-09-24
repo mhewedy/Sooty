@@ -23,6 +23,7 @@ So, I started writing my own.
  - Ability to have Multipe Playlists
  - Ability to add/remove tracks from Playlists
  - Can add any other Digital Distribution Platforms.
+ - Use Max built-in Media Keys throw SPMediaKeyTap
 
 ###Download
 Download Version 0.6 from here [**Sooty_v0.6.dmg** ](https://raw.githubusercontent.com/MuhammadHewedy/Sooty/master/bin/Sooty_v0.6.dmg "Sooty_v0.6.dmg") 
