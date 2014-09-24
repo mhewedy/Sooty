@@ -19,7 +19,9 @@
 - (void)sendEvent:(NSEvent *)theEvent
 {
     // If event tap is not installed, handle events that reach the app instead
-    if([theEvent type] == NSSystemDefined
+    BOOL shouldHandleMediaKeyEventLocally = ![SPMediaKeyTap usesGlobalMediaKeyTap];
+    
+    if(shouldHandleMediaKeyEventLocally && [theEvent type] == NSSystemDefined
         && [theEvent subtype] == SPSystemDefinedEventMediaKeys)
     {
         [(id)[self delegate] mediaKeyTap:nil receivedMediaKeyEvent:theEvent];
@@ -67,6 +69,15 @@
     [self.stackView addSubview:self.searchResultVC.view];
     
     [[self.searchField cell] setPlaceholderString:[NSString stringWithFormat:@"Search %@", self.soundApi.name]];
+    
+    // -- SPMediaTapKey
+    
+    SPMediaKeyTap* keyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
+    if([SPMediaKeyTap usesGlobalMediaKeyTap]) {
+        [keyTap startWatchingMediaKeys];
+    } else {
+        NSLog(@"Media key monitoring disabled");
+    }
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
