@@ -26,7 +26,8 @@ So, I started writing my own.
  - Use Max built-in Media Keys throw SPMediaKeyTap
 
 ###Download
-Download Version 0.6 from here [**Sooty_v0.6.dmg** ](https://raw.githubusercontent.com/MuhammadHewedy/Sooty/master/bin/Sooty_v0.6.dmg "Sooty_v0.6.dmg") 
+Download latest verion from [Releases](https://github.com/MuhammadHewedy/Sooty/releases "Releases") section 
+
 
 ###DEV Status
 Sooty is in its early stages, You can access to its plan at Trello here: [Sooty Plan](https://trello.com/b/CZw9cygi/sooty-plan "Sooty Plan")
