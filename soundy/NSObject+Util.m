@@ -29,7 +29,8 @@
 
 - (void) showNotification:(NSString*) playStatus aboutTrack:(Track*) track{
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = track.title;
+    notification.title = @"Sooty";
+    notification.subtitle = track.title;
 //    notification.soundName = NSUserNotificationDefaultSoundName;
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
