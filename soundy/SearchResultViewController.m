@@ -96,11 +96,26 @@
 
 static long downloadedTrackIndex = 0;
 - (IBAction)downloadContextMenuAction:(id)sender {
-    [SootyAppDelegate startProgress];
+    
     Track* track = self.tracks[downloadedTrackIndex = self.tableView.clickedRow];
-    URLCaller* caller = [[URLCaller alloc]initWithTarget:self selector:@selector(saveTrack:)];
-    caller.raw = YES;
-    [caller call:track.streamURL];
+
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:@"OK"];
+    [alert addButtonWithTitle:@"Cancel"];
+    alert.messageText = @"Downloading Track";
+    alert.informativeText = [NSString stringWithFormat:@"Downlaoding Track \"%@\"?", track.title];
+    alert.alertStyle = NSInformationalAlertStyle;
+    [alert beginSheetModalForWindow:SootyAppDelegate.window modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:nil];
+}
+
+- (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
+    if (returnCode == NSAlertFirstButtonReturn) {
+        [SootyAppDelegate startProgress];
+        Track* track = self.tracks[downloadedTrackIndex];
+        URLCaller* caller = [[URLCaller alloc]initWithTarget:self selector:@selector(saveTrack:)];
+        caller.raw = YES;
+        [caller call:track.streamURL];
+    }
 }
 
 - (void) saveTrack:(NSData*) data{
