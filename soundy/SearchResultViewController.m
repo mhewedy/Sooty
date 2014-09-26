@@ -10,6 +10,7 @@
 #import "Track.h"
 #import "AppDelegate.h"
 #import "DBUtil.h"
+#import "URLCaller.h"
 
 #define AddToMenuItem (@"Add to %@")
 #define RemoveMenuItem (@"Remove")
@@ -93,20 +94,44 @@
     [[NSWorkspace sharedWorkspace]openURL:[NSURL URLWithString:track.originalURL ]];
 }
 
+static long downloadedTrackIndex = 0;
+- (IBAction)downloadContextMenuAction:(id)sender {
+    [SootyAppDelegate startProgress];
+    Track* track = self.tracks[downloadedTrackIndex = self.tableView.clickedRow];
+    URLCaller* caller = [[URLCaller alloc]initWithTarget:self selector:@selector(saveTrack:)];
+    [caller call:track.streamURL];
+}
+
+- (void) saveTrack:(NSString*) utf8String{
+    [SootyAppDelegate stopProgress];
+    
+    Track* track = self.tracks[downloadedTrackIndex];
+    NSSavePanel* savePanel = [NSSavePanel savePanel];
+    savePanel.nameFieldStringValue = [NSString stringWithFormat:@"%@.mp3", track.title];
+    
+    if ([savePanel runModal] == NSModalResponseOK){
+        NSString* path = savePanel.URL.path;
+        [[utf8String dataUsingEncoding:NSUTF8StringEncoding] writeToFile:path atomically:YES];
+    }
+}
+
 #pragma - make NSMenuDelegte
 
 - (void)menuWillOpen:(NSMenu *)menu{
+    const int numOfItems = 3;
+    
     long row = self.tableView.clickedRow;
     [[menu itemAtIndex:0] setEnabled:row >= 0];
     [[menu itemAtIndex:1] setEnabled:row >= 0];
+    [[menu itemAtIndex:2] setEnabled:row >= 0];
     
-    NSInteger itemsToRem = menu.numberOfItems - 2;
+    NSInteger itemsToRem = menu.numberOfItems - numOfItems;
     for (int i=0; i < itemsToRem; i++) {
-        [menu removeItemAtIndex:2];
+        [menu removeItemAtIndex:numOfItems];
     }
     
-    if (menu.numberOfItems == 3){
-        [menu removeItemAtIndex:2];// sparator
+    if (menu.numberOfItems == numOfItems + 1){
+        [menu removeItemAtIndex:numOfItems];// sparator
     }
     
     if (![self.playlistName isEqualToString:SearchResultsPlaylist]){

@@ -129,6 +129,12 @@
                         <action selector="playCotextMenuAction:" target="-2" id="ZZK-NP-CZb"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Download" id="CAv-yq-pYg">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="downloadContextMenuAction:" target="-2" id="P7T-aM-mNR"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Go to Website" id="08o-mC-Cfg" userLabel="Go to website">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>

@@ -224,4 +224,12 @@
     return YES;
 }
 
+#pragma mark - Progress Indicator
+- (void) startProgress{
+    [self.progressIndicator startAnimation:self];
+}
+- (void) stopProgress{
+    [self.progressIndicator stopAnimation:self];
+}
+
 @end

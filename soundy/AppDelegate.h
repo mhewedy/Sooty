@@ -28,5 +28,8 @@
 - (void) markPlayingTrack:(PlaybackStatus) playbackStatus;
 - (void) setSearchResult:(NSArray*) results playlistName:(NSString*) playlistName;
 
+- (void) startProgress;
+- (void) stopProgress;
+
 @end
 
