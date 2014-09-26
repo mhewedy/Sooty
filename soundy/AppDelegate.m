@@ -55,7 +55,6 @@
 
     self.audioPlayer = [[AudioPlayer alloc]init];
     self.audioPlayer.playerView = self.playerView;
-    self.audioPlayer.progressIndicator = self.progressIndicator;
     
     self.soundApi = [[SoundCloudApi alloc]init];
     self.soundApi.searchCallbackTarget = self;

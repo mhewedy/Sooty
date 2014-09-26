@@ -144,7 +144,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 - (void) prepareTrackAndPlay:(int) trackIndex{
     
-    [self.progressIndicator startAnimation:self];
+    [SootyAppDelegate startProgress];
     Track* currentTrack = [self trackAtIndex:trackIndex];
     NSLog(@"%@", currentTrack.streamURL);
     
@@ -153,7 +153,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     
     [asset loadValuesAsynchronouslyForKeys:assetKeys completionHandler:^(void){
         
-        [self.progressIndicator stopAnimation:self];
+        [SootyAppDelegate stopProgress];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             
