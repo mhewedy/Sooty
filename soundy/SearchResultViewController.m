@@ -99,10 +99,11 @@ static long downloadedTrackIndex = 0;
     [SootyAppDelegate startProgress];
     Track* track = self.tracks[downloadedTrackIndex = self.tableView.clickedRow];
     URLCaller* caller = [[URLCaller alloc]initWithTarget:self selector:@selector(saveTrack:)];
+    caller.raw = YES;
     [caller call:track.streamURL];
 }
 
-- (void) saveTrack:(NSString*) utf8String{
+- (void) saveTrack:(NSData*) data{
     [SootyAppDelegate stopProgress];
     
     Track* track = self.tracks[downloadedTrackIndex];
@@ -111,7 +112,7 @@ static long downloadedTrackIndex = 0;
     
     if ([savePanel runModal] == NSModalResponseOK){
         NSString* path = savePanel.URL.path;
-        [[utf8String dataUsingEncoding:NSUTF8StringEncoding] writeToFile:path atomically:YES];
+        [data writeToFile:path atomically:YES];
     }
 }
 

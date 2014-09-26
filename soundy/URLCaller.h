@@ -13,6 +13,7 @@
 @property (strong) NSMutableData* data;
 @property (weak) id target;
 @property SEL selector;
+@property BOOL raw;
 
 -(instancetype) initWithTarget:(id) target selector:(SEL)selector;
 -(void) call:(NSString*) url;
