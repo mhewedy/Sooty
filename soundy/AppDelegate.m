@@ -99,23 +99,29 @@
 -(void) searchResultReturned:(NSArray*) results{
     [self.progressIndicator stopAnimation:self];
     
-//    [self.audioPlayer resetPlayer];
-    
     self.listVC.playlists[SearchResultsPlaylist] = results;
     [self.listVC selectDefaultPlaylist];
 
-    [self setSearchResult:results playlistName:SearchResultsPlaylist];
+    [self setSearchResult:results playlist:SearchResultsPlaylist updatePlayer:YES];
 }
 
-- (void) setSearchResult:(NSArray*) results playlistName:(NSString*) playlistName{
+- (void) setSearchResult:(NSArray*) results playlist:(NSString*) playlist updatePlayer:(BOOL)updatePlayer{
 
     self.searchResultVC.tracks = results;
-    self.searchResultVC.playlistName = playlistName;
-
-    self.audioPlayer.tracks = results;
-    self.currentPlaylist = playlistName;
+    self.searchResultVC.playlist = playlist;
     
+    self.currentPlaylist = playlist;
     [self enableDisablePlayerView:results forceDisable:NO];
+
+    if (updatePlayer){
+        self.audioPlayer.tracks = results;
+        self.audioPlayer.playlist = playlist;
+    }
+}
+
+- (void) setAudioPlayerTracks:(NSArray*) tracks playlist:(NSString*) playlist{
+    self.audioPlayer.tracks = tracks;
+    self.audioPlayer.playlist = playlist;
 }
 
 #pragma mark - UI Control actions
@@ -125,19 +131,11 @@
 }
 
 - (IBAction)playNextAction:(id)sender {
-    int trackId = [self.audioPlayer playNext:sender?YES:NO];
-
-    if (trackId != NoRecordsPlayedYet){
-        [self.searchResultVC moveToTrackAt:trackId];
-    }
+    [self.audioPlayer playNext:sender?YES:NO];
 }
 
 - (IBAction)playPrevAction:(id)sender {
-    int trackId = [self.audioPlayer playPrev:sender?YES:NO];
-    
-    if (trackId != NoRecordsPlayedYet){
-        [self.searchResultVC moveToTrackAt:trackId];
-    }
+    [self.audioPlayer playPrev:sender?YES:NO];
 }
 
 - (IBAction)volumeSliderAction:(id)sender {
@@ -149,7 +147,7 @@
 }
 
 - (void) play:(int) trackIndex forcePlay:(BOOL)forcePlay{
-    self.audioPlayer.playlistName = self.currentPlaylist;
+    self.audioPlayer.playlist = self.currentPlaylist;
     [self.audioPlayer play:trackIndex forcePlay:forcePlay];
 }
 

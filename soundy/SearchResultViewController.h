@@ -12,10 +12,9 @@
 @interface SearchResultViewController : NSViewController <NSTableViewDataSource, NSMenuDelegate>
 
 @property (nonatomic, strong) NSArray* tracks;
-@property (nonatomic, strong) NSString* playlistName;
+@property (nonatomic, strong) NSString* playlist;
 
 - (long) selectedTrackIndex;
-- (void) moveToTrackAt:(int) index;
 - (void) markPlayingTrack:(PlaybackStatus) playbackStatus;
 
 @end

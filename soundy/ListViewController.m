@@ -81,10 +81,11 @@ Persist @property int currPlaylistNumber;
 }
 
 #pragma - mark NSTableViewDelegate
+
 -(void)tableViewSelectionDidChange:(NSNotification *)notification{
     NSInteger row = [[notification object] selectedRow];
     if (row > -1){
-        [SootyAppDelegate setSearchResult:self.playlists[self.list[row]] playlistName:self.list[row]];
+        [SootyAppDelegate setSearchResult:self.playlists[self.list[row]] playlist:self.list[row] updatePlayer:NO];
     }
 }
 
@@ -101,12 +102,12 @@ Persist @property int currPlaylistNumber;
     [self addPlaylist:DefaultPlaylistName];
 }
 
-- (void) addPlaylist:(NSString*) playlistName{
+- (void) addPlaylist:(NSString*) playlist{
     
-    if ([self.list containsObject:playlistName]){
+    if ([self.list containsObject:playlist]){
         [self addPlaylist:[NSString stringWithFormat:@"%@ (%i)", DefaultPlaylistName, self.currPlaylistNumber++]];
     }else{
-        [self.list addObject:playlistName];
+        [self.list addObject:playlist];
         [self.tableView reloadData];
         NSInteger row = self.tableView.numberOfRows-1;
         [self.tableView editColumn:0 row:row withEvent:nil select:YES];

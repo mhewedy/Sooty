@@ -33,7 +33,6 @@
     if (self.tracks){
         if (self.tracks.count != 0){
             [self.tableView scrollRowToVisible:0];
-            [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
         }else{
             [self alert:@"No results found!"];
         }
@@ -53,7 +52,7 @@
     if ([tableColumn.identifier isEqualToString:@"play"]){
         
         if (row == self.playbackStatus.playedTrackIndex &&
-            [self.playlistName isEqualToString:(__bridge NSString *)self.playbackStatus.playlist]){
+            [self.playlist isEqualToString:(__bridge NSString *)self.playbackStatus.playlist]){
             
             if (self.playbackStatus.isPlaying){
                 return @"►";
@@ -73,11 +72,6 @@
     return self.tableView.selectedRow;
 }
 
-- (void) moveToTrackAt:(int) index{
-    index = index%self.tracks.count;
-    [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
-}
-
 - (void) markPlayingTrack:(PlaybackStatus) playbackStatus{
     self.playbackStatus = playbackStatus;
     [self.tableView reloadData];
@@ -86,6 +80,7 @@
 #pragma - mark Actions
 
 - (IBAction)playCotextMenuAction:(id)sender {
+    [SootyAppDelegate setAudioPlayerTracks:self.tracks playlist:self.playlist];
     [SootyAppDelegate play:(int)self.tableView.clickedRow forcePlay:YES];
 }
 
@@ -150,7 +145,7 @@ static long downloadedTrackIndex = 0;
         [menu removeItemAtIndex:numOfItems];// sparator
     }
     
-    if (![self.playlistName isEqualToString:SearchResultsPlaylist]){
+    if (![self.playlist isEqualToString:SearchResultsPlaylist]){
         [menu addItem:[NSMenuItem separatorItem]];
         NSMenuItem* mi = [menu addItemWithTitle:RemoveMenuItem action:@selector(removeTrackFromPlaylist:) keyEquivalent:@""];
         [mi setEnabled:row >= 0];
@@ -160,10 +155,10 @@ static long downloadedTrackIndex = 0;
         [menu addItem:[NSMenuItem separatorItem]];
         
         for (int i=1; i < SootyAppDelegate.listVC.list.count; i++) {
-            NSString* playlistName = SootyAppDelegate.listVC.list[i];
+            NSString* playlist = SootyAppDelegate.listVC.list[i];
             
-            if (![self.playlistName isEqualToString:playlistName]){
-                NSMenuItem* mi = [menu addItemWithTitle:[NSString stringWithFormat:AddToMenuItem, playlistName] action:@selector(addTrackToPlaylist:) keyEquivalent:@""];
+            if (![self.playlist isEqualToString:playlist]){
+                NSMenuItem* mi = [menu addItemWithTitle:[NSString stringWithFormat:AddToMenuItem, playlist] action:@selector(addTrackToPlaylist:) keyEquivalent:@""];
                 [mi setEnabled:row >= 0];
                 [mi setTarget:self];
             }
@@ -190,7 +185,7 @@ static long downloadedTrackIndex = 0;
 - (void) removeTrackFromPlaylist:(NSMenuItem*) menuItem{
     
     NSRange selectedRange = NSMakeRange(self.tableView.selectedRowIndexes.firstIndex, self.tableView.selectedRowIndexes.count);
-    [SootyAppDelegate.listVC.playlists[self.playlistName] removeObjectsInRange:selectedRange];
+    [SootyAppDelegate.listVC.playlists[self.playlist] removeObjectsInRange:selectedRange];
     
     [DBUtil savePlaylistKeys:SootyAppDelegate.listVC.list];
     [DBUtil savePlaylists:SootyAppDelegate.listVC.playlists];

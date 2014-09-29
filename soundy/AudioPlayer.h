@@ -21,7 +21,7 @@
 @property (weak) NSView* playerView;
 
 @property (nonatomic, strong) NSArray* tracks;
-@property (nonatomic, strong) NSString* playlistName;
+@property (nonatomic, strong) NSString* playlist;
 
 @property (readonly) int currentTrackIndex;
 
