@@ -24,6 +24,10 @@
 
 @implementation SearchResultViewController
 
+- (void)awakeFromNib {
+    [self.tableView setTarget:self];
+    [self.tableView setDoubleAction:@selector(doubleClick:)];
+}
 
 #pragma - mark Custome propreties
 - (void)setTracks:(NSArray *) mytracks
@@ -79,15 +83,14 @@
 
 #pragma - mark Actions
 
-// this method used by NSTableView binding
--(void)doubleClick{
+-(void)doubleClick:(id) sender{
     [SootyAppDelegate setAudioPlayerTracks:self.tracks playlist:self.playlist];
     [SootyAppDelegate play:(int)self.tableView.clickedRow forcePlay:YES];
 }
 
 
 - (IBAction)playCotextMenuAction:(id)sender {
-    [self doubleClick];
+    [self doubleClick:nil];
 }
 
 - (IBAction)goToWebsiteContextMenuAction:(id)sender {
