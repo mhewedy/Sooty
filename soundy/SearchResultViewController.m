@@ -79,9 +79,15 @@
 
 #pragma - mark Actions
 
-- (IBAction)playCotextMenuAction:(id)sender {
+// this method used by NSTableView binding
+-(void)doubleClick{
     [SootyAppDelegate setAudioPlayerTracks:self.tracks playlist:self.playlist];
     [SootyAppDelegate play:(int)self.tableView.clickedRow forcePlay:YES];
+}
+
+
+- (IBAction)playCotextMenuAction:(id)sender {
+    [self doubleClick];
 }
 
 - (IBAction)goToWebsiteContextMenuAction:(id)sender {

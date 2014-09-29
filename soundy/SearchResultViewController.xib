@@ -30,7 +30,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn identifier="play" width="17" minWidth="10" maxWidth="3.4028234663852886e+38" id="qGc-aJ-Hwv" userLabel="Play">
+                                    <tableColumn identifier="play" editable="NO" width="17" minWidth="10" maxWidth="3.4028234663852886e+38" id="qGc-aJ-Hwv" userLabel="Play">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -43,7 +43,7 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                     </tableColumn>
-                                    <tableColumn identifier="title" width="329" minWidth="40" maxWidth="1000" id="MRY-0E-HvF">
+                                    <tableColumn identifier="title" editable="NO" width="329" minWidth="40" maxWidth="1000" id="MRY-0E-HvF">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Title">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -56,7 +56,7 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                     </tableColumn>
-                                    <tableColumn identifier="duration" width="61" minWidth="10" maxWidth="3.4028234663852886e+38" id="pNE-Id-dVv">
+                                    <tableColumn identifier="duration" editable="NO" width="61" minWidth="10" maxWidth="3.4028234663852886e+38" id="pNE-Id-dVv">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Duration">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -69,7 +69,7 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                     </tableColumn>
-                                    <tableColumn identifier="username" width="137" minWidth="40" maxWidth="1000" id="1tF-4b-E4k">
+                                    <tableColumn identifier="username" editable="NO" width="137" minWidth="40" maxWidth="1000" id="1tF-4b-E4k">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="User">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -82,7 +82,7 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                     </tableColumn>
-                                    <tableColumn identifier="genre" width="79" minWidth="10" maxWidth="3.4028234663852886e+38" id="fax-dn-TYo">
+                                    <tableColumn identifier="genre" editable="NO" width="79" minWidth="10" maxWidth="3.4028234663852886e+38" id="fax-dn-TYo">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Genre">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -97,6 +97,11 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
+                                    <binding destination="-2" name="doubleClickTarget" keyPath="self" id="aNj-lf-tRP">
+                                        <dictionary key="options">
+                                            <string key="NSSelectorName">doubleClick</string>
+                                        </dictionary>
+                                    </binding>
                                     <outlet property="dataSource" destination="-2" id="md4-u8-YIM"/>
                                     <outlet property="menu" destination="wNc-Jk-SiV" id="7Yn-3F-plt"/>
                                 </connections>
