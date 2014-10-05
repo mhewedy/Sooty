@@ -149,6 +149,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     NSLog(@"%@", currentTrack.streamURL);
     
     [self showNotification:@"" aboutTrack:self.tracks[self.currentTrackIndex]];
+    [SootyAppDelegate markPlayingTrack:(PlaybackStatus){self.currentTrackIndex, YES,(__bridge CFStringRef) self.playlist}];
     
     AVURLAsset* asset = [AVAsset assetWithURL:[NSURL URLWithString:currentTrack.streamURL]];
     NSArray* assetKeys = @[@"playable", @"hasProtectedContent", @"tracks"];
