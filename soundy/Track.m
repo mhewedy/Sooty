@@ -15,4 +15,9 @@
     return self;
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"id: %@, duration %@, artwork %@", self.id, self.duration, self.artworkURL];
+}
+
 @end

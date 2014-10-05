@@ -46,6 +46,7 @@
             track.streamURL = dict[@"streamURL"];
             track.originalURL = @"";
             track.duration = @"";
+            track.artworkURL = @"";
             
             [myResultArr addObject:track];
         }

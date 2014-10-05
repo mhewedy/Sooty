@@ -53,11 +53,14 @@
             trackObj.streamURL = trackDict[@"streamURL"];
             trackObj.originalURL = trackDict[@"originalURL"];
             trackObj.duration = trackDict[@"duration"];
+            trackObj.artworkURL = trackDict[@"artworkURL"];
             
             [trackArrTo addObject:trackObj];
         }];
         finalRet[key] = trackArrTo;
     }];
+    
+    NSLog(@"%@", finalRet);
     
     return finalRet;
 }
@@ -98,6 +101,7 @@
                 trackDict[@"streamURL"] = trackObj.streamURL;
                 trackDict[@"originalURL"] = trackObj.originalURL;
                 trackDict[@"duration"] = trackObj.duration;
+                trackDict[@"artworkURL"] = trackObj.artworkURL ? trackObj.artworkURL : @""; // for backward compitability
                 
                 [trackArrTo addObject:trackDict];
             }];

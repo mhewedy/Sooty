@@ -27,10 +27,10 @@ Persist @property int currPlaylistNumber;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        NSLog(@"Loading playlists ...");
         self.list = [DBUtil loadPlaylistsKeys];
         self.playlists = [DBUtil loadPlaylists];
         self.currPlaylistNumber = [DBUtil loadPlaylistNumber];
-        
         
         // set background for view
         CALayer *viewLayer = [CALayer layer];
