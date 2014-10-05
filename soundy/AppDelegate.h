@@ -29,6 +29,8 @@
 - (void) setSearchResult:(NSArray*) results playlist:(NSString*) playlist updatePlayer:(BOOL)updatePlayer;
 - (void) setAudioPlayerTracks:(NSArray*) tracks playlist:(NSString*) playlist;
 
+-(NSString*) apiName;
+
 - (void) startProgress;
 - (void) stopProgress;
 

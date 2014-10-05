@@ -15,6 +15,8 @@
 #define AddToMenuItem (@"Add to %@")
 #define RemoveMenuItem (@"Remove")
 
+#define MenuItemGoToWebsiteTag (3)
+
 @interface SearchResultViewController ()
 
 @property (weak) IBOutlet NSTableView *tableView;
@@ -172,6 +174,11 @@ static long downloadedTrackIndex = 0;
                 [mi setTarget:self];
             }
         }
+    }
+    
+    NSMenuItem* gotoWebsiteItem = [menu itemWithTag:MenuItemGoToWebsiteTag];
+    if (gotoWebsiteItem){
+        gotoWebsiteItem.title = [NSString stringWithFormat:@"Go to %@", SootyAppDelegate.apiName];
     }
 }
 

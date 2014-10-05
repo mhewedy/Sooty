@@ -180,6 +180,10 @@
 
 }
 
+-(NSString*) apiName{
+    return self.soundApi.name;
+}
+
 #pragma mark - SPMediaKeyTap
 
 -(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event;

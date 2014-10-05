@@ -123,19 +123,19 @@
         <userDefaultsController representsSharedInstance="YES" id="1dL-r1-g48"/>
         <menu autoenablesItems="NO" id="wNc-Jk-SiV">
             <items>
-                <menuItem title="Play" id="8Gf-ia-g1b">
+                <menuItem title="Play" tag="1" id="8Gf-ia-g1b">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="playCotextMenuAction:" target="-2" id="ZZK-NP-CZb"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Download" id="CAv-yq-pYg">
+                <menuItem title="Download" tag="2" id="CAv-yq-pYg">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="downloadContextMenuAction:" target="-2" id="P7T-aM-mNR"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Go to Website" id="08o-mC-Cfg" userLabel="Go to website">
+                <menuItem title="Go to Website" tag="3" id="08o-mC-Cfg" userLabel="Go to website">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="goToWebsiteContextMenuAction:" target="-2" id="pOc-Cg-r4V"/>
