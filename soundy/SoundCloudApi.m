@@ -47,7 +47,7 @@ static NSString* CLIENT_ID = @"85652ec093beadb4c647450f597b16ad";
             track.streamURL = [NSString stringWithFormat:@"%@?client_id=%@", dict[@"stream_url"], CLIENT_ID];
             track.originalURL = dict[@"permalink_url"];
             track.duration = [NSString stringWithFormat:@"%.2f", [self calcDuration:[dict[@"duration"] longValue]]];
-            track.artworkURL = dict[@"artwork_url"];
+            track.artworkURL = (dict[@"artwork_url"] == [NSNull null]) ? @"" : dict[@"artwork_url"];
             
             [myResultArr addObject:track];
         }

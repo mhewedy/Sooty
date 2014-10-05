@@ -31,7 +31,6 @@
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = @"Sooty";
     notification.subtitle = track.title;
-    NSLog(@"%@", track.artworkURL);
     notification.contentImage = [[NSImage alloc]initWithContentsOfURL:[NSURL URLWithString:track.artworkURL]];
     
 //    notification.soundName = NSUserNotificationDefaultSoundName;
