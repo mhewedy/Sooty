@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" id="fsK-8m-JjJ">
-                                <rect key="frame" x="0.0" y="0.0" width="155" height="19"/>
+                                <rect key="frame" x="0.0" y="0.0" width="159" height="19"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" red="0.82745105028152466" green="0.85098046064376831" blue="0.88235300779342651" alpha="1" colorSpace="deviceRGB"/>
