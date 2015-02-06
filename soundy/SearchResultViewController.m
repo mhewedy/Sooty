@@ -118,18 +118,19 @@ static long downloadedTrackIndex = 0;
     if (returnCode == NSAlertFirstButtonReturn) {
         [SootyAppDelegate startProgress];
         Track* track = self.tracks[downloadedTrackIndex];
-        URLCaller* caller = [[URLCaller alloc]initWithTarget:self selector:@selector(saveTrack:)];
+        NSLog(@"......calling caller");
+        URLCaller* caller = [[URLCaller alloc]initWithTarget:self selector:@selector(saveTrack:withTitle:)];
+        caller.identifier = track.title;
         caller.raw = YES;
         [caller call:track.streamURL];
     }
 }
 
-- (void) saveTrack:(NSData*) data{
+- (void) saveTrack:(NSData*) data withTitle:(NSString*) title;{
     [SootyAppDelegate stopProgress];
     
-    Track* track = self.tracks[downloadedTrackIndex];
     NSSavePanel* savePanel = [NSSavePanel savePanel];
-    savePanel.nameFieldStringValue = [NSString stringWithFormat:@"%@.mp3", track.title];
+    savePanel.nameFieldStringValue = [NSString stringWithFormat:@"%@.mp3", title];
     
     if ([savePanel runModal] == NSModalResponseOK){
         NSString* path = savePanel.URL.path;

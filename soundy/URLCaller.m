@@ -47,7 +47,11 @@
 {
     NSLog(@"connectionDidFinishLoading");
     if (self.raw){
-        [self.target performSelector:self.selector withObject:self.data afterDelay:0.0f];
+        if (self.identifier){
+            [self.target performSelector:self.selector withObject:self.data withObject:self.identifier];
+        }else{
+            [self.target performSelector:self.selector withObject:self.data afterDelay:0.0f];
+        }
     }else{
         NSString* stringData = [[NSString alloc]initWithData:self.data encoding:NSUTF8StringEncoding];
         [self.target performSelector:self.selector withObject:stringData afterDelay:0.0f];

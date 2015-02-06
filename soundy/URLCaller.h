@@ -14,6 +14,7 @@
 @property (weak) id target;
 @property SEL selector;
 @property BOOL raw;
+@property (strong) NSString* identifier;
 
 -(instancetype) initWithTarget:(id) target selector:(SEL)selector;
 -(void) call:(NSString*) url;
