@@ -292,7 +292,7 @@
 		B7740A3519B6857700695A2B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Muhammad Hewedy";
 				TargetAttributes = {
 					B7740A3C19B6857700695A2B = {
@@ -416,6 +416,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -433,7 +434,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -468,7 +469,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -479,6 +480,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = soundy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "mhewedy.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Sooty;
 			};
 			name = Debug;
@@ -490,6 +492,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = soundy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "mhewedy.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Sooty;
 			};
 			name = Release;
@@ -509,6 +512,7 @@
 				);
 				INFOPLIST_FILE = soundyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "mhewedy.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SootyTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/soundy.app/Contents/MacOS/soundy";
 			};
@@ -525,6 +529,7 @@
 				);
 				INFOPLIST_FILE = soundyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "mhewedy.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SootyTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/soundy.app/Contents/MacOS/soundy";
 			};

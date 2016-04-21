@@ -25,7 +25,7 @@ static NSString* CLIENT_ID = @"85652ec093beadb4c647450f597b16ad";
 {
     self = [super init];
     if (self) {
-        self.searchURL = [NSString stringWithFormat:@"https://api.soundcloud.com/tracks.json?q=${token}&client_id=%@", CLIENT_ID];
+        self.searchURL = [NSString stringWithFormat:@"https://api.soundcloud.com/tracks.json?q=${token}&client_id=%@&limit=150", CLIENT_ID];
     }
     return self;
 }
