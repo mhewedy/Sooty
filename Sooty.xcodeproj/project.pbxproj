@@ -27,6 +27,7 @@
 		B7E116E519D3505E006FB959 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E116E219D3505E006FB959 /* NSObject+SPInvocationGrabbing.m */; };
 		B7E116E619D3505E006FB959 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E116E419D3505E006FB959 /* SPMediaKeyTap.m */; };
 		B7E19E5F19B79EF8000CB167 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7E19E5E19B79EF8000CB167 /* AVFoundation.framework */; };
+		B7E348861D16F7DE00D914E3 /* sooty.iconset in Resources */ = {isa = PBXBuildFile; fileRef = B7E348851D16F7DE00D914E3 /* sooty.iconset */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		B7E116E319D3505E006FB959 /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
 		B7E116E419D3505E006FB959 /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
 		B7E19E5E19B79EF8000CB167 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B7E348851D16F7DE00D914E3 /* sooty.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = sooty.iconset; path = ../sooty.iconset; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +199,7 @@
 				B7740A4519B6857700695A2B /* AppDelegate.m */,
 				B7740A4719B6857700695A2B /* Images.xcassets */,
 				B7740A4919B6857700695A2B /* MainMenu.xib */,
+				B7E348851D16F7DE00D914E3 /* sooty.iconset */,
 				B7740A4019B6857700695A2B /* Supporting Files */,
 			);
 			name = Sooty;
@@ -332,6 +335,7 @@
 				B7740A4819B6857700695A2B /* Images.xcassets in Resources */,
 				B783244519BA0F0D0038084C /* ListViewController.xib in Resources */,
 				B7740A4B19B6857700695A2B /* MainMenu.xib in Resources */,
+				B7E348861D16F7DE00D914E3 /* sooty.iconset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
