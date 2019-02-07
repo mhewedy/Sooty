@@ -13,12 +13,12 @@ Web is good, but for not all purposes, it might be suitable for online publishin
 
 So, I started writing my own.
 
-###Sooty is
+### Sooty is
   - a streaming sound player that you can use to listen to audio (Quraan, different sounds ....) on your mac.  
   - It is designed to be configurable to be used with different audio streaming services as well.   
   For example, **Sooty** is using [**SootyService** ](https://github.com/MuhammadHewedy/SootyService "SootyService") which is a simlation service used to simulate the audio provider services. (built mainly for development purposes)
 
-###Features
+### Features
  - Search in SoundCloud.com 
  - Ability to have Multipe Playlists
  - Ability to add/remove tracks from Playlists
@@ -26,11 +26,11 @@ So, I started writing my own.
  - Use Mac built-in Media Keys throw SPMediaKeyTap.
  - Ability to download the media file directly to your mac to listen to it offline later.
 
-###Download
+### Download
 Download latest verion from [Releases](https://github.com/MuhammadHewedy/Sooty/releases "Releases") section 
 
 
-###DEV Status
+### DEV Status
 Sooty is in its early stages, You can access to its plan at Trello here: [Sooty Plan](https://trello.com/b/CZw9cygi/sooty-plan "Sooty Plan")
 
 Note, the app has a new icon, but the [latest release] (https://github.com/MuhammadHewedy/Sooty/releases "latest release") still doesn't contains this icon.
