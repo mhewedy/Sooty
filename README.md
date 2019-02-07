@@ -33,5 +33,5 @@ Download latest verion from [Releases](https://github.com/MuhammadHewedy/Sooty/r
 ### DEV Status
 Sooty is in its early stages, You can access to its plan at Trello here: [Sooty Plan](https://trello.com/b/CZw9cygi/sooty-plan "Sooty Plan")
 
-Note, the app has a new icon, but the [latest release] (https://github.com/MuhammadHewedy/Sooty/releases "latest release") still doesn't contains this icon.
+Note, the app has a new icon, but the [latest release](https://github.com/mhewedy/Sooty/releases "latest release") still doesn't contains this icon.
 
